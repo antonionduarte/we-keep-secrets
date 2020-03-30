@@ -6,8 +6,6 @@ public class Main {
 
         Scanner in = new Scanner(System.in);
 
-        //TODO: Everything else
-
         in.close();
     }
 }
