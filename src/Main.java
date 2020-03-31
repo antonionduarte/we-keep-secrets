@@ -2,22 +2,21 @@ import java.util.Scanner;
 
 public class Main {
 
+    // Command constants
+    private static final String EXIT = "EXIT";
+    private static final String HELP = "HELP";
+    private static final String REGISTER = "REGISTER";
+    private static final String LISTUSERS = "LISTUSERS";
+    private static final String UPLOAD = "UPLOAD";
+    private static final String WRITE = "WRITE";
+    private static final String READ = "READ";
+    private static final String GRANT = "GRANT";
+    private static final String REVOKE = "REVOKE";
+    private static final String USERDOCS = "USERDOCS";
+    private static final String TOPLEAKED = "TOPLEAKED";
+    private static final String TOPGRANTERS = "TOPGRANTERS";
+
     public static void main(String[] args) {
-
-        // Command constants
-        public static final String EXIT = "EXIT";
-        public static final String HELP = "HELP";
-        public static final String REGISTER = "REGISTER";
-        public static final String LISTUSERS = "LISTUSERS";
-        public static final String UPLOAD = "UPLOAD";
-        public static final String WRITE = "WRITE";
-        public static final String READ = "READ";
-        public static final String GRANT = "GRANT";
-        public static final String REVOKE = "REVOKE";
-        public static final String USERDOCS = "USERDOCS";
-        public static final String TOPLEAKED = "TOPLEAKED";
-        public static final String TOPGRANTERS = "TOPGRANTERS";
-
         // System out messages
         // TODO
 
@@ -32,7 +31,7 @@ public class Main {
         in.close();
     }
 
-    private static processCommand(Scanner in, String command) {
+    private static void processCommand(String command) {
 
         switch (command) {
 
