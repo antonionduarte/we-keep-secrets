@@ -44,7 +44,7 @@ public class Main {
         in.close();
     }
 
-    private static processCommand(Scanner in, UserCollection uc, DocumentCollection dc, String command) {
+    private static void processCommand(Scanner in, UserCollection uc, DocumentCollection dc, String command) {
 
         switch (command) {
             case REGISTER:
