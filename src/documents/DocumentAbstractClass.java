@@ -11,17 +11,17 @@ public abstract class DocumentAbstractClass implements Document {
     /**
      * The description (one can even say content) of the document.
      */
-    String description;
+    private String description;
 
     /**
      * The identifier of the document.
      */
-    String ID;
+    private String ID;
 
     /**
      * The manager of the document (user who created it).
      */
-    User manager;
+    private User manager;
 
     /**
      * The constructor of the document.
