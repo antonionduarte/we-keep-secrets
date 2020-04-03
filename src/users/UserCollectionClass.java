@@ -1,5 +1,7 @@
 package users;
 
+import iterators.*;
+
 public class UserCollectionClass implements UserCollectionClass {
 
     // Generic Constants

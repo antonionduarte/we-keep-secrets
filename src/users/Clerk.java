@@ -1,5 +1,7 @@
 package users;
 
+import iterators.*;
+
 public interface Clerk {
 
     abstract String getID();

@@ -1,5 +1,7 @@
 package users;
 
+import iterators.*;
+
 public class UserClass implements Clerk, Officer {
 
     // Constants
