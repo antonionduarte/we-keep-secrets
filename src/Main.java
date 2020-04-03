@@ -16,19 +16,22 @@ public class Main {
     private static final String TOPLEAKED = "TOPLEAKED";
     private static final String TOPGRANTERS = "TOPGRANTERS";
 
+    // Message constants 
+    // TODO: Fix EXIT_MESSAGE, I added this placeholder because the error
+    // was annoying me.
+    private static final String EXIT_MESSAGE = "PLACEHOLDER";
     public static void main(String[] args) {
         // System out messages
         // TODO
-
-        Scanner in = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         String command = "";
 
         while (!command.equals(EXIT)) {
-            command = getCommand(in);
+            command = getCommand(scanner);
             processCommand(command);
         }
 
-        in.close();
+        scanner.close();
     }
 
     private static void processCommand(String command) {
