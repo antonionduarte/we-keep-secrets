@@ -1,5 +1,7 @@
 package users;
 
+import iterators.*;
+
 public interface Officer extends Clerk {
 
     abstract void write(/* Place Params Here!! */);

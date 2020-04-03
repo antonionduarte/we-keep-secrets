@@ -1,8 +1,10 @@
 package users;
 
 import iterators.*;
+import documents.*;
+import iterators.*;
 
-public class UserClass implements Clerk, Officer {
+public class UserClass implements User {
 
     // Constants
     private static final String OFFICER_TAG = "officer";
@@ -25,7 +27,7 @@ public class UserClass implements Clerk, Officer {
         this.userKind = userKind;
         this.userID = userID;
         this.clearance = clearance;
-        uploadedDocs = new DocumentCollection();
+        uploadedDocs = new DocumentCollectionClass();
         uploadedDocsCounter = 0;
     }
 
@@ -54,7 +56,7 @@ public class UserClass implements Clerk, Officer {
     }
 
     public String read( /* Place Params Here!! */ ) {
-
+        return "0";
     }
 
     public Iterator userDocs() {
