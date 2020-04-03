@@ -14,7 +14,6 @@ public abstract class UserAbstractClass implements User {
     private int clearance;
 
     private DocumentCollection uploadedDocs;
-    private int uploadedDocsCounter;
 
     /**
      * UserClass Constructor
@@ -27,7 +26,6 @@ public abstract class UserAbstractClass implements User {
         this.userID = userID;
         this.clearance = clearance;
         uploadedDocs = new DocumentCollectionClass();
-        uploadedDocsCounter = 0;
     }
 
     public String getID() {
@@ -42,20 +40,16 @@ public abstract class UserAbstractClass implements User {
         return clearance;
     }
 
-    /**
-     * Checks if user is an officer
-     * @return Boolean. true - is an officer ; false - is not an officer
-     */
-    public boolean isOfficer() {
-        //return getClearance() > Clearance.CLERK.getClearance();
+    public boolean hasClearance(String clearance) {
+        return this.clearance >= clearance;
     }
 
-    public void upload() {
-
+    public void upload(Document doc) {
+        uploadedDocs.addDocument(doc);
     }
 
     public String read( /* Place Params Here!! */ ) {
-        return "0";
+        return "READ: TO BE IMPLEMENTED!";
     }
 
     // TODO
