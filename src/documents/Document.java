@@ -14,4 +14,10 @@ public interface Document {
      */
     String getDescription();
 
+    /**
+     * Shows the ID of the document.
+     * @return the <code>ID</code> of the document.
+     */
+    String getID();
+
 }

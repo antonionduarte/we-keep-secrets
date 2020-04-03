@@ -46,4 +46,9 @@ public abstract class DocumentAbstractClass implements Document {
     public String getDescription() {
         return this.description;
     }
+
+    @Override
+    public String getID() {
+        return ID;
+    }
 }
