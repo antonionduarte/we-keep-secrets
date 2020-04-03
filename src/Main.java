@@ -3,58 +3,69 @@ import java.util.Scanner;
 public class Main {
 
     // Command constants
-    private static final String EXIT = "EXIT";
-    private static final String HELP = "HELP";
-    private static final String REGISTER = "REGISTER";
-    private static final String LISTUSERS = "LISTUSERS";
-    private static final String UPLOAD = "UPLOAD";
-    private static final String WRITE = "WRITE";
-    private static final String READ = "READ";
-    private static final String GRANT = "GRANT";
-    private static final String REVOKE = "REVOKE";
-    private static final String USERDOCS = "USERDOCS";
-    private static final String TOPLEAKED = "TOPLEAKED";
-    private static final String TOPGRANTERS = "TOPGRANTERS";
+    public static final String REGISTER = "REGISTER";
+    public static final String LISTUSERS = "LISTUSERS";
+    public static final String UPLOAD = "UPLOAD";
+    public static final String WRITE = "WRITE";
+    public static final String READ = "READ";
+    public static final String GRANT = "GRANT";
+    public static final String REVOKE = "REVOKE";
+    public static final String USERDOCS = "USERDOCS";
+    public static final String TOPLEAKED = "TOPLEAKED";
+    public static final String TOPGRANTERS = "TOPGRANTERS";
+    public static final String HELP = "HELP";
+    public static final String EXIT = "EXIT";
 
-    // Message constants 
-    // TODO: Fix EXIT_MESSAGE, I added this placeholder because the error
-    // was annoying me.
-    private static final String EXIT_MESSAGE = "PLACEHOLDER";
+    // System out messages
+    private static final String EXIT_MESSAGE = "Bye!";
+    // TODO
+
     public static void main(String[] args) {
-        // System out messages
-        // TODO
-        Scanner scanner = new Scanner(System.in);
+
+        // Initiate Scanner
+        Scanner in = new Scanner(System.in);
+
+        // Initiate DocumentCollection and UserCollection
+        DocumentCollection dc = new DocumentCollectionClass();
+        UserCollection uc = new UserCollectionClass();
+
+        // Other instance variables
         String command = "";
 
+        // Main loop
         while (!command.equals(EXIT)) {
-            command = getCommand(scanner);
-            processCommand(command);
+            command = getCommand(in);
+            processCommand(in, uc, dc, command);
         }
 
-        scanner.close();
+        // Close Scanner and terminate (I'll be back)
+        in.close();
     }
 
-    private static void processCommand(String command) {
+    private static processCommand(Scanner in, UserCollection uc, DocumentCollection dc, String command) {
 
         switch (command) {
-
-            case EXIT: {
+            case REGISTER:
+                processRegister(in, uc, dc);
+                break;
+            // TODO: Add the other commands
+            case EXIT:
                 System.out.println(EXIT_MESSAGE);
                 break;
-            }
-            case HELP: {
+            case HELP:
                 processHelp();
                 break;
-            }
         }
+    }
+
+    private static void processRegister(Scanner in, UserCollection uc, DocumentCollection dc) {
+        // TODO
     }
 
     private static void processHelp() {
-        // TODO
+        for(HelpMenu h: HelpMenu.values())
+            System.out.println(h.message());
     }
-
-
-
 
     private static String getCommand(Scanner in) {
         return in.nextLine().toUpperCase();
