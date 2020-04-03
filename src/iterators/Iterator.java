@@ -1,6 +1,8 @@
+package iterators;
+
 public interface Iterator {
 
-    abstract boolean hasNext();
+    boolean hasNext();
 
-    abstract Object next();
+    Object next();
 }

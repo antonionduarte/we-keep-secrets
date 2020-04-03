@@ -1,6 +1,7 @@
 package users;
 
 import iterators.*;
+import documents.*;
 
 public abstract class UserAbstractClass implements User {
 
@@ -54,12 +55,13 @@ public abstract class UserAbstractClass implements User {
     }
 
     public String read( /* Place Params Here!! */ ) {
-
+        return "0";
     }
 
-    public Iterator userDocs() {
-        return new IteratorClass(uploadedDocs, uploadedDocsCounter);
-    }
+    // TODO
+    // public Iterator userDocs() {
+    //     return new IteratorClass(uploadedDocs, uploadedDocsCounter);
+    // }
 
     public abstract void write( /* Place Params Here!! */ );
 
