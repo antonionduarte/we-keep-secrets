@@ -22,7 +22,7 @@ public abstract class UserAbstractClass implements User {
      * @param userID    The user unique ID
      * @param clearance the user clearance
      */
-    protected UserClass(String userKind, String userID, int clearance) {
+    protected UserAbstractClass(String userKind, String userID, int clearance) {
         this.userKind = userKind;
         this.userID = userID;
         this.clearance = clearance;
@@ -47,10 +47,10 @@ public abstract class UserAbstractClass implements User {
      * @return Boolean. true - is an officer ; false - is not an officer
      */
     public boolean isOfficer() {
-        return getClearance() > Clearance.CLERK.getClearance();
+        //return getClearance() > Clearance.CLERK.getClearance();
     }
 
-    public void upload( /* Place Params Here!!*/ ) {
+    public void upload() {
 
     }
 
