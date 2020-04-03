@@ -1,4 +1,4 @@
 
-public interface System {
+public interface FileSystem {
 
 }

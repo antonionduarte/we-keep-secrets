@@ -1,4 +1,4 @@
 
-public class SystemClass implements System {
+public class FileSystemClass implements FileSystem {
 
 }
