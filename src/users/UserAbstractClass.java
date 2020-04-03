@@ -2,7 +2,6 @@ package users;
 
 import iterators.*;
 import documents.*;
-import iterators.*;
 
 public abstract class UserAbstractClass implements User {
 
@@ -23,7 +22,7 @@ public abstract class UserAbstractClass implements User {
      * @param userID    The user unique ID
      * @param clearance the user clearance
      */
-    protected UserClass(String userKind, String userID, String clearance) {
+    protected UserAbstractClass(String userKind, String userID, String clearance) {
         this.userKind = userKind;
         this.userID = userID;
         this.clearance = clearance;
@@ -59,9 +58,10 @@ public abstract class UserAbstractClass implements User {
         return "0";
     }
 
-    public Iterator userDocs() {
-        return new IteratorClass(uploadedDocs, uploadedDocsCounter);
-    }
+    // TODO
+    // public Iterator userDocs() {
+    //     return new IteratorClass(uploadedDocs, uploadedDocsCounter);
+    // }
 
     public void write( /* Place Params Here!! */ ) {
 

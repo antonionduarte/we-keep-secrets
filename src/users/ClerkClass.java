@@ -4,8 +4,7 @@ import iterators.*;
 
 public class ClerkClass extends UserAbstractClass {
 
-
-    public ClerkClass() {
-        
+    public ClerkClass(String userKind, String userID, String clearance) {
+        super(userKind, userID, clearance);
     }
 }

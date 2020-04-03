@@ -20,8 +20,6 @@ public class Main {
 
     // System out messages
     private static final String EXIT_MESSAGE = "Bye!";
-    // TODO
-
     public static void main(String[] args) {
 
         // Initiate Scanner
@@ -40,11 +38,10 @@ public class Main {
         in.close();
     }
 
-    private static processCommand(Scanner in, String command) {
-
+    private static void processCommand(Scanner in, String command) {
         switch (command) {
             case REGISTER:
-                processRegister(in);
+                // TODO processRegister(in);
                 break;
             // TODO: Add the other commands
             case EXIT:
