@@ -5,7 +5,7 @@ import iterators.*;
 
 public interface User {
 
-    abstract String getId();
+    abstract String getID();
 
     abstract String getKind();
 
