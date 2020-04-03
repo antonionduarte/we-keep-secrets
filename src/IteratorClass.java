@@ -4,7 +4,7 @@ public class IteratorClass implements Iterator {
     int counter;
     int current;
 
-    public Iterator(Object[] vector, int counter) {
+    public IteratorClass(Object[] vector, int counter) {
         this.vector = vector;
         this.counter = counter;
         this.current = current;
