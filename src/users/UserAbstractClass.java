@@ -10,7 +10,7 @@ public abstract class UserAbstractClass implements User {
     //Instance variables
     private String userID;
     private String userKind;
-    private String clearance;
+    private int clearance;
 
     private DocumentCollection uploadedDocs;
     private int uploadedDocsCounter;
@@ -21,11 +21,11 @@ public abstract class UserAbstractClass implements User {
      * @param userID    The user unique ID
      * @param clearance the user clearance
      */
-    protected UserClass(String userKind, String userID, String clearance) {
+    protected UserClass(String userKind, String userID, int clearance) {
         this.userKind = userKind;
         this.userID = userID;
         this.clearance = clearance;
-        uploadedDocs = new DocumentCollection();
+        uploadedDocs = new DocumentCollectionClass();
         uploadedDocsCounter = 0;
     }
 
@@ -37,7 +37,7 @@ public abstract class UserAbstractClass implements User {
         return userKind;
     }
 
-    public String getClearance() {
+    public int getClearance() {
         return clearance;
     }
 
@@ -46,7 +46,7 @@ public abstract class UserAbstractClass implements User {
      * @return Boolean. true - is an officer ; false - is not an officer
      */
     public boolean isOfficer() {
-        return userKind.equalsIgnoreCase(OFFICER_TAG);
+        return getClearance() > Clearance.CLERK.getClearance();
     }
 
     public void upload( /* Place Params Here!!*/ ) {
@@ -61,8 +61,10 @@ public abstract class UserAbstractClass implements User {
         return new IteratorClass(uploadedDocs, uploadedDocsCounter);
     }
 
-    public void write( /* Place Params Here!! */ ) {
+    public abstract void write( /* Place Params Here!! */ );
 
-    }
+    public abstract void grant( /* Place Params Here!! */);
+
+    public abstract void revoke(/* Place Params Here!! */);
 
 }
