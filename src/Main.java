@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import documents.*;
+import users.*;
 
 public class Main {
 
