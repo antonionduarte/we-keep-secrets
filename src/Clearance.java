@@ -14,6 +14,10 @@ public enum Clearance {
         this.clearance = clearance;
     }
 
+    /**
+     * 
+     * @return the clearance level.
+     */
     public int getClearance() {
         return clearance;
     }
