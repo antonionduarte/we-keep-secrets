@@ -1,8 +1,11 @@
 package documents;
 
+import users.*;
+
 public class DocumentCollectionClass implements DocumentCollection {
 
     // Constants
+    
     private static final int DEFAULT_SIZE = 100;
     private static final int GROWTH_FACTOR = 2;
 
@@ -24,8 +27,37 @@ public class DocumentCollectionClass implements DocumentCollection {
 
     // Methods
 
+    /**
+     * Resizes the document array when it reaches the maximum length.
+     */
     private void resize() {
-        Document[] tempDocuments;
+        Document[] tempDocuments = new Document[documents.length * GROWTH_FACTOR];
+        for (int i = 0; i < counter; i++)
+            tempDocuments[i] = documents[i];
+        documents = tempDocuments;
     }
+
+    /**
+     * Checks if the array of documents is full.
+     * @return true if the array of documents is full. False if otherwise.
+     */
+    private boolean isFull() {
+        return counter == documents.length;
+    }
+
+    @Override
+    public void addOfficialDocument(String ID, String description, User manager) {
+        if (isFull())
+            resize();
+        documents[counter++] = new OfficialDocumentClass(ID, description, manager);
+    }
+
+    @Override
+    public void addClassifiedDocument(String ID, String description, User manager) {
+        if (isFull())
+            resize();
+        documents[counter++] = new ClassifiedDocumentClass(ID, description, manager);
+    }
+    
 
 }
