@@ -27,28 +27,24 @@ public class Main {
         // Initiate Scanner
         Scanner in = new Scanner(System.in);
 
-        // Initiate DocumentCollection and UserCollection
-        DocumentCollection dc = new DocumentCollectionClass();
-        UserCollection uc = new UserCollectionClass();
-
         // Other instance variables
         String command = "";
 
         // Main loop
         while (!command.equals(EXIT)) {
             command = getCommand(in);
-            processCommand(in, uc, dc, command);
+            processCommand(in, command);
         }
 
         // Close Scanner and terminate (I'll be back)
         in.close();
     }
 
-    private static void processCommand(Scanner in, UserCollection uc, DocumentCollection dc, String command) {
+    private static processCommand(Scanner in, String command) {
 
         switch (command) {
             case REGISTER:
-                processRegister(in, uc, dc);
+                processRegister(in);
                 break;
             // TODO: Add the other commands
             case EXIT:

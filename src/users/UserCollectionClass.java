@@ -16,7 +16,7 @@ public class UserCollectionClass implements UserCollection {
      * The UserCollectionClass constructor
      */
     public UserCollectionClass() {
-        users = new UserClass[DEFAULT_VECTOR_SIZE];
+        users = new User[DEFAULT_VECTOR_SIZE];
         userCounter = 0;
     }
 }
