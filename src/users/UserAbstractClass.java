@@ -2,7 +2,7 @@ package users;
 
 import iterators.*;
 
-public class UserClass implements Clerk, Officer {
+public abstract class UserAbstractClass implements User {
 
     // Constants
     private static final String OFFICER_TAG = "officer";
@@ -21,7 +21,7 @@ public class UserClass implements Clerk, Officer {
      * @param userID    The user unique ID
      * @param clearance the user clearance
      */
-    public UserClass(String userKind, String userID, String clearance) {
+    protected UserClass(String userKind, String userID, String clearance) {
         this.userKind = userKind;
         this.userID = userID;
         this.clearance = clearance;
