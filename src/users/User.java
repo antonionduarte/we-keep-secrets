@@ -1,5 +1,8 @@
 package users;
 
+import documents.*;
+import iterators.*;
+
 public interface User {
 
     abstract String getId();
