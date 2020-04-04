@@ -24,6 +24,21 @@ public abstract class DocumentAbstractClass implements Document {
     private User manager;
 
     /**
+     * 
+     */
+    private String clearance;
+
+    /**
+     * The clearance level of the Document.
+     * TODO: Finish this comment.
+     * 1 - 
+     * 2 - 
+     * 3 -
+     * 4 - 
+     */
+    private int clearanceLevel;
+
+    /**
      * The constructor of the document.
      * @param ID that identifies the document.
      * @param description or content that the document has.
