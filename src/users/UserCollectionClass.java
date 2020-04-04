@@ -51,7 +51,7 @@ public class UserCollectionClass implements UserCollection {
     }
 
     private void resize() {
-        User temp = new User[users.length * GROWTH_FACTOR];
+        User[] temp = new User[users.length * GROWTH_FACTOR];
         for (int i=0 ; i<userCounter ; i++) {
             users[i] = temp[i];
         }
