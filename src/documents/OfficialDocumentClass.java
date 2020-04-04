@@ -1,6 +1,7 @@
 package documents;
 
 import users.*;
+import clearance.*;
 
 public class OfficialDocumentClass extends DocumentAbstractClass {
 
@@ -10,7 +11,7 @@ public class OfficialDocumentClass extends DocumentAbstractClass {
      * @param description or content that the document has.
      * @param manager is the user that created the document.
      */
-    public OfficialDocumentClass(String ID, String description, User manager) {
-        super(ID, description, manager);
+    public OfficialDocumentClass(String ID, String description, User manager, Clearance clearance) {
+        super(ID, description, manager, clearance);
     }
 }

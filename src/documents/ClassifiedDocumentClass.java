@@ -1,5 +1,6 @@
 package documents;
 
+import clearance.*;
 import users.*;
 
 public class ClassifiedDocumentClass extends DocumentAbstractClass implements ClassifiedDocument {
@@ -16,8 +17,8 @@ public class ClassifiedDocumentClass extends DocumentAbstractClass implements Cl
      * @param description or content that the document has.
      * @param manager is the user that created the document.
      */
-    public ClassifiedDocumentClass(String ID, String description, User manager) {
-        super(ID, description, manager);
+    public ClassifiedDocumentClass(String ID, String description, User manager, Clearance clearance) {
+        super(ID, description, manager, clearance);
     }
 
     @Override
