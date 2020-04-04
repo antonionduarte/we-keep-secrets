@@ -58,7 +58,7 @@ public class Main {
     }
 
     private static void processHelp() {
-        for(HelpMenu h: HelpMenu.values())
+        for (HelpMenu h: HelpMenu.values())
             System.out.println(h.message());
     }
 
