@@ -34,7 +34,7 @@ public class UserCollectionClass implements UserCollection {
     }
     
     public boolean hasUser(String userID) {
-        return searchIndexOf(user) != -1;
+        return searchIndexOf(userID) != -1;
     }
 
     private int searchIndexOf(String userID) {
