@@ -5,7 +5,7 @@ import users.*;
 public class DocumentCollectionClass implements DocumentCollection {
 
     // Constants
-    
+
     private static final int DEFAULT_SIZE = 100;
     private static final int GROWTH_FACTOR = 2;
 
@@ -46,18 +46,8 @@ public class DocumentCollectionClass implements DocumentCollection {
     }
 
     @Override
-    public void addOfficialDocument(String ID, String description, User manager) {
-        if (isFull())
-            resize();
-        documents[counter++] = new OfficialDocumentClass(ID, description, manager);
+    public void addDocument(Document document) {
+        if (isFull()) resize();
+        documents[counter++] = document;
     }
-
-    @Override
-    public void addClassifiedDocument(String ID, String description, User manager) {
-        if (isFull())
-            resize();
-        documents[counter++] = new ClassifiedDocumentClass(ID, description, manager);
-    }
-    
-
 }
