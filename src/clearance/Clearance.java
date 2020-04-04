@@ -1,3 +1,5 @@
+package clearance;
+
 public enum Clearance {
 
     // Clearance Levels
