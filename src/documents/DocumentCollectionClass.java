@@ -15,18 +15,18 @@ public class DocumentCollectionClass implements DocumentCollection {
      * The array of documents.
      */
     private Document[] documents;
-
+    
     /**
      * The counter associated with the document array <code>documents</code>.
      */
     private int counter;
-
+    
     public DocumentCollectionClass() {
         this.documents = new Document[DEFAULT_SIZE];
     }
-
+    
     // Methods
-
+    
     /**
      * Resizes the document array when it reaches the maximum length.
      */
@@ -44,7 +44,7 @@ public class DocumentCollectionClass implements DocumentCollection {
     private boolean isFull() {
         return counter == documents.length;
     }
-
+    
     @Override
     public void addDocument(Document document) {
         if (isFull()) resize();
