@@ -2,7 +2,7 @@ public enum Clearance {
 
     // Clearance Levels
     CLERK ("official", 0),
-    CONFIDENTIAL ("confindential", 1),
+    CONFIDENTIAL ("confidential", 1),
     SECRET ("secret", 2),
     TOPSECRET ("topsecret", 3);
 
