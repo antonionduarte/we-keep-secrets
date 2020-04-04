@@ -1,7 +1,5 @@
 package documents;
 
-import users.*;
-
 public interface DocumentCollection {
 
     /**

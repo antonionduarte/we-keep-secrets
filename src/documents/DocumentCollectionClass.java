@@ -1,7 +1,5 @@
 package documents;
 
-import users.*;
-
 public class DocumentCollectionClass implements DocumentCollection {
 
     // Constants
