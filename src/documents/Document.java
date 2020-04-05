@@ -1,5 +1,7 @@
 package documents;
 
+import users.*;
+
 public interface Document {
 
     /**
@@ -22,5 +24,12 @@ public interface Document {
      * PRE ID != NULL
      */
     String getID();
+
+    /**
+     * Checks if a given user is the manager of the document.
+     * @param user to compare with.
+     * @return true if the given user is the manager, false if otherwise.
+     */
+    boolean isManager(User user);
 
 }

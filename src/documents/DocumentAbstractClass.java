@@ -58,4 +58,9 @@ public abstract class DocumentAbstractClass implements Document {
     public String getID() {
         return ID;
     }
+
+    @Override
+    public boolean isManager(User user) {
+        return user.equals(manager);
+    }
 }
