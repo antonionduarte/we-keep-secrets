@@ -1,6 +1,7 @@
 import java.util.Scanner;
 import documents.*;
 import users.*;
+import clearance.*;
 
 public class Main {
 

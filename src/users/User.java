@@ -2,6 +2,7 @@ package users;
 
 import documents.*;
 import iterators.*;
+import clearance.*;
 
 public interface User {
 

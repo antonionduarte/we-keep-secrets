@@ -2,12 +2,13 @@ package users;
 
 import iterators.*;
 import documents.*;
+import clearance.*;
 
 public class OfficerClass extends UserAbstractClass {
 
     private int grantCount;
 
-    public OfficerClass(String userKind, String userID, int clearance) {
+    public OfficerClass(String userKind, String userID, Clearance clearance) {
         super(userKind, userID, clearance);
 
         grantCount = 0;

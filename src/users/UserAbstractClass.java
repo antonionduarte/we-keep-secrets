@@ -2,6 +2,7 @@ package users;
 
 import iterators.*;
 import documents.*;
+import clearance.*;
 
 public abstract class UserAbstractClass implements User, HighPrevillegeUser {
 

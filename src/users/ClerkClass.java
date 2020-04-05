@@ -2,6 +2,7 @@ package users;
 
 import iterators.*;
 import documents.*;
+import clearance.*;
 
 public class ClerkClass extends UserAbstractClass {
 
