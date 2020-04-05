@@ -63,4 +63,14 @@ public abstract class DocumentAbstractClass implements Document {
     public boolean isManager(User user) {
         return user.equals(manager);
     }
+
+    @Override
+    public int getClearance() {
+        return clearance.getClearance();
+    }
+
+    @Override
+    public String getClearanceString() {
+        return clearance.getClearanceString();
+    }
 }
