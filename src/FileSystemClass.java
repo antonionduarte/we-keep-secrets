@@ -1,5 +1,6 @@
 import documents.*;
 import users.*;
+import iterators.*;
 
 public class FileSystemClass implements FileSystem {
 

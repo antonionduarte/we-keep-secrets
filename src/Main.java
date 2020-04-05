@@ -20,6 +20,8 @@ public class Main {
 
     // System out messages
     private static final String EXIT_MESSAGE = "Bye!";
+
+    
     public static void main(String[] args) {
 
         // Initiate Scanner
