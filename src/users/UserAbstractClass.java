@@ -3,7 +3,7 @@ package users;
 import iterators.*;
 import documents.*;
 
-public abstract class UserAbstractClass implements User {
+public abstract class UserAbstractClass implements User, HighPrevillegeUser {
 
     // Constants
     private static final String OFFICER_TAG = "officer";
@@ -11,7 +11,7 @@ public abstract class UserAbstractClass implements User {
     //Instance variables
     private String userID;
     private String userKind;
-    private int clearance;
+    private Clearance clearance;
 
     private DocumentCollection uploadedDocs;
 
@@ -21,7 +21,7 @@ public abstract class UserAbstractClass implements User {
      * @param userID    The user unique ID
      * @param clearance the user clearance
      */
-    protected UserAbstractClass(String userKind, String userID, int clearance) {
+    protected UserAbstractClass(String userKind, String userID, Clearance clearance) {
         this.userKind = userKind;
         this.userID = userID;
         this.clearance = clearance;
@@ -36,31 +36,30 @@ public abstract class UserAbstractClass implements User {
         return userKind;
     }
 
-    public int getClearance() {
+    public Clearance getClearance() {
         return clearance;
     }
 
-    public boolean hasClearance(String clearance) {
-        return this.clearance >= clearance;
+    public boolean hasClearance(Clearance clearance) {
+        return this.clearance.getClearance() >= clearance.getClearance();
     }
 
     public void upload(Document doc) {
         uploadedDocs.addDocument(doc);
     }
 
-    public String read( /* Place Params Here!! */ ) {
-        return "READ: TO BE IMPLEMENTED!";
+    public String read(Document document) {
+        return document.getMessage();
     }
 
-    // TODO
-    // public Iterator userDocs() {
-    //     return new IteratorClass(uploadedDocs, uploadedDocsCounter);
-    // }
+    public Iterator userDocs() {
+        return new IteratorClass(uploadedDocs, uploadedDocsCounter);
+    }
 
-    public abstract void write( /* Place Params Here!! */ );
+    public abstract void write(Document document, String message);
 
-    public abstract void grant( /* Place Params Here!! */);
+    public abstract void grant(Document document, User user);
 
-    public abstract void revoke(/* Place Params Here!! */);
+    public abstract void revoke(Document document, User user);
 
 }

@@ -11,24 +11,12 @@ public interface User {
 
     abstract int getClearance();
 
-    abstract boolean isOfficer(); // This is probably not necessary
+    abstract boolean hasClearance(Clearance clearance);
 
-    abstract void upload( /* Place Params Here!! */ );
+    abstract void upload(Document document);
 
-    abstract String read( /* Place Params Here!! */); // Not sure if this is necessary inside user
-
-    abstract void write( /* Place Params Here!! */ );
-
-    abstract void grant( /* Place Params Here!! */ );
-
-    abstract void revoke( /* Place Params Here!! */ );
+    abstract String read(Document document);
 
     abstract Iterator userDocs();
-
-    abstract void write(Document document, String message);
-
-    abstract void grant(Document document, User user);
-
-    abstract void revoke(Document document, User user);
 
 }

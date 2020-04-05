@@ -13,4 +13,6 @@ public interface UserCollection {
 
 	abstract boolean hasUser(String userID);
 
+	abstract Iterator userDocsIterator(String userID);
+
 }

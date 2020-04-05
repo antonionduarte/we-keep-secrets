@@ -21,22 +21,61 @@ public class UserCollectionClass implements UserCollection {
         userCounter = 0;
     }
 
+    /**
+     * Adds an user to the collection.
+     *
+     * @param      user  The user object
+     */
     public void addUser(User user) {
         users[userCounter++] = user;
     }
 
+    /**
+     * Gets the user object from the collection
+     *
+     * @param      userID  The user id
+     *
+     * @return     The user object.
+     */
     public User getUserObject(String userID) {
         return users[searchIndexOf(userID)];
     }
 
-    public void upload(User user, Document document) {
-        user.upload(document);
-    }
-    
+    /**
+     * Determines if colelction has user.
+     *
+     * @param      userID  The user id
+     *
+     * @return     True if user, False otherwise.
+     */
     public boolean hasUser(String userID) {
         return searchIndexOf(userID) != -1;
     }
 
+    /**
+     * Gets the user docs iterator
+     *
+     * @param      userID  The user id
+     *
+     * @return     An iterator object
+     */
+    public Iterator userDocsIterator(User userID) {
+        return users[searchIndexOf(userID)].userDocs();
+    }
+
+
+
+
+    /* Private Methods */
+
+
+    /**
+     * Searches for the index of user in the array
+     *
+     * @param      userID  The user id
+     *
+     * @return     The user's object position in the array
+     */
     private int searchIndexOf(String userID) {
         int pos = -1;
         for (int i=0 ; i<userCounter&&pos==-1 ; i++) {
@@ -46,10 +85,18 @@ public class UserCollectionClass implements UserCollection {
         return pos;
     }
 
+    /**
+     * Determines if array is full.
+     *
+     * @return     True if full, False otherwise.
+     */
     private boolean isFull() {
         return userCounter == users.length;
     }
 
+    /**
+     * Resizes the array. The new array will always have x2 the length of the previous array.
+     */
     private void resize() {
         User[] temp = new User[users.length * GROWTH_FACTOR];
         for (int i=0 ; i<userCounter ; i++) {
@@ -58,8 +105,5 @@ public class UserCollectionClass implements UserCollection {
         users = temp;
     }
 
-
-
-    /* Private Methods */
 
 }
