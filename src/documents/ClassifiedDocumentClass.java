@@ -3,7 +3,7 @@ package documents;
 import clearance.*;
 import users.*;
 
-public class ClassifiedDocumentClass extends DocumentAbstractClass implements ClassifiedDocument {
+public class ClassifiedDocumentClass extends AbstractDocument implements ClassifiedDocument {
 
     /**
      * User collection that stores the users that have permission to access a specific document
