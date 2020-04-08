@@ -3,7 +3,7 @@ package documents;
 import users.*;
 import clearance.*;
 
-public class OfficialDocumentClass extends AbstractDocument {
+public class OfficialDocumentClass extends AbstractDocument implements OfficialDocument {
 
     /**
      * Constructor of the Official Documents.
