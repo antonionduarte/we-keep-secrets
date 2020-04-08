@@ -3,7 +3,7 @@ package documents;
 import clearance.*;
 import users.*;
 
-public abstract class DocumentAbstractClass implements Document {
+public abstract class AbstractDocument implements Document {
 
     // Constants
 
@@ -35,7 +35,7 @@ public abstract class DocumentAbstractClass implements Document {
      * @param description or content that the document has.
      * @param manager is the user that created the document.
      */
-    protected DocumentAbstractClass(String ID, String description, User manager, Clearance clearance) {
+    protected AbstractDocument(String ID, String description, User manager, Clearance clearance) {
         this.ID = ID;
         this.description = description;
         this.manager = manager;
