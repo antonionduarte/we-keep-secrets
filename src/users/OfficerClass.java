@@ -4,7 +4,7 @@ import iterators.*;
 import documents.*;
 import clearance.*;
 
-public class OfficerClass extends UserAbstractClass {
+public class OfficerClass extends UserAbstractClass implements Officer {
 
     private int grantCount;
 

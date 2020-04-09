@@ -10,8 +10,8 @@ public class UserCollectionClass implements UserCollection {
     private static final int GROWTH_FACTOR = 2;
 
     // Instance variables
-    User[] users;
-    int userCounter;
+    private User[] users;
+    private int userCounter;
 
     /**
      * The UserCollectionClass constructor
@@ -50,6 +50,17 @@ public class UserCollectionClass implements UserCollection {
      */
     public boolean hasUser(String userID) {
         return searchIndexOf(userID) != -1;
+    }
+
+    public boolean userHasDocument(String userID, String docID)
+
+    /**
+     * Sets up the user iterator
+     *
+     * @return     An iterator object
+     */
+    public Iterator userIterator() {
+        return new IteratorClass(users, userCounter);
     }
 
     /**
