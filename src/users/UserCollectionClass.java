@@ -24,7 +24,7 @@ public class UserCollectionClass implements UserCollection {
     /**
      * Adds an user to the collection.
      *
-     * @param      user  The user object
+     * @param user  The user object
      */
     public void addUser(User user) {
         users[userCounter++] = user;
@@ -89,7 +89,7 @@ public class UserCollectionClass implements UserCollection {
      */
     private int searchIndexOf(String userID) {
         int pos = -1;
-        for (int i=0 ; i<userCounter&&pos==-1 ; i++) {
+        for (int i = 0; i < userCounter && pos == -1; i++) {
             if (users[i].getID().equals(userID))
                 pos = i;
         }
@@ -110,7 +110,7 @@ public class UserCollectionClass implements UserCollection {
      */
     private void resize() {
         User[] temp = new User[users.length * GROWTH_FACTOR];
-        for (int i=0 ; i<userCounter ; i++) {
+        for (int i = 0; i < userCounter; i++) {
             users[i] = temp[i];
         }
         users = temp;

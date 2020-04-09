@@ -116,7 +116,7 @@ public abstract class UserAbstractClass implements User {
 
     private int searchIndexOf(String docID) {
         int pos = -1;
-        for (int i=0 ; i<userCounter&&pos==-1 ; i++) {
+        for (int i = 0; i < userCounter && pos == -1; i++) {
             if (uploadedDocs[i].getID().equals(docID))
                 pos = i;
         }
