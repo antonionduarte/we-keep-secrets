@@ -5,8 +5,6 @@ import clearance.*;
 
 public class FileSystemClass implements FileSystem {
 
-    User managerLol;
-
     DocumentCollection documentCollection;
     UserCollection userCollection;
 
@@ -60,7 +58,7 @@ public class FileSystemClass implements FileSystem {
      */
     public void write(String docID, String managerID, String userID, String description) {
     	Document doc = documentCollection.getDocumentObject(docID);
-    	doc.write(description)
+    	doc.write(description);
     	// TODO: Document has to log the operation
     }
 
@@ -99,7 +97,7 @@ public class FileSystemClass implements FileSystem {
  	public boolean hasClearance(String userID, String docID) {
  		User user = us.getUserObject(userID);
  		Document doc = documentCollection.getDocumentObject(docID);
- 		return user.getClearance().toInt() >= doc.getClearance().toInt()
+ 		return user.getClearance().toInt() >= doc.getClearance().toInt();
  	}
 
     /**
