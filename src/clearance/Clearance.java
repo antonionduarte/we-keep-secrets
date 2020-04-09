@@ -20,7 +20,7 @@ public enum Clearance {
      * 
      * @return the clearance level in int format.
      */
-    public int getClearance() {
+    public int toInt() {
         return clearance;
     }
 
