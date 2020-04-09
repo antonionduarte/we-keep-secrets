@@ -35,4 +35,57 @@ public class FileSystemClass implements FileSystem {
         
         documentCollection.addDocument(document);
     }
+
+    public void register(String userKind, String userID, Clearance clearance) {
+    	User user = new User(userKind, userID, clearance);
+    	uc.addUser(user);
+    }
+
+    public Iterator listUsers() {
+    	return us.userIterator();
+    }
+
+    public void upload(String docID, String userID, Clearance clearance, String description) {
+    	User user = uc.getUserObject(userID);
+    	Document doc = new Document(docID, description, user, clearance);
+    	dc.addDocument(doc);
+    }
+
+    public void write(String docID, String managerID, String userID, String description) {
+    	Document doc = dc.getDocumentObject(docID);
+    	doc.write(description)
+    	// TODO: Document has to log the operation
+    }
+
+    public boolean userExists(String userID) {
+    	uc.hasUser(userID);
+    }
+
+    public boolean userHasDocument(String userId, String docID) {
+    	User user = uc.getUserObject(String userID);
+    	return user.hasDocument(docID);
+    }
+
+ 	public boolean hasClearance(String userID, String docID) {
+ 		User user = us.getUserObject(userID);
+ 		Document doc = dc.getDocumentObject(docID);
+ 		return user.getClearance().toInt() >= doc.getClearance().toInt()
+ 	}
+
+ 	public boolean hasGrant(String userID, String docID) {
+ 		Document doc = dc.getDocumentObject(docID);
+ 		return doc.hasGrant(userID);
+ 	}
+
+ 	public boolean isOfficial(String docID) {
+ 		return dc.getDocumentObject(docID).getClearance().toInt() == Clerance.CLERK.toInt();
+ 	}
+
+    public Clearance getUserClearance(String userID) {
+    	uc.getUserObject(userID).getClerance();
+    }
+
+    public Clearance getDocumentClearance(String documentID) {
+    	dc.getDocumentObject(documentID).getClerance();
+    }
 }
