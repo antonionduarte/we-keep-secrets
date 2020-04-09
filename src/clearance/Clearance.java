@@ -18,12 +18,16 @@ public enum Clearance {
 
     /**
      * 
-     * @return the clearance level.
+     * @return the clearance level in int format.
      */
     public int getClearance() {
         return clearance;
     }
 
+    /**
+     *
+     * @return     The clearance level in string format
+     */
     public String getClearanceString() {
         return clearanceString;
     }
