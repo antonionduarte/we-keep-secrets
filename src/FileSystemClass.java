@@ -16,76 +16,135 @@ public class FileSystemClass implements FileSystem {
     }
 
     /**
-     * (TEMP) upload <doc_name> <user_id> <security_level> <description>
-     * TODO: replace managerLol lmao.
+     * Registers a user in the database
+     *
+     * @param      userKind   The user kind
+     * @param      userID     The user id
+     * @param      clearance  The clearance
      */
-    public void createDocument(String ID, String managerID, String clearance, String description) {
-
-        User manager = userCollection.searchIndex(managerID);
-
-        if (clearance.equals(Clearance.CLERK.getClearanceString())) {
-            OfficialDocument document = new OfficialDocumentClass(ID, description, managerLol, Clearance.CLERK);
-        } else if (clearance.equals(Clearance.CONFIDENTIAL.getClearanceString())) {
-            ClassifiedDocument document = new ClassifiedDocumentClass(ID, description, managerLol, Clearance.CONFIDENTIAL);
-        } else if (clearance.equals(Clearance.SECRET.getClearanceString())) {
-            ClassifiedDocument document = new ClassifiedDocumentClass(ID, description, managerLol, Clearance.SECRET);
-        } else {
-            ClassifiedDocument document = new ClassifiedDocumentClass(ID, description, managerLol, Clearance.TOPSECRET);
-        }
-        
-        documentCollection.addDocument(document);
-    }
-
     public void register(String userKind, String userID, Clearance clearance) {
     	User user = new User(userKind, userID, clearance);
-    	uc.addUser(user);
+    	userCollection.addUser(user);
     }
 
+    /**
+     * Initiates an user iterator
+     *
+     * @return     Iterator object
+     */
     public Iterator listUsers() {
-    	return us.userIterator();
+    	return userCollection.userIterator();
     }
 
+    /**
+     * Uploads a document with <code>clerance</code> and <code>description</code>.
+     *
+     * @param      docID        The document id
+     * @param      userID       The user id
+     * @param      clearance    The clearance
+     * @param      description  The description
+     */
     public void upload(String docID, String userID, Clearance clearance, String description) {
-    	User user = uc.getUserObject(userID);
+    	User user = userCollection.getUserObject(userID);
     	Document doc = new Document(docID, description, user, clearance);
-    	dc.addDocument(doc);
+    	documentCollection.addDocument(doc);
     }
 
+    /**
+     * Writes <code>description</code> to a specific document. The <code>userID</code> must point to a user with privelleges equal or higher than the document.
+     *
+     * @param      docID        The document id
+     * @param      managerID    The manager id
+     * @param      userID       The user id
+     * @param      description  The description
+     */
     public void write(String docID, String managerID, String userID, String description) {
-    	Document doc = dc.getDocumentObject(docID);
+    	Document doc = documentCollection.getDocumentObject(docID);
     	doc.write(description)
     	// TODO: Document has to log the operation
     }
 
+    /**
+     * Determines if user exists.
+     *
+     * @param      userID  The user id
+     *
+     * @return     True if user exists, False otherwise.
+     */
     public boolean userExists(String userID) {
-    	uc.hasUser(userID);
+    	userCollection.hasUser(userID);
     }
 
+    /**
+     * Determines if user is owner of document
+     *
+     * @param      userId  The user identifier
+     * @param      docID   The document id
+     *
+     * @return     True if user has document, False otherwise
+     */
     public boolean userHasDocument(String userId, String docID) {
-    	User user = uc.getUserObject(String userID);
+    	User user = userCollection.getUserObject(String userID);
     	return user.hasDocument(docID);
     }
 
+    /**
+     * Determines if user has clearance.
+     *
+     * @param      userID  The user id
+     * @param      docID   The document id
+     *
+     * @return     True if has clearance, False otherwise.
+     */
  	public boolean hasClearance(String userID, String docID) {
  		User user = us.getUserObject(userID);
- 		Document doc = dc.getDocumentObject(docID);
+ 		Document doc = documentCollection.getDocumentObject(docID);
  		return user.getClearance().toInt() >= doc.getClearance().toInt()
  	}
 
+    /**
+     * Determines if user has a grant to a specific document.
+     *
+     * @param      userID  The user id
+     * @param      docID   The document id
+     *
+     * @return     True if has grant, False otherwise.
+     */
  	public boolean hasGrant(String userID, String docID) {
- 		Document doc = dc.getDocumentObject(docID);
+ 		Document doc = documentCollection.getDocumentObject(docID);
  		return doc.hasGrant(userID);
  	}
 
+    /**
+     * Determines whether the specified document is official.
+     *
+     * @param      docID  The document id
+     *
+     * @return     True if the specified document is official, False otherwise.
+     */
  	public boolean isOfficial(String docID) {
- 		return dc.getDocumentObject(docID).getClearance().toInt() == Clerance.CLERK.toInt();
+ 		return documentCollection.getDocumentObject(docID).getClearance().toInt() == Clerance.CLERK.toInt();
  	}
 
+    /**
+     * Gets the user clearance.
+     *
+     * @param      userID  The user id
+     *
+     * @return     The user clearance.
+     */
     public Clearance getUserClearance(String userID) {
-    	uc.getUserObject(userID).getClerance();
+    	userCollection.getUserObject(userID).getClerance();
     }
 
+    /**
+     * Gets the document clearance.
+     *
+     * @param      documentID  The document id
+     *
+     * @return     The document clearance.
+     */
     public Clearance getDocumentClearance(String documentID) {
-    	dc.getDocumentObject(documentID).getClerance();
+    	documentCollection.getDocumentObject(documentID).getClerance();
     }
 }
