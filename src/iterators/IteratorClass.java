@@ -1,12 +1,12 @@
 package iterators;
 
-public class IteratorClass implements Iterator {
+public class IteratorClass<E> implements Iterator<E> {
 
-    Object vector[];
-    int counter;
-    int current;
+    private E[] vector[];
+    private int counter;
+    private int current;
 
-    public IteratorClass(Object[] vector, int counter) {
+    public IteratorClass(E[] vector, int counter) {
         this.vector = vector;
         this.counter = counter;
         this.current = 0;
@@ -16,7 +16,7 @@ public class IteratorClass implements Iterator {
         return current != counter;
     }
 
-    public Object next() {
+    public E next() {
         return vector[current++];
     }
 }
