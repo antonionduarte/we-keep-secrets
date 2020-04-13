@@ -1,3 +1,5 @@
+package system;
+
 import documents.*;
 import users.*;
 import iterators.*;
@@ -22,7 +24,11 @@ public class FileSystemClass implements FileSystem {
      * @param      clearance  The clearance
      */
     public void register(String userKind, String userID, Clearance clearance) {
-    	User user = new User(userKind, userID, clearance);
+        User user;
+        if (clearance == Clearance.CLERK)
+            user = new ClerkClass(userKind, userID, clearance);
+        else
+            user = new OfficerClass(userKind, userID, clearance);
     	userCollection.addUser(user);
     }
 
@@ -45,7 +51,11 @@ public class FileSystemClass implements FileSystem {
      */
     public void upload(String docID, String userID, Clearance clearance, String description) {
     	User user = userCollection.getUserObject(userID);
-    	Document doc = new Document(docID, description, user, clearance);
+        Document doc;
+        if (clearance == Clearance.CLERK)
+            doc = new OfficialDocumentClass(docID, description, user, clearance);
+        else
+            doc = new ClassifiedDocumentClass(docID, description, user, clearance);
     	documentCollection.addDocument(doc);
     }
 
@@ -59,7 +69,7 @@ public class FileSystemClass implements FileSystem {
      */
     public void write(String docID, String managerID, String userID, String description) {
     	Document doc = documentCollection.getDocumentObject(docID);
-    	doc.write(description);
+    	doc.setDescription(description);
     	// TODO: Document has to log the operation
     }
 
@@ -82,24 +92,10 @@ public class FileSystemClass implements FileSystem {
      *
      * @return     True if user has document, False otherwise
      */
-    public boolean userHasDocument(String userId, String docID) {
-    	User user = userCollection.getUserObject(String userID);
+    public boolean userHasDocument(String userID, String docID) {
+    	User user = userCollection.getUserObject(userID);
     	return user.hasDocument(docID);
     }
-
-    /**
-     * Determines if user has clearance over a document.
-     *
-     * @param      userID  The user id
-     * @param      docID   The document id
-     *
-     * @return     True if has clearance, False otherwise.
-     */
- 	public boolean hasClearance(String userID, String docID) {
- 		User user = us.getUserObject(userID);
- 		Document doc = documentCollection.getDocumentObject(docID);
- 		return user.getClearance().toInt() >= doc.getClearance().toInt();
- 	}
 
     /**
      * Determines if user has a grant to a specific document.
@@ -122,7 +118,7 @@ public class FileSystemClass implements FileSystem {
      * @return     True if the specified document is official, False otherwise.
      */
  	public boolean isOfficial(String docID) {
- 		return documentCollection.getDocumentObject(docID).getClearance().toInt() == Clerance.CLERK.toInt();
+ 		return documentCollection.getDocumentObject(docID).getClearance() == Clearance.CLERK;
  	}
 
     /**
@@ -133,17 +129,17 @@ public class FileSystemClass implements FileSystem {
      * @return     The user clearance.
      */
     public Clearance getUserClearance(String userID) {
-    	userCollection.getUserObject(userID).getClerance();
+    	return userCollection.getUserObject(userID).getClearance();
     }
 
     /**
      * Gets the document clearance.
      *
-     * @param      documentID  The document id
+     * @param      docID  The document id
      *
      * @return     The document clearance.
      */
-    public Clearance getDocumentClearance(String documentID) {
-    	documentCollection.getDocumentObject(documentID).getClerance();
+    public Clearance getDocumentClearance(String docID) {
+    	documentCollection.getDocumentObject(docID).getClearance();
     }
 }
