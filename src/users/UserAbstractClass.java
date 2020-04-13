@@ -69,10 +69,4 @@ public abstract class UserAbstractClass implements User {
         return uploadedDocs.documentIterator();
     }
 
-    public abstract void write(Document document, String message);
-
-    public abstract void grant(Document document, User user);
-
-    public abstract void revoke(Document document, User user);
-
 }
