@@ -13,6 +13,13 @@ public interface ClassifiedDocument extends Document {
     void grant(User user);
 
     /**
+     * Revokes a user permission to access a Document.
+     * PRE: user != NULL
+     * @param user to revoke permission from.
+     */
+    void revoke(User user);
+
+    /**
      * Checks if the <code>user</code> has a grant to the document.
      * PRE: user != NULL
      * @param user to check for a grant.
