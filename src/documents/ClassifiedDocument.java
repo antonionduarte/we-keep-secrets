@@ -12,6 +12,12 @@ public interface ClassifiedDocument extends Document {
      */
     void grant(User user);
 
+    /**
+     * Checks if the <code>user</code> has a grant to the document.
+     * PRE: user != NULL
+     * @param user to check for a grant.
+     * @return true if the user is in the grants.
+     */
     boolean hasGrant(User user);
 
 }

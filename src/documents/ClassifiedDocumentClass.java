@@ -26,6 +26,7 @@ public class ClassifiedDocumentClass extends AbstractDocument implements Classif
         grants.addUser(user);
     }
 
+    @Override
     public boolean hasGrant(User user) {
         return grants.hasUser(user.getID());
     }
