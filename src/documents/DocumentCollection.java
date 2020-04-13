@@ -8,4 +8,7 @@ public interface DocumentCollection {
      */
     void addDocument(Document document);
 
+    boolean hasDocument(String docID);
+
+    Document getDocumentObject(String docID);
 }

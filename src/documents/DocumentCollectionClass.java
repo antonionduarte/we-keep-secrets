@@ -42,10 +42,28 @@ public class DocumentCollectionClass implements DocumentCollection {
     private boolean isFull() {
         return counter == documents.length;
     }
+
+    private int searchIndexOf(String docID) {
+        int pos = -1;
+        for (int i=0 ; i<counter && pos==-1 ; i++) {
+            if (documents[i].getID().equals(docID))
+                pos = i;
+        }
+        return pos;
+    }
+
+    public boolean hasDocument(String docID) {
+        return searchIndexOf(docID) != -1;
+    }
     
     @Override
     public void addDocument(Document document) {
         if (isFull()) resize();
         documents[counter++] = document;
+    }
+
+    @Override
+    public Document getDocumentObject(String docID) {
+        return documents[searchIndexOf(docID)];
     }
 }
