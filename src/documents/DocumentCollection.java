@@ -1,5 +1,7 @@
 package documents;
 
+import iterators.*;
+
 public interface DocumentCollection {
 
     /**
@@ -11,4 +13,6 @@ public interface DocumentCollection {
     boolean hasDocument(String docID);
 
     Document getDocumentObject(String docID);
+
+    Iterator documentIterator();
 }

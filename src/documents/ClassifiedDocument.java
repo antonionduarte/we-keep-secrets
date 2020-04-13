@@ -12,4 +12,6 @@ public interface ClassifiedDocument extends Document {
      */
     void grant(User user);
 
+    boolean hasGrant(User user);
+
 }

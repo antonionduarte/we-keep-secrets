@@ -1,6 +1,7 @@
 package documents;
 
 import users.*;
+import clearance.*;
 
 public interface Document {
 
@@ -42,6 +43,6 @@ public interface Document {
      * Gets the clearance level (int value) of the Document.
      * @return the clearance level of the Document.
      */
-    int getClearance();
+    Clearance getClearance();
 
 }

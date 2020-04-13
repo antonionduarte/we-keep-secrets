@@ -65,8 +65,8 @@ public abstract class AbstractDocument implements Document {
     }
 
     @Override
-    public int getClearance() {
-        return clearance.toInt();
+    public Clearance getClearance() {
+        return clearance;
     }
 
     @Override

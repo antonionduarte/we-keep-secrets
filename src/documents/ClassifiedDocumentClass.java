@@ -26,18 +26,8 @@ public class ClassifiedDocumentClass extends AbstractDocument implements Classif
         grants.addUser(user);
     }
 
-    @Override
     public boolean hasGrant(User user) {
-        return searchIndexOfGrant(user);
-    }
-
-    private int searchIndexOfGrant(String userID) {
-        int pos = -1;
-        for (int i = 0; i < userCounter && pos == -1; i++) {
-            if (grants[i].getID().equals(userID))
-                pos = i;
-        }
-        return pos;
+        return grants.hasUser(user.getID());
     }
     
 }

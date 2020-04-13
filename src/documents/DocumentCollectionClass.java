@@ -1,5 +1,7 @@
 package documents;
 
+import iterators.*;
+
 public class DocumentCollectionClass implements DocumentCollection {
 
     // Constants
@@ -65,5 +67,10 @@ public class DocumentCollectionClass implements DocumentCollection {
     @Override
     public Document getDocumentObject(String docID) {
         return documents[searchIndexOf(docID)];
+    }
+
+    @Override
+    public Iterator documentIterator() {
+        return new IteratorClass(documents, counter);
     }
 }
