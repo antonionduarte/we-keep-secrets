@@ -30,6 +30,13 @@ public class UserCollectionClass implements UserCollection {
         users[userCounter++] = user;
     }
 
+    @Override
+    public void removeUser(User user) {
+        int index = searchIndexOf(user.getID());
+        for (int i = index + 1; i <= userCounter - 1; i++)
+            users[index++] = users[i++];
+    }
+
     /**
      * Gets the user object from the collection
      *
@@ -91,7 +98,7 @@ public class UserCollectionClass implements UserCollection {
     }
 
     /**
-     * Resizes the array. The new array will always have x2 the length of the previous array.
+     * Resizes the array. The new array will always have two times the length of the previous array.
      */
     private void resize() {
         User[] temp = new User[users.length * GROWTH_FACTOR];
