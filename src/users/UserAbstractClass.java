@@ -29,80 +29,42 @@ public abstract class UserAbstractClass implements User {
         uploadedDocs = new DocumentCollectionClass();
     }
 
-    /**
-     * Gets the id of the user.
-     *
-     * @return     The id.
-     */
+    @Override
     public String getID() {
         return userID;
     }
 
-    /**
-     * Gets the user kind (clerk/officer)
-     *
-     * @return     The user kind
-     */
+    @Override
     public String getKind() {
         return userKind;
     }
 
-    /**
-     * Gets the user clearance.
-     *
-     * @return     The user clearance.
-     */
+    @Override
     public Clearance getClearance() {
         return clearance;
     }
 
-    /**
-     * Determines if user has clearance higher or equal to given clearance.
-     *
-     * @param      clearance  The clearance to compare user to
-     *
-     * @return     True if has clearance, False otherwise.
-     */
+    @Override
     public boolean hasClearance(Clearance clearance) {
         return this.clearance.toInt() >= clearance.toInt();
     }
 
-    /**
-     * Determines if user has given document
-     *
-     * @param      docID  The document id
-     *
-     * @return     True if document, False otherwise.
-     */
+    @Override
     public boolean hasDocument(String docID) {
         return uploadedDocs.hasDocument(docID);
     }
 
-    /**
-     * Uploads a document
-     *
-     * @param      doc   The document
-     */
+    @Override
     public void upload(Document doc) {
         uploadedDocs.addDocument(doc);
     }
 
-    /**
-     * Read a given document
-     *
-     * @param      document  The document object
-     *
-     * @return     The document's content
-     */
+    @Override
     public String read(Document document) {
         return document.getDescription();
     }
 
-    /**
-     * Iterates through all user uplaoded files
-     *
-     * @return     An iterator object
-     */
+    @Override
     public Iterator userDocs() {
         return uploadedDocs.documentIterator();
     }
