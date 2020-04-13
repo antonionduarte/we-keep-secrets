@@ -10,9 +10,11 @@ public interface User {
 
     abstract String getKind();
 
-    abstract int getClearance();
+    abstract Clearance getClearance();
 
     abstract boolean hasClearance(Clearance clearance);
+
+    abstract boolean hasDocument(String docID);
 
     abstract void upload(Document document);
 

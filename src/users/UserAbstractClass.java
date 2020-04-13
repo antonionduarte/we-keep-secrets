@@ -64,7 +64,7 @@ public abstract class UserAbstractClass implements User {
      * @return     True if has clearance, False otherwise.
      */
     public boolean hasClearance(Clearance clearance) {
-        return this.clearance.getClearance() >= clearance.getClearance();
+        return this.clearance.toInt() >= clearance.toInt();
     }
 
     /**
@@ -75,7 +75,7 @@ public abstract class UserAbstractClass implements User {
      * @return     True if document, False otherwise.
      */
     public boolean hasDocument(String docID) {
-        return searchIndexOf(docID) != -1;
+        return uploadedDocs.hasDocument(docID);
     }
 
     /**
@@ -95,7 +95,7 @@ public abstract class UserAbstractClass implements User {
      * @return     The document's content
      */
     public String read(Document document) {
-        return document.getMessage();
+        return document.getDescription();
     }
 
     /**
@@ -104,7 +104,7 @@ public abstract class UserAbstractClass implements User {
      * @return     An iterator object
      */
     public Iterator userDocs() {
-        return new IteratorClass(uploadedDocs, uploadedDocsCounter);
+        return uploadedDocs.documentIterator();
     }
 
     public abstract void write(Document document, String message);
@@ -112,15 +112,5 @@ public abstract class UserAbstractClass implements User {
     public abstract void grant(Document document, User user);
 
     public abstract void revoke(Document document, User user);
-
-
-    private int searchIndexOf(String docID) {
-        int pos = -1;
-        for (int i = 0; i < userCounter && pos == -1; i++) {
-            if (uploadedDocs[i].getID().equals(docID))
-                pos = i;
-        }
-        return pos;
-    }
 
 }

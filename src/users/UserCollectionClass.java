@@ -52,8 +52,6 @@ public class UserCollectionClass implements UserCollection {
         return searchIndexOf(userID) != -1;
     }
 
-    public boolean userHasDocument(String userID, String docID)
-
     /**
      * Sets up the user iterator
      *
@@ -62,19 +60,6 @@ public class UserCollectionClass implements UserCollection {
     public Iterator userIterator() {
         return new IteratorClass(users, userCounter);
     }
-
-    /**
-     * Gets the user docs iterator
-     *
-     * @param      userID  The user id
-     *
-     * @return     An iterator object
-     */
-    public Iterator userDocsIterator(User userID) {
-        return users[searchIndexOf(userID)].userDocs();
-    }
-
-
 
 
     /* Private Methods */
