@@ -2,7 +2,7 @@ package iterators;
 
 public class IteratorClass<E> implements Iterator<E> {
 
-    private E[] vector[];
+    private E[] vector;
     private int counter;
     private int current;
 
