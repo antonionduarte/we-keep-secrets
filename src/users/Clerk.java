@@ -1,5 +1,7 @@
 package users;
 
 public interface Clerk {
-    // Empty interface, only tags.
+
+    // Empty interface, serves as tag..
+
 }
