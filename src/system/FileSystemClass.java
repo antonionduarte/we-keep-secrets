@@ -2,6 +2,7 @@ import documents.*;
 import users.*;
 import iterators.*;
 import clearance.*;
+import actions.*;
 
 public class FileSystemClass implements FileSystem {
 
@@ -87,7 +88,7 @@ public class FileSystemClass implements FileSystem {
     }
 
     /**
-     * Determines if user has clearance.
+     * Determines if user has clearance over a document.
      *
      * @param      userID  The user id
      * @param      docID   The document id
