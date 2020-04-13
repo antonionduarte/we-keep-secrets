@@ -16,17 +16,17 @@ public class OfficerClass extends UserAbstractClass implements Officer {
 
     @Override
     public void write(Document document, String message) {
-    	document.write(message);
+    	document.setDescription(message);
     }
 
     @Override
-    public void grant(Document document, User user) {
+    public void grant(ClassifiedDocument document, User user) {
     	document.grant(user);
         grantCount++;
     }
 
     @Override
-    public void revoke(Document document, User user) {
+    public void revoke(ClassifiedDocument document, User user) {
     	document.revoke(user);
     }
 

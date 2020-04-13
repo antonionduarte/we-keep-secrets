@@ -16,14 +16,14 @@ public interface Officer extends User {
 	 * @param document to grant access to.
 	 * @param user who we the grant is gonna be given to.
 	 */
-	void grant(Document document, User user);
+	void grant(ClassifiedDocument document, User user);
 
 	/**
 	 * Revokes a grant from a user.
 	 * @param document that has the grant to revoke.
 	 * @param user to revoke the grant of.
 	 */
-	void revoke(Document document, User user);
+	void revoke(ClassifiedDocument document, User user);
 
 	/**
 	 * Returns the ammount of time the User has issued a grant.
