@@ -21,49 +21,29 @@ public class UserCollectionClass implements UserCollection {
         userCounter = 0;
     }
 
-    /**
-     * Adds an user to the collection.
-     *
-     * @param user  The user object
-     */
+    @Override
     public void addUser(User user) {
         users[userCounter++] = user;
     }
 
     @Override
     public void removeUser(User user) {
-        int index = searchIndexOf(user.getID());
+        int index = searchIndex(user.getID());
         for (int i = index + 1; i <= userCounter - 1; i++)
             users[index++] = users[i++];
     }
 
-    /**
-     * Gets the user object from the collection
-     *
-     * @param      userID  The user id
-     *
-     * @return     The user object.
-     */
+    @Override
     public User getUserObject(String userID) {
-        return users[searchIndexOf(userID)];
+        return users[searchIndex(userID)];
     }
 
-    /**
-     * Determines if colelction has user.
-     *
-     * @param      userID  The user id
-     *
-     * @return     True if user, False otherwise.
-     */
+    @Override
     public boolean hasUser(String userID) {
-        return searchIndexOf(userID) != -1;
+        return searchIndex(userID) != -1;
     }
 
-    /**
-     * Sets up the user iterator
-     *
-     * @return     An iterator object
-     */
+    @Override
     public Iterator userIterator() {
         return new IteratorClass(users, userCounter);
     }
@@ -73,13 +53,11 @@ public class UserCollectionClass implements UserCollection {
 
 
     /**
-     * Searches for the index of user in the array
-     *
-     * @param      userID  The user id
-     *
-     * @return     The user's object position in the array
+     * Searches for the index of a user in the array.
+     * @param userID  The ID of the User.
+     * @return The user's object position in the array.
      */
-    private int searchIndexOf(String userID) {
+    private int searchIndex(String userID) {
         int pos = -1;
         for (int i = 0; i < userCounter && pos == -1; i++) {
             if (users[i].getID().equals(userID))
@@ -90,8 +68,7 @@ public class UserCollectionClass implements UserCollection {
 
     /**
      * Determines if array is full.
-     *
-     * @return     True if full, False otherwise.
+     * @return true if full, false if otherwise.
      */
     private boolean isFull() {
         return userCounter == users.length;

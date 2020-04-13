@@ -11,12 +11,30 @@ public interface UserCollection {
 	 */
 	void removeUser(User user);
 
-	abstract void addUser(User user);
+	/**
+	 * Adds a user to the collection.
+	 * @param user to add to the collection.
+	 */
+	void addUser(User user);
 
-	abstract User getUserObject(String userID);
+	/**
+	 * Returns the object of a user with the specified ID.
+	 * @param userID of the user to get the object of.
+	 * @return the object of the user with the specified <code>userID</code>.
+	 */
+	User getUserObject(String userID);
 
-	abstract boolean hasUser(String userID);
+	/**
+	 * Checks if the user with the specified <code>userID</code> is in the collection.
+	 * @param userID of the User whose existance in the collection we wish to verify.
+	 * @return true if there is a User in the colection with the specified <code>userID</code>.
+	 */
+	boolean hasUser(String userID);
 
-	abstract Iterator userIterator();
+	/**
+	 * Returns an iterator of Users.
+	 * @return an Iterator of the Users in the Collection.
+	 */
+	Iterator userIterator();
 
 }
