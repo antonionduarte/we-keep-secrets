@@ -14,42 +14,23 @@ public class OfficerClass extends UserAbstractClass implements Officer {
         grantCount = 0;
     }
 
-    /**
-     * Writes a message to a classified document
-     *
-     * @param      document  The document object
-     * @param      message   The message
-     */
+    @Override
     public void write(Document document, String message) {
     	document.write(message);
     }
 
-    /**
-     * Grants a user access to a document
-     *
-     * @param      document  The document
-     * @param      user      The user
-     */
+    @Override
     public void grant(Document document, User user) {
     	document.grant(user);
         grantCount++;
     }
 
-    /**
-     * Revokes a user access to a document
-     *
-     * @param      document  The document
-     * @param      user      The user
-     */
+    @Override
     public void revoke(Document document, User user) {
     	document.revoke(user);
     }
 
-    /**
-     * Gets the ammount of grants a user as issued.
-     *
-     * @return     The grant count.
-     */
+    @Override
     public int getGrantCount() {
         return grantCount;
     }

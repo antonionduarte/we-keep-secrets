@@ -12,10 +12,12 @@ public class IteratorClass<E> implements Iterator<E> {
         this.current = 0;
     }
 
+    @Override
     public boolean hasNext() {
         return current != counter;
     }
 
+    @Override
     public E next() {
         return vector[current++];
     }

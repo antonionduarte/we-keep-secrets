@@ -2,7 +2,15 @@ package iterators;
 
 public interface Iterator<E> {
 
-    abstract boolean hasNext();
+    /**
+     * Verifies if there is a next element in the array.
+     * @return true if there is a next element in the array, false if otherwise.
+     */
+    boolean hasNext();
 
-    abstract E next();
+    /**
+     * Returns the current element in the array and moves the counter forward.
+     * @return the current element in the array.
+     */
+    E next();
 }

@@ -45,6 +45,11 @@ public class DocumentCollectionClass implements DocumentCollection {
         return counter == documents.length;
     }
 
+    /**
+     * Searches for the index of a specific docID. Returns (-1) if it can't be found.
+     * @param docID of the Document.
+     * @return the index of the Document in the collection. Returns (-1) if the Document isn't found.
+     */
     private int searchIndexOf(String docID) {
         int pos = -1;
         for (int i=0 ; i<counter && pos==-1 ; i++) {
@@ -54,6 +59,7 @@ public class DocumentCollectionClass implements DocumentCollection {
         return pos;
     }
 
+    @Override
     public boolean hasDocument(String docID) {
         return searchIndexOf(docID) != -1;
     }

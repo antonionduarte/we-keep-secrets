@@ -6,20 +6,20 @@ import clearance.*;
 
 public interface User {
 
-    abstract String getID();
+    String getID();
 
-    abstract String getKind();
+    String getKind();
 
-    abstract Clearance getClearance();
+    Clearance getClearance();
 
-    abstract boolean hasClearance(Clearance clearance);
+    boolean hasClearance(Clearance clearance);
 
-    abstract boolean hasDocument(String docID);
+    boolean hasDocument(String docID);
 
-    abstract void upload(Document document);
+    void upload(Document document);
 
-    abstract String read(Document document);
+    String read(Document document);
 
-    abstract Iterator userDocs();
+    Iterator userDocs();
 
 }
