@@ -26,7 +26,7 @@ public enum Clearance {
 
     /**
      *
-     * @return     The clearance level in string format
+     * @return the clearance level in string format
      */
     public String getClearanceString() {
         return clearanceString;
