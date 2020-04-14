@@ -27,7 +27,7 @@ public class FileSystemClass implements FileSystem {
     }
 
     @Override
-    public Iterator listUsers() {
+    public Iterator<User> listUsers() {
     	return userCollection.userIterator();
     }
 

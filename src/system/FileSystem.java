@@ -19,7 +19,7 @@ public interface FileSystem {
 	 * Returns an iterator to list the users.
 	 * @return an Iterator that lists the users.
 	 */
-	Iterator listUsers();
+	Iterator<User> listUsers();
 
 	/**
 	 * Uploads a new document into the system with <code>clearance</code> and <code>description</code>.
