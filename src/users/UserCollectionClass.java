@@ -1,6 +1,5 @@
 package users;
 
-import documents.*;
 import iterators.*;
 
 public class UserCollectionClass implements UserCollection {
@@ -23,6 +22,7 @@ public class UserCollectionClass implements UserCollection {
 
     @Override
     public void addUser(User user) {
+        if (isFull()) resize();
         users[userCounter++] = user;
     }
 
