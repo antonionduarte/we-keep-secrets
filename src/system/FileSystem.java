@@ -18,6 +18,7 @@ public interface FileSystem {
 	/**
 	 * Returns an iterator to list the users.
 	 * @return an Iterator that lists the users.
+	 * TODO: Can't this be made a method call?
 	 */
 	Iterator<User> listUsers();
 
