@@ -28,5 +28,5 @@ public interface DocumentCollection {
      * Returns an Iterator of documents.
      * @return a Document Iterator.
      */
-    Iterator documentIterator();
+    Iterator<Document> documentIterator();
 }

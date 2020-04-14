@@ -76,7 +76,7 @@ public class DocumentCollectionClass implements DocumentCollection {
     }
 
     @Override
-    public Iterator documentIterator() {
-        return new IteratorClass(documents, counter);
+    public Iterator<Document> documentIterator() {
+        return new IteratorClass<Document>(documents, counter);
     }
 }
