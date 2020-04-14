@@ -24,4 +24,4 @@ public interface Officer extends User {
 	 * @param user to revoke the grant of.
 	 */
 	void revoke(ClassifiedDocument document, User user);
-
+}

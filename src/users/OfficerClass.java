@@ -28,9 +28,4 @@ public class OfficerClass extends UserAbstractClass implements Officer {
     public void revoke(ClassifiedDocument document, User user) {
     	document.revoke(user);
     }
-
-    @Override
-    public int getGrantCount() {
-        return grantCount;
-    }
 }

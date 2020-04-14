@@ -107,7 +107,7 @@ public class Main {
         String userID = in.next();
         String clearance = in.nextLine();
 
-        if (fs.userExists(userID)) {
+        if (fs.hasUser(userID)) {
             Clearance c = searchClearance(clearance);
             fs.register(userKind, userID, c);
             System.out.printf(USER_SUCCESSFULLY_REGISTER, userID);
@@ -135,7 +135,7 @@ public class Main {
 
         Clearance c = searchClearance(securityLevel);
 
-        if (fs.userExists(managerID)) {
+        if (fs.hasUser(managerID)) {
             if (fs.userHasDocument(managerID, docName)) {
                 System.out.printf(USER_HAS_DOCUMENT, docName);
             } else {
@@ -157,7 +157,7 @@ public class Main {
         String userID = in.nextLine();
         String description = in.nextLine();
 
-        if (fs.userExists(managerID) && fs.userExists(userID)) {
+        if (fs.hasUser(managerID) && fs.hasUser(userID)) {
             if (fs.userHasDocument(managerID, docName)) {
                 if (fs.isOfficial(docName)) {
                     System.out.printf(CANNOT_UPDATE, docName);
