@@ -46,7 +46,7 @@ public class FileSystemClass implements FileSystem {
     }
 
     @Override
- 	public boolean hasGrant(String userID, String documentID) {
+ 	public boolean hasGrant(String userID, String managerID, String documentID) {
  		return userCollection.userHasGrant(managerID, documentID, userID);
  	}
 

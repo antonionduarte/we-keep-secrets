@@ -62,7 +62,7 @@ public interface FileSystem {
 	 * @param documentID of the Document to check.
 	 * @return true if the User has a grant, false if otherwise.
 	 */
-	boolean hasGrant(String userID, String documentID);
+	boolean hasGrant(String userID, String managerID, String documentID);
 
 	/**
 	 * Checks if a given document is an official document.
