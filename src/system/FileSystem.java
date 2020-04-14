@@ -24,22 +24,22 @@ public interface FileSystem {
 
 	/**
 	 * Uploads a new document into the system with <code>clearance</code> and <code>description</code>.
-	 * @param docID the ID of the document.
+	 * @param documentID the ID of the document.
 	 * @param userID the ID of the document.
 	 * @param clearance the clearance of the document.
 	 * @param description the description of the document.
 	 */
-	void upload(String docID, String userID, Clearance clearance, String description);
+	void upload(String documentID, String userID, Clearance clearance, String description);
 
 	/**
 	 * Writes a new <code>description</code> into a specified document. The new description will be written by a specific 
 	 * User with the given <code>userID</code>.
-	 * @param docID the ID of the document.
+	 * @param documentID the ID of the document.
 	 * @param managerID the ID of the manager.
 	 * @param userID the ID of the user.
 	 * @param description the description of the document.
 	 */
-	void write(String docID, String managerID, String userID, String description);
+	void write(String documentID, String managerID, String userID, String description);
 
 	/**
 	 * Checks if a user with the given <code>userID</code> is in the system.
@@ -51,25 +51,25 @@ public interface FileSystem {
 	/**
 	 * Checks if a user is the owner of a document.
 	 * @param userID of the User to check.
-	 * @param docID of the Document to check.
+	 * @param documentID of the Document to check.
 	 * @return true if the User if the manager of a document, false if otherwise.
 	 */
-	boolean userHasDocument(String userID, String docID);
+	boolean userHasDocument(String userID, String documentID);
 
 	/**
 	 * Checks if a user has a grant to access a specific document.
 	 * @param userID of the User to check.
-	 * @param docID of the Document to check.
+	 * @param documentID of the Document to check.
 	 * @return true if the User has a grant, false if otherwise.
 	 */
-	boolean hasGrant(String userID, String docID);
+	boolean hasGrant(String userID, String documentID);
 
 	/**
 	 * Checks if a given document is an official document.
-	 * @param docID of the Document to check.
+	 * @param documentID of the Document to check.
 	 * @return true if the Document is Official, false if it's Classified.
 	 */
-	boolean isOfficial(String docID);
+	boolean isOfficial(String managerID, String documentID);
 
 	/**
 	 * Returns the clearance of a specific user.
@@ -80,8 +80,8 @@ public interface FileSystem {
 
 	/**
 	 * Returns the clearance of a specific document.
-	 * @param docID of the Document whose clearance we want to get.
+	 * @param documentID of the Document whose clearance we want to get.
 	 * @return the Clearance of the Document.
 	 */
-	Clearance getDocumentClearance(String docID);
+	Clearance getDocumentClearance(String managerID, String documentID);
 }
