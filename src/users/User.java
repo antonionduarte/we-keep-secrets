@@ -42,14 +42,14 @@ public interface User {
      * Uploads a document.
      * @param document to upload.
      */
-    void upload(Document document);
+    void upload(String documentID, String description, Clearance clearance);
 
     /**
      * Reads the contents of a Document.
      * @param document
      * @return
      */
-    String read(Document document);
+    String read(String documentID);
 
     /**
      * Returns an iterator of the User Documents.

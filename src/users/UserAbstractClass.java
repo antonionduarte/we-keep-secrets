@@ -52,13 +52,13 @@ public abstract class UserAbstractClass implements User {
     }
 
     @Override
-    public void upload(Document doc) {
-        uploadedDocs.addDocument(doc);
+    public void upload(String documentID, String description, Clearance clearance) {
+        uploadedDocs.addDocument(documentID, description, clearance);
     }
 
     @Override
-    public String read(Document document) {
-        return document.getDescription();
+    public String read(String documentID) {
+        return uploadedDocs.getDescription(documentID);
     }
 
     @Override

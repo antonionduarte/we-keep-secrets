@@ -1,6 +1,8 @@
 package users;
 
 import iterators.*;
+import clearance.Clearance;
+import documents.Document;
 
 public class UserCollectionClass implements UserCollection {
 
@@ -21,32 +23,66 @@ public class UserCollectionClass implements UserCollection {
     }
 
     @Override
-    public void addUser(User user) {
+    public void addUser(String userKind, String userID, Clearance clearance) {
         if (isFull()) resize();
-        users[userCounter++] = user;
+        if (clearance == Clearance.CLERK)
+            users[userCounter++] = new ClerkClass(userKind, userID, Clearance.CLERK);
+        else
+            users[userCounter++] = new OfficerClass(userKind, userID, clearance);
     }
 
     @Override
     public void removeUser(User user) {
-        int index = searchIndex(user.getID());
+        int index = searchIndexOf(user.getID());
         for (int i = index + 1; i <= userCounter - 1; i++)
             users[index++] = users[i++];
     }
 
     @Override
-    public User getUserObject(String userID) {
-        return users[searchIndex(userID)];
-    }
-
-    @Override
     public boolean hasUser(String userID) {
-        return searchIndex(userID) != -1;
+        return searchIndexOf(userID) != -1;
     }
 
     @Override
     public Iterator<User> userIterator() {
         return new IteratorClass<User>(users, userCounter);
     }
+
+    @Override
+    public String getUserID(String userID) {
+        return users[searchIndexOf(userID)].getID();
+    }
+
+    @Override
+    public String getUserKind(String userID) {
+        return users[searchIndexOf(userID)].getKind();
+    }
+    
+    @Override
+    public Clearance getUserClearance(String userID) {
+        return users[searchIndexOf(userID)].getClearance();
+    }
+
+    @Override
+    public boolean userHasDocument(String userID, String documentID) {
+        return users[searchIndexOf(userID)].hasDocument(documentID);
+    }
+
+    @Override
+    public void upload(String userID, String documentID, String description, Clearance clearance) {
+        users[searchIndexOf(userID)].upload(documentID, description, clearance);
+    }
+
+    @Override
+    public String read(String managerID, String documentID) {
+        return users[searchIndexOf(managerID)].read(documentID);
+    }
+
+    @Override
+    public Iterator<Document> userDocs(String userID) {
+        return users[searchIndexOf(userID)].userDocs();
+    }
+
 
 
     /* Private Methods */
@@ -57,7 +93,7 @@ public class UserCollectionClass implements UserCollection {
      * @param userID  The ID of the User.
      * @return The user's object position in the array.
      */
-    private int searchIndex(String userID) {
+    private int searchIndexOf(String userID) {
         int pos = -1;
         for (int i = 0; i < userCounter && pos == -1; i++) {
             if (users[i].getID().equals(userID))
