@@ -152,22 +152,22 @@ public class Main {
     }
 
     private static void processWrite(Scanner in, FileSystem fs) {
-        String docName = in.next();
+        String documentID = in.next();
         String managerID = in.next();
         String userID = in.nextLine();
         String description = in.nextLine();
 
         if (fs.hasUser(managerID) && fs.hasUser(userID)) {
-            if (fs.userHasDocument(managerID, docName)) {
-                if (fs.isOfficial(docName)) {
-                    System.out.printf(CANNOT_UPDATE, docName);
+            if (fs.userHasDocument(managerID, documentID)) {
+                if (fs.isOfficial(managerID, documentID)) {
+                    System.out.printf(CANNOT_UPDATE, documentID);
                 } else {
-                    if ( (fs.getUserClearance(userID).toInt() >= fs.getUserClearance(managerID).toInt()) || fs.hasGrant(userID, docName) )
-                        fs.write(docName, managerID, userID, description);
-                        System.out.printf(DOCUMENT_UPDATED, docName);
+                    if ( (fs.getUserClearance(userID).toInt() >= fs.getUserClearance(managerID).toInt()) || fs.hasGrant(userID, documentID) )
+                        fs.write(documentID, managerID, userID, description);
+                        System.out.printf(DOCUMENT_UPDATED, documentID);
                 }
             } else {
-                System.out.printf(USER_DOESNT_HAVE_DOCUMENT, docName);
+                System.out.printf(USER_DOESNT_HAVE_DOCUMENT, documentID);
             }
         } else {
             System.out.println(NOT_A_REGISTERED_USER);
