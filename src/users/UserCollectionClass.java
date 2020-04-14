@@ -44,8 +44,8 @@ public class UserCollectionClass implements UserCollection {
     }
 
     @Override
-    public Iterator userIterator() {
-        return new IteratorClass(users, userCounter);
+    public Iterator<User> userIterator() {
+        return new IteratorClass<User>(users, userCounter);
     }
 
 

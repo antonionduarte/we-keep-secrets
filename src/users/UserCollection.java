@@ -35,6 +35,6 @@ public interface UserCollection {
 	 * Returns an iterator of Users.
 	 * @return an Iterator of the Users in the Collection.
 	 */
-	Iterator userIterator();
+	Iterator<User> userIterator();
 
 }
