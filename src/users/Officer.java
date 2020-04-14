@@ -25,10 +25,3 @@ public interface Officer extends User {
 	 */
 	void revoke(ClassifiedDocument document, User user);
 
-	/**
-	 * Returns the ammount of time the User has issued a grant.
-	 * @return the grantCount of the User.
-	 */
-	int getGrantCount();
-
-}
