@@ -1,5 +1,7 @@
 package actions;
 
+import users.*;
+
 public class ActionClass implements Action {
 
 	private User creator;
