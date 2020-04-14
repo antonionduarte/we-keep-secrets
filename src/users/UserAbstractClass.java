@@ -6,9 +6,6 @@ import clearance.*;
 
 public abstract class UserAbstractClass implements User {
 
-    // Constants
-    private static final String OFFICER_TAG = "officer";
-
     //Instance variables
     private String userID;
     private String userKind;
