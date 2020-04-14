@@ -55,6 +55,6 @@ public interface User {
      * Returns an iterator of the User Documents.
      * @return Iterator of the User Documents.
      */
-    Iterator userDocs();
+    Iterator<Document> userDocs();
 
 }

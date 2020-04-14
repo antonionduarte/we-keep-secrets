@@ -65,7 +65,7 @@ public abstract class UserAbstractClass implements User {
     }
 
     @Override
-    public Iterator userDocs() {
+    public Iterator<Document> userDocs() {
         return uploadedDocs.documentIterator();
     }
 
