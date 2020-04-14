@@ -59,6 +59,16 @@ public interface UserCollection {
     Clearance getUserClearance(String userID);
 
     /**
+     * Gets the document clearance.
+     *
+     * @param      managerID   The manager id
+     * @param      documentID  The document id
+     *
+     * @return     The document clearance.
+     */
+    Clearance getDocumentClearance(String managerID, String documentID);
+
+    /**
      * Checks if user is the manager of a given document.
      *
      * @param      userID      The user id
@@ -96,5 +106,15 @@ public interface UserCollection {
      * @return     an iterator object
      */
     Iterator<Document> userDocs(String userID);
+
+    /**
+     * Writes <code>description</code> to a specific document
+     *
+     * @param      managerID   The manager id
+     * @param      userID      The user id requesting the write
+     * @param      documentID  The document id
+     * @param      decription  The new decription
+     */
+    void write(String managerID, String userID, String documentID, String decription);
 
 }

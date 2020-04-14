@@ -64,6 +64,11 @@ public class UserCollectionClass implements UserCollection {
     }
 
     @Override
+    public Clearance getDocumentClearance(String managerID, String documentID) {
+        return users[searchIndexOf(managerID)].getDocumentClearance(documentID);
+    }
+
+    @Override
     public boolean userHasDocument(String userID, String documentID) {
         return users[searchIndexOf(userID)].hasDocument(documentID);
     }
@@ -81,6 +86,10 @@ public class UserCollectionClass implements UserCollection {
     @Override
     public Iterator<Document> userDocs(String userID) {
         return users[searchIndexOf(userID)].userDocs();
+    }
+
+    public void write(String managerID, String userID, String documentID, String decription) {
+
     }
 
 
