@@ -1,6 +1,5 @@
 package users;
 
-import iterators.*;
 import documents.*;
 import clearance.*;
 
