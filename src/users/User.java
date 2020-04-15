@@ -42,12 +42,14 @@ public interface User {
      * Uploads a document.
      * @param document to upload.
      */
-    void upload(String documentID, String description, Clearance clearance);
+    void upload(Document document);
 
     /**
-     * Reads the contents of a Document.
-     * @param document
-     * @return
+     * Reads content of a document
+     *
+     * @param      documentID  The document id
+     *
+     * @return     The content of the document
      */
     String read(String documentID);
 
@@ -56,5 +58,44 @@ public interface User {
      * @return Iterator of the User Documents.
      */
     Iterator<Document> userDocs();
+
+    /**
+     * Gets clearance from a user owned document
+     *
+     * @param      documentID  The document id
+     *
+     * @return     The document clearance.
+     */
+    Clearance getDocumentClearance(String documentID);
+
+    /**
+     * Gets the grant count.
+     *
+     * @return     The grant count.
+     */
+    int getGrantCount();
+
+    /**
+     * Gets the revoke count.
+     *
+     * @return     The revoke count.
+     */
+    int getRevokeCount();
+
+    /**
+     * Gets the document number the user owns.
+     *
+     * @return     The document number.
+     */
+    int getDocumentNumber();
+
+    /**
+     * Checks if user has an id greater than <code>otherID</code>.
+     *
+     * @param      otherID  The other id
+     *
+     * @return     True if is greater, False otherwise
+     */
+    boolean idGreaterThan(String otherID);
 
 }
