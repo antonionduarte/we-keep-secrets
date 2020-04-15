@@ -69,6 +69,17 @@ public interface UserCollection {
     boolean userHasDocument(String userID, String documentID);
 
     /**
+     * Checks if user with <code>userID</code> has a grant for the document with <code>documentID</code>.
+     *
+     * @param      managerID   The manager id
+     * @param      documentId  The document id
+     * @param      userID      The user id
+     *
+     * @return     True if has grant, False otherwise.
+     */
+    boolean userHasGrant(String managerID, String documentID, String userID);
+
+    /**
      * Uploads a document to the user's document collection. The user will become the manager of this document.
      * @param userID the user id.
      * @param documentID the document id.
@@ -81,9 +92,18 @@ public interface UserCollection {
      * Reads the <code>description</code> of a document owned by a user.
      * @param managerID the manager id.
      * @param documentID the document id.
-     * @return TODO: { description_of_the_return_value }
+     * @return Description of the document
      */
     String read(String managerID, String documentID);
+
+    /**
+     * Writes <code>description</code> to document with id <code>documentID</code>.
+     *
+     * @param      userID       The user id
+     * @param      documentID   The document id
+     * @param      description  The description
+     */
+    void write(String managerID, String userID, String documentID, String description);
 
     /**
      * Generates a user's document iterator.
@@ -91,15 +111,6 @@ public interface UserCollection {
      * @return an iterator object.
      */
     Iterator<Document> userDocs(String userID);
-
-    /**
-     * Writes <code>description</code> to a specific document.
-     * @param managerID the manager id.
-     * @param userID the user id requesting the write.
-     * @param documentID the document id.
-     * @param description the new decription.
-     */
-    void write(String managerID, String userID, String documentID, String description);
 
     Iterator topleaked();
 

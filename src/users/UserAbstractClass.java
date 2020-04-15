@@ -28,6 +28,7 @@ public abstract class UserAbstractClass implements User {
         this.clearance = clearance;
         uploadedDocs = new DocumentCollectionClass();
         grantCount = 0;
+        revokeCount = 0;
     }
 
     @Override
@@ -56,13 +57,23 @@ public abstract class UserAbstractClass implements User {
     }
 
     @Override
+    public boolean hasGrant(String documentID, String userID) {
+        return uploadedDocs.userHasGrant(documentID, userID);
+    }
+
+    @Override
     public void upload(Document document) {
         uploadedDocs.addDocument(document);
     }
 
     @Override
     public String read(String documentID) {
-        return uploadedDocs.getDescription(documentID);
+        return uploadedDocs.getDocumentDescription(documentID);
+    }
+
+    @Override
+    public void write(String userID, String documentID, String description) {
+        uploadedDocs.write(documentID, userID, description);
     }
 
     @Override

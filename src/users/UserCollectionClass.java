@@ -73,6 +73,11 @@ public class UserCollectionClass implements UserCollection {
     }
 
     @Override
+    public boolean userHasGrant(String managerID, String documentID, String userID) {
+        return users[searchIndexOf(managerID)].hasGrant(documentID, userID);
+    }
+
+    @Override
     public void upload(String documentID, String description, String managerID, Clearance clearance) {
         Document document;
         User user = users[searchIndexOf(managerID)];
@@ -94,8 +99,8 @@ public class UserCollectionClass implements UserCollection {
     }
 
     @Override
-    public void write(String managerID, String userID, String documentID, String decription) {
-
+    public void write(String managerID, String userID, String documentID, String description) {
+        users[searchIndexOf(managerID)].write(userID, documentID, description);
     }
 
     @Override

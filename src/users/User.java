@@ -39,6 +39,16 @@ public interface User {
     boolean hasDocument(String docID);
 
     /**
+     * Checks if uses with <code>userID</code> has grant for document with id <code>documentID</code>.
+     *
+     * @param      documentID  The document id
+     * @param      userID      The user id
+     *
+     * @return     True if has grant, False otherwise.
+     */
+    boolean hasGrant(String documentID, String userID);
+
+    /**
      * Uploads a document.
      * @param document to upload.
      */
@@ -52,6 +62,15 @@ public interface User {
      * @return     The content of the document
      */
     String read(String documentID);
+
+    /**
+     * Writes <code>description</code> to document with id <code>documentID</code>.
+     *
+     * @param      userID       The user id
+     * @param      documentID   The document id
+     * @param      description  The description
+     */
+    void write(String userID, String documentID, String description);
 
     /**
      * Returns an iterator of the User Documents.
