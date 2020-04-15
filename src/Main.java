@@ -116,7 +116,7 @@ public class Main {
     }
 
     private static void processListUsers(Scanner in, FileSystem fs) {
-        Iterator iter = fs.listUsers();
+        Iterator<User> iter = fs.listUsers();
         if (iter.hasNext()) {
             while (iter.hasNext()) {
                 User u = (User) iter.next();
