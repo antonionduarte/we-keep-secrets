@@ -44,7 +44,7 @@ public class ActionClass implements Action {
 	}
 
 	/**
-	 * Gets the affected user.
+	 * Gets the affected user. Only available in grant actions.
 	 *
 	 * @return     The affected user.
 	 */
