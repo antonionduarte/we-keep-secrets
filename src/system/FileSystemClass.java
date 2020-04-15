@@ -16,7 +16,12 @@ public class FileSystemClass implements FileSystem {
 
     @Override
     public void register(String userKind, String userID, Clearance clearance) {
-    	userCollection.addUser(userKind, userID, clearance);
+        User user;
+        if (clearance == Clearance.CLERK)
+            user = new ClerkClass(userKind, userID, Clearance.CLERK);
+        else
+            user = new OfficerClass(userKind, userID, clearance);
+    	userCollection.addUser(user);
     }
 
     @Override
@@ -25,8 +30,8 @@ public class FileSystemClass implements FileSystem {
     }
 
     @Override
-    public void upload(String documentID, String userID, Clearance clearance, String description) {
-    	userCollection.upload(userID, documentID, description, clearance);
+    public void upload(String documentID, String description, String managerID, Clearance clearance) {
+    	userCollection.upload(documentID, description, managerID, clearance);
     }
 
     @Override
@@ -46,7 +51,7 @@ public class FileSystemClass implements FileSystem {
     }
 
     @Override
- 	public boolean hasGrant(String userID, String managerID, String documentID) {
+ 	public boolean hasGrant(String managerID, String userID, String documentID) {
  		return userCollection.userHasGrant(managerID, documentID, userID);
  	}
 

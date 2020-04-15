@@ -13,6 +13,9 @@ public abstract class UserAbstractClass implements User {
 
     private DocumentCollection uploadedDocs;
 
+    private int grantCount;
+    private int revokeCount;
+
     /**
      * UserClass Constructor
      * @param userKind  The user kind (clerk/officer)
@@ -24,6 +27,7 @@ public abstract class UserAbstractClass implements User {
         this.userID = userID;
         this.clearance = clearance;
         uploadedDocs = new DocumentCollectionClass();
+        grantCount = 0;
     }
 
     @Override
@@ -52,8 +56,8 @@ public abstract class UserAbstractClass implements User {
     }
 
     @Override
-    public void upload(String documentID, String description, Clearance clearance) {
-        uploadedDocs.addDocument(documentID, description, clearance);
+    public void upload(Document document) {
+        uploadedDocs.addDocument(document);
     }
 
     @Override
@@ -64,6 +68,32 @@ public abstract class UserAbstractClass implements User {
     @Override
     public Iterator<Document> userDocs() {
         return uploadedDocs.documentIterator();
+    }
+
+    public Clearance getDocumentClearance(String documentID) {
+        return uploadedDocs.getDocumentClearance(documentID);
+    }
+
+    @Override
+    public int getGrantCount() {
+        return grantCount;
+    }
+
+    @Override
+    public int getRevokeCount() {
+        return revokeCount;
+    }
+
+    @Override
+    public int getDocumentNumber() {
+        return uploadedDocs.getDocumentNumber();
+    }
+
+    @Override
+    public boolean idGreaterThan(String otherID) {
+        if (this.getID().compareTo(otherID) > 0)
+            return true;
+        return false;
     }
 
 }

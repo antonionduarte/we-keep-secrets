@@ -128,7 +128,7 @@ public class Main {
     }
 
     private static void processUpload(Scanner in, FileSystem fs) {
-        String docName = in.next();
+        String documentID = in.next();
         String managerID = in.next();
         String securityLevel = in.nextLine();
         String description = in.nextLine();
@@ -136,12 +136,12 @@ public class Main {
         Clearance c = searchClearance(securityLevel);
 
         if (fs.hasUser(managerID)) {
-            if (fs.userHasDocument(managerID, docName)) {
-                System.out.printf(USER_HAS_DOCUMENT, docName);
+            if (fs.userHasDocument(managerID, documentID)) {
+                System.out.printf(USER_HAS_DOCUMENT, documentID);
             } else {
                 if (fs.getUserClearance(managerID).toInt() >= c.toInt()) {
-                    fs.upload(docName, managerID, c, description);
-                    System.out.printf(DOCUMENT_UPLOADED, docName);
+                    fs.upload(documentID, managerID, description, c);
+                    System.out.printf(DOCUMENT_UPLOADED, documentID);
                 } else {
                     System.out.printf(NOT_ENOUGH_CLEARANCE);
                 }
@@ -162,7 +162,7 @@ public class Main {
                 if (fs.isOfficial(managerID, documentID)) {
                     System.out.printf(CANNOT_UPDATE, documentID);
                 } else {
-                    if ( (fs.getUserClearance(userID).toInt() >= fs.getUserClearance(managerID).toInt()) || fs.hasGrant(userID, documentID) )
+                    if ( (fs.getUserClearance(userID).toInt() >= fs.getUserClearance(managerID).toInt()) || fs.hasGrant(managerID, userID, documentID) )
                         fs.write(documentID, managerID, userID, description);
                         System.out.printf(DOCUMENT_UPDATED, documentID);
                 }

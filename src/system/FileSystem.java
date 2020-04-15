@@ -29,7 +29,7 @@ public interface FileSystem {
 	 * @param clearance the clearance of the document.
 	 * @param description the description of the document.
 	 */
-	void upload(String documentID, String userID, Clearance clearance, String description);
+	void upload(String documentID, String description, String managerID, Clearance clearance);
 
 	/**
 	 * Writes a new <code>description</code> into a specified document. The new description will be written by a specific 
@@ -62,7 +62,7 @@ public interface FileSystem {
 	 * @param documentID of the Document to check.
 	 * @return true if the User has a grant, false if otherwise.
 	 */
-	boolean hasGrant(String userID, String managerID, String documentID);
+	boolean hasGrant(String managerID, String userID, String documentID);
 
 	/**
 	 * Checks if a given document is an official document.

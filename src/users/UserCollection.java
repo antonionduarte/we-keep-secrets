@@ -16,7 +16,7 @@ public interface UserCollection {
 	 * Adds a user to the collection.
 	 * @param user to add to the collection.
 	 */
-	void addUser(String userKind, String userID, Clearance clearance);
+	void addUser(User user);
 
 	/**
 	 * Checks if the user with the specified <code>userID</code> is in the collection.
@@ -75,7 +75,7 @@ public interface UserCollection {
      * @param description the document's description.
      * @param clearance the document's clearance.
      */
-    void upload(String userID, String documentID, String description, Clearance clearance);
+    void upload(String documentID, String description, String managerID, Clearance clearance);
 
     /**
      * Reads the <code>description</code> of a document owned by a user.
@@ -100,5 +100,13 @@ public interface UserCollection {
      * @param description the new decription.
      */
     void write(String managerID, String userID, String documentID, String description);
+
+    Iterator topleaked();
+
+    Iterator topgranters();
+
+    void insertSort(User user);
+
+    void trim(int trimSize);
 
 }

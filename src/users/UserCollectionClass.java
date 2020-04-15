@@ -2,13 +2,15 @@ package users;
 
 import iterators.*;
 import clearance.Clearance;
-import documents.Document;
+import documents.*;
 
 public class UserCollectionClass implements UserCollection {
 
     // Generic Constants
-    private static final int DEFAULT_VECTOR_SIZE = 100;
-    private static final int GROWTH_FACTOR = 2;
+    private static final int DEFAULT_VECTOR_SIZE            = 100;
+    private static final int GROWTH_FACTOR                  = 2;
+    private static final int TOP_LEAKED_MAX_ITERATOR_SIZE   = 10;
+    private static final int TOP_GRANTERS_MAX_ITERATOR_SIZE = 10;
 
     // Instance variables
     private User[] users;
@@ -23,12 +25,9 @@ public class UserCollectionClass implements UserCollection {
     }
 
     @Override
-    public void addUser(String userKind, String userID, Clearance clearance) {
+    public void addUser(User user) {
         if (isFull()) resize();
-        if (clearance == Clearance.CLERK)
-            users[userCounter++] = new ClerkClass(userKind, userID, Clearance.CLERK);
-        else
-            users[userCounter++] = new OfficerClass(userKind, userID, clearance);
+        users[userCounter++] = user;
     }
 
     @Override
@@ -74,8 +73,14 @@ public class UserCollectionClass implements UserCollection {
     }
 
     @Override
-    public void upload(String userID, String documentID, String description, Clearance clearance) {
-        users[searchIndexOf(userID)].upload(documentID, description, clearance);
+    public void upload(String documentID, String description, String managerID, Clearance clearance) {
+        Document document;
+        User user = users[searchIndexOf(managerID)];
+        if (clearance == Clearance.CLERK)
+            document = new OfficialDocumentClass(documentID, description, user, clearance);
+        else
+            document = new ClassifiedDocumentClass(documentID, description, user, clearance);
+        user.upload(document);
     }
 
     @Override
@@ -88,8 +93,68 @@ public class UserCollectionClass implements UserCollection {
         return users[searchIndexOf(userID)].userDocs();
     }
 
+    @Override
     public void write(String managerID, String userID, String documentID, String decription) {
 
+    }
+
+    @Override
+    public Iterator topleaked() {
+        DocumentCollection topleaked = new DocumentCollectionClass();
+
+        for (int i=0 ; i<userCounter ; i++) {
+            Iterator iter = users[i].userDocs();
+            while (iter.hasNext()) {
+                topleaked.addDocument((Document) iter.next());
+            }
+        }
+        
+        topleaked.bubbleSort(); // Sort by number of grants and alphabetically if tie
+        topleaked.trim(TOP_LEAKED_MAX_ITERATOR_SIZE);
+        return topleaked.documentIterator();
+    }
+
+    @Override
+    public Iterator topgranters() {
+        UserCollection topgranters;
+        int grantCount;
+
+        topgranters = new UserCollectionClass();
+        for (int i=0 ; i<userCounter ; i++) {
+            topgranters.insertSort(users[i]);
+        }
+
+        topgranters.trim(TOP_GRANTERS_MAX_ITERATOR_SIZE);
+        return topgranters.userIterator();
+    }
+
+    @Override
+    public void insertSort(User user) {
+        if (isFull())
+            resize();
+        for (int i=userCounter-1 ; i>0 ; i--) {
+            if (users[i].getGrantCount() > user.getGrantCount())
+                users[i+1] = user;
+            else if (users[i].getGrantCount() < user.getGrantCount())
+                users[i+1] = users[i];
+            else {
+                if (users[i].idGreaterThan(user.getID()))
+                    users[i+1] = user;
+                else
+                    users[i+1] = users[i];
+            }
+        }
+        userCounter++;
+    }
+
+    @Override
+    public void trim(int trimSize) {
+        User[] aux;
+        for (int i=0 ; i<trimSize ; i++) {
+            aux[i] = users[i];
+        }
+        users = aux;
+        userCounter = trimSize;
     }
 
 
