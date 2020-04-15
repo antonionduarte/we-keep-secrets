@@ -34,12 +34,6 @@ public interface Document {
     boolean isManager(User user);
 
     /**
-     * Gets the clearance String of the Document.
-     * @return the clearance String of the Document.
-     */
-    String getClearanceString();
-
-    /**
      * Gets the clearance level (int value) of the Document.
      * @return the clearance level of the Document.
      */

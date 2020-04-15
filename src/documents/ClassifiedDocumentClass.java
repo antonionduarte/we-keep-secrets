@@ -4,12 +4,6 @@ import clearance.*;
 import users.*;
 
 public class ClassifiedDocumentClass extends AbstractDocument implements ClassifiedDocument {
-
-    /**
-     * User collection that stores the users that have permission to access a specific document
-     * out of their default permission range.
-     */
-    UserCollection grants = new UserCollectionClass();
     
     /**
      * Constructor of the Classified Documents.
@@ -21,19 +15,21 @@ public class ClassifiedDocumentClass extends AbstractDocument implements Classif
         super(ID, description, manager, clearance);
     }
 
-    @Override
-    public void grant(User user) {
-        grants.addUser(user);
-    }
+    // TODO: Refactor how grant system works.
 
-    @Override
-    public void revoke(User user) {
-        grants.removeUser(user);
-    }
+    // @Override
+    // public void grant(String userKind, String userID, Clearance clearance) {
+    //     grants.addUser(userKind, userID, clearance);
+    // }
 
-    @Override
-    public boolean hasGrant(User user) {
-        return grants.hasUser(user.getID());
-    }
+    // @Override
+    // public void revoke(User user) {
+    //     grants.removeUser(user);
+    // }
+
+    // @Override
+    // public boolean hasGrant(User user) {
+    //     return grants.hasUser(user.getID());
+    // }
     
 }

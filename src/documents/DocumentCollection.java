@@ -1,6 +1,8 @@
 package documents;
 
 import iterators.*;
+import clearance.*;
+import users.*;
 
 public interface DocumentCollection {
 
@@ -29,4 +31,34 @@ public interface DocumentCollection {
      * @return a Document Iterator.
      */
     Iterator<Document> documentIterator();
+
+    /**
+     * Returns the clearance of the document.
+     * @param documentID of the Document to get the clearance of.
+     * @return the clearance of the document with the given documentID. 
+     */
+    Clearance getDocumentClearance(String documentID);
+
+    /**
+     * Returns the description of the document.
+     * @param documentID of the Document to get the description of.
+     * @return the description of the Document with the given documentID.
+     */
+    String getDocumentDescription(String documentID);
+
+    /**
+     * Changes the description of the document with the given documentID.
+     * @param documentID of the document to change the description of.
+     * @param description that will replace the old description.
+     */
+    void setDocumentDescription(String documentID, String description);
+    
+    /**
+     * Checks if a given user is the manager of the Document.
+     * TODO: Might not be needed. 
+     * @param documentID of the document to check the manager of.
+     * @param user user that we will verify if is the manager of the document.
+     * @return true if the user is the manager, false if otherwise.
+     */
+    boolean isDocumentManager(String documentID, User user);
 }
