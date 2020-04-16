@@ -1,7 +1,9 @@
 package actions;
 
 import iterators.*;
-import users.User;
+import users.*;
+import documents.*;
+import clearance.*;
 
 public class ActionCollectionClass implements ActionCollection {
 
@@ -9,102 +11,69 @@ public class ActionCollectionClass implements ActionCollection {
 	private static final int GROWTH_FACTOR = 2;
 
 	private Action[] actions;
+	private Document relatedDocument;
 	private int actionCounter;
-	private boolean isOfficial;
 
-	public ActionCollectionClass(boolean isOfficial) {
+	/**
+	 * TODO: Make the comment on the constructor.
+	 */
+	public ActionCollectionClass(Document relatedDocument) {
 		actions = new ActionClass[DEFAULT_VECTOR_SIZE];
+		this.relatedDocument = relatedDocument;
 		actionCounter = 0;
-		this.isOfficial = isOfficial;
 	}
 
-	/**
-	 * Adds an action. This method is restricted to Grant commands
-	 *
-	 * @param      issuer      The creator user
-	 * @param      affected    The affected user
-	 * @param      actionType  The action type
-	 */
-	public void addAction(User creator, User affected, Actions actionType) {
-		Action action = new ActionClass(issuer, affected, actionType);
+	@Override
+	public void addAction(User relatedUser, Actions actionType) {
+		Action action = new ActionClass(relatedUser, actionType);
 		if (isFull()) {
-			if (isOfficial()) {
+			if (relatedDocument.getClearance().toInt() == Clearance.CLERK.toInt())
 				insertDeleteLast(action);
-			} else {
+			else {
 				resize();
 				insert(action);
 			}
-
 		} else
 			insert(action);
 	}
 
-	/**
-	 * Adds an action. This method is restricted to Write or Read actions
-	 *
-	 * @param      issuer      The creator user
-	 * @param      actionType  The action type
-	 */
-	public void addAction(User creator, Actions actionType) {
-		Action action = new ActionClass(issuer, actionType);
-		if (isFull()) {
-			if (isOfficial()) {
-				insertDeleteLast(action);
-			} else {
-				resize();
-				insert(action);
-			}
-
-		} else
-			insert(action);
+	@Override
+	public Iterator<Action> actionIterator() {
+		return new IteratorClass<Action>(actions, actionCounter);
 	}
 
 	/**
-	 * Initiates an action iterator with a filter
-	 *
-	 * @return     An iterator object
-	 */
-	public Iterator actionIterator() {
-		return new ActionIteratorClass(actions, actionCounter);
-	}
-
-	/**
-	 * Determines if array is full.
-	 *
-	 * @return     True if full, False otherwise.
+	 * Determines if the array is full.
+	 * @return true if the array is full, false if otherwise.
 	 */
 	private boolean isFull() {
 		return actions.length == actionCounter;
 	}
 
 	/**
-	 * Resizes the array. This method is only available for classified documents. Remmember that official documents only store the last 10 reads so they don't require resize.
+	 * Resizes the array. This method is only available for classified documents.
 	 */
 	private void resize() {
 		Action[] temp = new ActionClass[actions.length * GROWTH_FACTOR];
-		for (int i=0 ; i<actionCounter ; i++) {
+		for (int i = 0; i < actionCounter; i++)
 			temp[i] = actions[i];
-		}
 		actions = temp;
 	}
 
 	/**
-	 * Inserts a new action in the array and deletes the oldest one.
-	 *
-	 * @param      action  The action
+	 * Inserts a new action by deleting the last inserted action.
+	 * @param action the action to insert.
 	 */
 	private void insertDeleteLast(Action action) {
-		for (int i=0 ; i<actionCounter-1 ; i++) {
-			actions[i] = actions[i+1];
-		}
+		for (int i = 0; i < actionCounter - 1; i++)
+			actions[i] = actions[++i];
 		insert(action);
 		actionCounter--;
 	}
 
 	/**
 	 * Inserts a new action in the array.
-	 *
-	 * @param      action  The action
+	 * @param action the action to insert.
 	 */
 	private void insert(Action action) {
 		actions[actionCounter++] = action;

@@ -10,8 +10,9 @@ public class ActionClass implements Action {
 
 	/**
 	 * Constructs a new instance. this constructor is used when a Grant action is executed.
-	 * @param relatedUser  The affected user
-	 * @param action        The action
+	 * @param relatedUser the user that is related to the action. In case of Grant/Revoke actions it's the User that the
+	 * grant was issued or revoked to. In case of Read/Write actions it's the one who read or wrote in the document.
+	 * @param action the action type.
 	 */
 	public ActionClass(User relatedUser, Actions action) {
 		this.relatedUser = relatedUser;
@@ -19,35 +20,22 @@ public class ActionClass implements Action {
 		this.revoked = false;
 	}
 
-	/**
-	 * Gets the User that the action is related with.
-	 * @return     The affected user.
-	 */
+	@Override
 	public User getRelatedUser() {
 		return relatedUser;
 	}
 
-	/**
-	 * Gets the action type.
-	 *
-	 * @return     The action type.
-	 */
+	@Override
 	public Actions getActionType() {
-		return actionType;
+		return action;
 	}
 
-	/**
-	 * Revokes the action. This only applies to Grant actions.
-	 */
+	@Override
 	public void revoke() {
 		this.revoked = true;
 	}
 
-	/**
-	 * Determines if action was revoked. Only available for Grant actions
-	 *
-	 * @return     True if revoked, False otherwise.
-	 */
+	@Override
 	public boolean isRevoked() {
 		return revoked;
 	}

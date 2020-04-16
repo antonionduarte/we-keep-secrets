@@ -14,20 +14,16 @@ public interface Action {
 	 */
 
 	/**
-	 * Returns the creator of an action.
-	 * @return the User who made a specific action.
+	 * Returns the User that is related to the action.
+	 * In case of Grant or Revoke actions it's the User that the Document will be Granted to or Revoked from.
+	 * In case of Read or Write actions it's the User that read or wrote to the document.
+	 * @return the User that is related to the action.
 	 */
-	User getActionCreator();
+	User getRelatedUser();
 
 	/**
-	 * 
-	 * @return the User who got affected by the action.
-	 */  
-	User getAffectedUser();
-
-	/**
-	 * 
-	 * @return
+	 * Returns the type of the action.
+	 * @return the type of the action (read, write, grant, revoke).
 	 */
 	Actions getActionType();
 
@@ -37,7 +33,7 @@ public interface Action {
 	void revoke();
 
 	/**
-	 * 
+	 * Checks if a User has been revoked a Document.
 	 * @return true if it has been revoked, false if otherwise.
 	 */
 	boolean isRevoked();
