@@ -22,7 +22,7 @@ public interface ActionCollection {
      * Gets the user related to the action.
      * @return user related to the action.
      */
-    User getRelatedUser();
+    User getRelatedUser(int actionIndex);
 
     // TODO: Finish this tomorrow.
 

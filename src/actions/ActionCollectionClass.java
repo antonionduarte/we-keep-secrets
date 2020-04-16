@@ -79,4 +79,9 @@ public class ActionCollectionClass implements ActionCollection {
 	private void insert(Action action) {
 		actions[actionCounter++] = action;
 	}
+
+	@Override
+	public User getRelatedUser(int actionIndex) {
+		return actions[actionIndex].getRelatedUser();
+	}
 }
