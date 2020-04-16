@@ -4,52 +4,27 @@ import users.*;
 
 public class ActionClass implements Action {
 
-	private User creator;
-	private User affectedUser; // Only available in grant actions. Writes and reads only have the creator
-	private Actions actionType;
+	private User relatedUser;
+	private Actions action;
 	private boolean revoked; // This only applies to grant actions
 
 	/**
 	 * Constructs a new instance. this constructor is used when a Grant action is executed.
-	 *
-	 * @param      creator       The creator
-	 * @param      affectedUser  The affected user
-	 * @param      action        The action
+	 * @param relatedUser  The affected user
+	 * @param action        The action
 	 */
-	public ActionClass(User creator, User affectedUser, Actions actionType) {
-		this.creator = creator;
-		this.affectedUser = affectedUser;
-		this.actionType = actionType;
+	public ActionClass(User relatedUser, Actions action) {
+		this.relatedUser = relatedUser;
+		this.action = action;
 		this.revoked = false;
 	}
 
 	/**
-	 * Constructs a new instance. This constructor is used when a Write or Read action in executed
-	 *
-	 * @param      creator  The creator
-	 * @param      action   The action
-	 */
-	public ActionClass(User creator, Actions action) {
-		this.creator = creator;
-		this.action = action;
-	}
-
-	/**
-	 * Gets the action creator.
-	 *
-	 * @return     The action creator.
-	 */
-	public User getActionCreator() {
-		return creator;
-	}
-
-	/**
-	 * Gets the affected user. Only available in grant actions.
-	 *
+	 * Gets the User that the action is related with.
 	 * @return     The affected user.
 	 */
-	public User getAffectedUser() {
-		return affectedUser;
+	public User getRelatedUser() {
+		return relatedUser;
 	}
 
 	/**

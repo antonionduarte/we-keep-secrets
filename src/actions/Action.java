@@ -4,11 +4,14 @@ import users.User;
 
 public interface Action {
 
-	// TODO: This doesn't need to neccessarily be like this.
-	// There are two actions, an action of grants and revokes // action of reads and writes.
-	// Each document must have a collection for reads and writes and grants and revokes.
-	// In the reads and writes the User that accessed the document and the action is stored.
-	// In the grants and revoked the User that 
+	/**
+	 * In the Actions what happens is that we are storing a User that the action is related with and it's type.
+	 * 
+	 * In the Write and Read actions the related user is the one who read or wrote on the document.
+	 * 
+	 * In the Grant and Revoke actions the related user is the one who got the Document granted
+	 * or revoked from them. (This is also the basis of our grant system).
+	 */
 
 	/**
 	 * Returns the creator of an action.
@@ -19,7 +22,7 @@ public interface Action {
 	/**
 	 * 
 	 * @return the User who got affected by the action.
-	 */
+	 */  
 	User getAffectedUser();
 
 	/**
@@ -28,7 +31,14 @@ public interface Action {
 	 */
 	Actions getActionType();
 
+	/**
+	 * 
+	 */
 	void revoke();
 
+	/**
+	 * 
+	 * @return true if it has been revoked, false if otherwise.
+	 */
 	boolean isRevoked();
 }
