@@ -61,4 +61,10 @@ public interface DocumentCollection {
      * @return true if the user is the manager, false if otherwise.
      */
     boolean isDocumentManager(String documentID, User user);
+
+    /**
+     * Returns a specific document off the collection.
+     * @return a specific document on the collection.
+     */
+    Document getDocument(String documentID);
 }

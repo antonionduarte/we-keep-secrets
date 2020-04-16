@@ -95,13 +95,18 @@ public class DocumentCollectionClass implements DocumentCollection {
     }
 
     @Override
-    public void setDocumentDescription(String documentID, String description) {
+    public void setDocumentDescription(String documentID, String userID, String description) {
         documents[searchIndex(documentID)].setDescription(description);
     }
 
     @Override
     public boolean isDocumentManager(String documentID, User user) {
-        // TODO: Implement this.
+        // TODO: Implement this
         return false;
+    }
+
+    @Override
+    public Document getDocument(String documentID) {
+        return documents[searchIndex(documentID)];
     }
 }
