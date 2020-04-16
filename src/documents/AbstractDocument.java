@@ -51,6 +51,8 @@ public abstract class AbstractDocument implements Document {
         this.description = description;
         this.manager = manager;
         this.clearance = clearance;
+        grantsRevokes = new ActionCollectionClass(this);
+        readsWrites = new ActionCollectionClass(this);
     }
 
     // Methods
