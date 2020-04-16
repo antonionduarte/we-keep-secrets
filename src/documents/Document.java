@@ -8,9 +8,10 @@ public interface Document {
     /**
      * Sets a new description to the document.
      * @param text to set the description to.
+     * @param writer user that writes in the document.
      * PRE: text != NULL
      */
-    void setDescription(String text);
+    void setDescription(String text, User writer);
 
     /**
      * Shows the description of the document.

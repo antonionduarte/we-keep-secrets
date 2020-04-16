@@ -14,22 +14,4 @@ public class ClassifiedDocumentClass extends AbstractDocument implements Classif
     public ClassifiedDocumentClass(String ID, String description, User manager, Clearance clearance) {
         super(ID, description, manager, clearance);
     }
-
-    // TODO: Refactor how grant system works.
-
-    // @Override
-    // public void grant(String userKind, String userID, Clearance clearance) {
-    //     grants.addUser(userKind, userID, clearance);
-    // }
-
-    // @Override
-    // public void revoke(User user) {
-    //     grants.removeUser(user);
-    // }
-
-    // @Override
-    // public boolean hasGrant(User user) {
-    //     return grants.hasUser(user.getID());
-    // }
-    
 }
