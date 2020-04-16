@@ -15,7 +15,8 @@ public class ActionCollectionClass implements ActionCollection {
 	private int actionCounter;
 
 	/**
-	 * TODO: Make the comment on the constructor.
+	 * Constructor of ActionCollectionClass.
+	 * @param relatedDocument document related to the collection.
 	 */
 	public ActionCollectionClass(Document relatedDocument) {
 		actions = new ActionClass[DEFAULT_VECTOR_SIZE];
