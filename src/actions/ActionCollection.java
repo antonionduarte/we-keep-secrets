@@ -18,6 +18,12 @@ public interface ActionCollection {
      */
     Iterator<Action> actionIterator();
 
+    /**
+     * Gets the user related to the action.
+     * @return user related to the action.
+     */
+    User getRelatedUser();
 
+    // TODO: Finish this tomorrow.
 
 }
