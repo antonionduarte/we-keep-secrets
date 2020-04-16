@@ -104,11 +104,11 @@ public class UserCollectionClass implements UserCollection {
     }
 
     @Override
-    public Iterator topleaked() {
+    public Iterator<Document> topleaked() {
         DocumentCollection topleaked = new DocumentCollectionClass();
 
         for (int i=0 ; i<userCounter ; i++) {
-            Iterator iter = users[i].userDocs();
+            Iterator<User> iter = users[i].userDocs();
             while (iter.hasNext()) {
                 topleaked.addDocument((Document) iter.next());
             }
@@ -120,7 +120,7 @@ public class UserCollectionClass implements UserCollection {
     }
 
     @Override
-    public Iterator topgranters() {
+    public Iterator<User> topgranters() {
         UserCollection topgranters;
         int grantCount;
 
@@ -160,6 +160,11 @@ public class UserCollectionClass implements UserCollection {
         }
         users = aux;
         userCounter = trimSize;
+    }
+
+    @Override
+    public User getUser(String userID) {
+        return users[searchIndexOf(userID)];
     }
 
 

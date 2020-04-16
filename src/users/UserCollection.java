@@ -112,12 +112,19 @@ public interface UserCollection {
      */
     Iterator<Document> userDocs(String userID);
 
-    Iterator topleaked();
+    Iterator<Document> topleaked();
 
-    Iterator topgranters();
+    Iterator<User> topgranters();
 
     void insertSort(User user);
 
     void trim(int trimSize);
+
+    /**
+     * Returns a user with the given userID.
+     * @param userID of the user to return.
+     * @return user with the given <code>userID</code>.
+     */
+    User getUser(String userID);
 
 }
