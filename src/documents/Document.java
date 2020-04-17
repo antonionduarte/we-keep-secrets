@@ -29,13 +29,6 @@ public interface Document {
     String getID();
 
     /**
-     * Checks if a given user is the manager of the document.
-     * @param user to compare with.
-     * @return true if the given user is the manager, false if otherwise.
-     */
-    boolean isManager(User user);
-
-    /**
      * Gets the clearance level (int value) of the Document.
      * @return the clearance level of the Document.
      */

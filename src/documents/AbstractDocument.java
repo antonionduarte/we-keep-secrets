@@ -63,11 +63,6 @@ public abstract class AbstractDocument implements Document {
     }
 
     @Override
-    public boolean isManager(User user) {
-        return user.equals(manager);
-    }
-
-    @Override
     public Clearance getClearance() {
         return clearance;
     }

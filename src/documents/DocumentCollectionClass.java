@@ -98,11 +98,6 @@ public class DocumentCollectionClass implements DocumentCollection {
         documents[searchIndex(documentID)].setDescription(description, relatedUser);
     }
 
-    @Override // TODO: Remake this.
-    public boolean isDocumentManager(String documentID, User user) {
-        return user.equals(manager);
-    }
-
     @Override
     public Document getDocument(String documentID) {
         return documents[searchIndex(documentID)];
