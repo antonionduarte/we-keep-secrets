@@ -33,4 +33,10 @@ public class ClassifiedDocumentClass extends AbstractDocument implements Classif
     public void revoke(User relatedUser) {
         grantsRevokes.addAction(relatedUser, Actions.REVOKE);
     }
+
+    @Override
+    public boolean hasGrant(User user) {
+        // TODO: Make this logic tomorrow.
+        return false;
+    }
 }

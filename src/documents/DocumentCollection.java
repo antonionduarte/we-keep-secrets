@@ -82,4 +82,12 @@ public interface DocumentCollection {
      * @param relatedUser user to revoke access from the document.
      */
     void revoke(String documentID, User relatedUser);
+
+    /**
+     * Checks if a specific user has a grant to use a specific document.
+     * @param documentID ID of the document to verify.
+     * @param user user to verify.
+     * @return true if the user has a grant to the document with the specified documentID.
+     */
+    boolean hasGrant(String documentID, User user);
 }

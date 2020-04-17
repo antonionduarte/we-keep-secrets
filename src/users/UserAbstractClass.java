@@ -58,7 +58,7 @@ public abstract class UserAbstractClass implements User {
 
     @Override
     public boolean hasGrant(String documentID, String userID) {
-        return uploadedDocs.userHasGrant(documentID, userID);
+        return uploadedDocs.hasGrant(documentID, userID);
     }
 
     @Override

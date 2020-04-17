@@ -126,4 +126,10 @@ public class DocumentCollectionClass implements DocumentCollection {
         ClassifiedDocument document = (ClassifiedDocument) documents[searchIndex(documentID)];
         document.revoke(relatedUser);
     }
+
+    @Override
+    public boolean hasGrant(String documentID, User user) {
+        ClassifiedDocument document = (ClassifiedDocument) documents[searchIndex(documentID)];
+        return document.hasGrant(user);
+    }
 }

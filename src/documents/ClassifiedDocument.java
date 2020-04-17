@@ -15,4 +15,11 @@ public interface ClassifiedDocument extends Document {
      * @param relatedUser user to revoke access from the document.
      */
     void revoke(User relatedUser);
+
+    /**
+     * Checks if the specified User has an active grant to the Document.
+     * @param user to check.
+     * @return true if the user has an active grant to the document.
+     */
+    boolean hasGrant(User user);
 }
