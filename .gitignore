@@ -1,6 +1,7 @@
 # Generic files
 .DS_Store
 .idea
+we-keep-secrets.iml
 
 # .class files
 *.class
