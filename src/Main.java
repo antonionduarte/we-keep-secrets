@@ -203,9 +203,6 @@ public class Main {
             System.out.println(h.message());
     }
 
-
-
-
     private static String getCommand(Scanner in) {
         return in.nextLine().toUpperCase();
     }
