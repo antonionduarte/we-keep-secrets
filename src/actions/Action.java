@@ -26,15 +26,4 @@ public interface Action {
 	 * @return the type of the action (read, write, grant, revoke).
 	 */
 	Actions getActionType();
-
-	/**
-	 * 
-	 */
-	void revoke();
-
-	/**
-	 * Checks if a User has been revoked a Document.
-	 * @return true if it has been revoked, false if otherwise.
-	 */
-	boolean isRevoked();
 }

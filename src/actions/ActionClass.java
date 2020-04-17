@@ -6,7 +6,6 @@ public class ActionClass implements Action {
 
 	private User relatedUser;
 	private Actions action;
-	private boolean revoked; // This only applies to grant actions
 
 	/**
 	 * Constructs a new instance. this constructor is used when a Grant action is executed.
@@ -17,7 +16,6 @@ public class ActionClass implements Action {
 	public ActionClass(User relatedUser, Actions action) {
 		this.relatedUser = relatedUser;
 		this.action = action;
-		this.revoked = false;
 	}
 
 	@Override
@@ -28,15 +26,5 @@ public class ActionClass implements Action {
 	@Override
 	public Actions getActionType() {
 		return action;
-	}
-
-	@Override
-	public void revoke() {
-		this.revoked = true;
-	}
-
-	@Override
-	public boolean isRevoked() {
-		return revoked;
 	}
 }
