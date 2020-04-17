@@ -99,6 +99,18 @@ public class DocumentCollectionClass implements DocumentCollection {
     }
 
     @Override
+    public int getGrantCount(String documentID) {
+        ClassifiedDocument document = (ClassifiedDocument) documents[searchIndex(documentID)];
+        return document.getGrantCount();
+    }
+
+    @Override
+    public int getRevokeCount(String documentID) {
+        ClassifiedDocument document = (ClassifiedDocument) documents[searchIndex(documentID)];
+        return document.getRevokeCount();
+    }
+
+    @Override
     public Document getDocument(String documentID) {
         return documents[searchIndex(documentID)];
     }

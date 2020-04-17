@@ -56,6 +56,20 @@ public interface DocumentCollection {
     void setDocumentDescription(String documentID,User relatedUser, String description);
 
     /**
+     * Returns the grant count of the document with the given documentID.
+     * @param documentID ID of the document.
+     * @return the grantCount of the document.
+     */
+    int getGrantCount(String documentID);
+
+    /**
+     * Returns the revoke count of the document with the given documentID.
+     * @param documentID ID of the document.
+     * @return revokeCount of the document.
+     */
+    int getRevokeCount(String documentID);
+
+    /**
      * Returns a specific document off the collection.
      * @return a specific document on the collection.
      */
