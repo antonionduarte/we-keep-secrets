@@ -90,12 +90,6 @@ public abstract class UserAbstractClass implements User {
         return revokeCount;
     }
 
-    // TODO: Is this needed?
-    @Override
-    public int getDocumentNumber() {
-        return uploadedDocs.getDocumentNumber();
-    }
-
     @Override
     public boolean idGreaterThan(String otherID) {
         if (this.getID().compareTo(otherID) > 0)
@@ -103,4 +97,13 @@ public abstract class UserAbstractClass implements User {
         return false;
     }
 
+    @Override
+    public DocumentCollection getUploadedDocs() {
+        return uploadedDocs;
+    }
+
+    @Override
+    public Document getDocument(String documentID) {
+        return uploadedDocs.getDocument(documentID);
+    }
 }
