@@ -106,7 +106,7 @@ public class UserCollectionClass implements UserCollection {
     }
 
     @Override
-    public Iterator<Document> topleaked() {
+    public Iterator<Document> topLeaked() {
         DocumentCollection topleaked = new DocumentCollectionClass();
         for (int i=0 ; i<userCounter ; i++) {
             Iterator<Document> iter = users[i].userDocs();
@@ -119,7 +119,7 @@ public class UserCollectionClass implements UserCollection {
     }
 
     @Override
-    public Iterator<User> topgranters() {
+    public Iterator<User> topGranters() {
         UserCollection topgranters;
         int grantCount;
         topgranters = new UserCollectionClass();

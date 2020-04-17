@@ -112,9 +112,9 @@ public interface UserCollection {
      */
     Iterator<Document> userDocs(String userID);
 
-    Iterator<Document> topleaked();
+    Iterator<Document> topLeaked();
 
-    Iterator<User> topgranters();
+    Iterator<User> topGranters();
 
     void insertSort(User user);
 
