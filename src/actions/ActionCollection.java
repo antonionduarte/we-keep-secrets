@@ -23,7 +23,4 @@ public interface ActionCollection {
      * @return user related to the action.
      */
     User getRelatedUser(int actionIndex);
-
-    // TODO: Finish this tomorrow.
-
 }
