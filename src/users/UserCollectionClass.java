@@ -109,7 +109,7 @@ public class UserCollectionClass implements UserCollection {
     public Iterator<Document> topleaked() {
         DocumentCollection topleaked = new DocumentCollectionClass();
         for (int i=0 ; i<userCounter ; i++) {
-            Iterator<User> iter = users[i].userDocs();
+            Iterator<Document> iter = users[i].userDocs();
             while (iter.hasNext())
                 topleaked.addDocument((Document) iter.next());
         }
