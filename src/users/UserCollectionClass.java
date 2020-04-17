@@ -110,9 +110,8 @@ public class UserCollectionClass implements UserCollection {
         DocumentCollection topleaked = new DocumentCollectionClass();
         for (int i=0 ; i<userCounter ; i++) {
             Iterator<User> iter = users[i].userDocs();
-            while (iter.hasNext()) {
+            while (iter.hasNext())
                 topleaked.addDocument((Document) iter.next());
-            }
         }
         topleaked.bubbleSort(); // Sort by number of grants and alphabetically if tie
         topleaked.trim(TOP_LEAKED_MAX_ITERATOR_SIZE);
@@ -124,9 +123,8 @@ public class UserCollectionClass implements UserCollection {
         UserCollection topgranters;
         int grantCount;
         topgranters = new UserCollectionClass();
-        for (int i=0 ; i<userCounter ; i++) {
+        for (int i=0 ; i<userCounter ; i++)
             topgranters.insertSort(users[i]);
-        }
         topgranters.trim(TOP_GRANTERS_MAX_ITERATOR_SIZE);
         return topgranters.userIterator();
     }
@@ -153,9 +151,8 @@ public class UserCollectionClass implements UserCollection {
     @Override
     public void trim(int trimSize) {
         User[] aux;
-        for (int i=0 ; i<trimSize ; i++) {
+        for (int i=0 ; i<trimSize ; i++)
             aux[i] = users[i];
-        }
         users = aux;
         userCounter = trimSize;
     }
@@ -194,9 +191,8 @@ public class UserCollectionClass implements UserCollection {
      */
     private void resize() {
         User[] temp = new User[users.length * GROWTH_FACTOR];
-        for (int i = 0; i < userCounter; i++) {
+        for (int i = 0; i < userCounter; i++)
             users[i] = temp[i];
-        }
         users = temp;
     }
 }
