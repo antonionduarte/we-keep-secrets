@@ -133,16 +133,16 @@ public class UserCollectionClass implements UserCollection {
     public void insertSort(User user) {
         if (isFull())
             resize();
-        for (int i=userCounter-1 ; i>0 ; i--) {
+        for (int i = userCounter - 1; i > 0; i--) {
             if (users[i].getGrantCount() > user.getGrantCount())
-                users[i+1] = user;
+                users[i + 1] = user;
             else if (users[i].getGrantCount() < user.getGrantCount())
-                users[i+1] = users[i];
+                users[i + 1] = users[i];
             else {
                 if (users[i].idGreaterThan(user.getID()))
-                    users[i+1] = user;
+                    users[i + 1] = user;
                 else
-                    users[i+1] = users[i];
+                    users[i + 1] = users[i];
             }
         }
         userCounter++;
@@ -151,7 +151,7 @@ public class UserCollectionClass implements UserCollection {
     @Override
     public void trim(int trimSize) {
         User[] aux = new User[trimSize];
-        for (int i=0 ; i<trimSize ; i++)
+        for (int i = 0; i < trimSize; i++)
             aux[i] = users[i];
         users = aux;
         userCounter = trimSize;
