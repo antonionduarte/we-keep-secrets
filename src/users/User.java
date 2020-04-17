@@ -41,10 +41,10 @@ public interface User {
     /**
      * Checks if uses with <code>userID</code> has grant for document with id <code>documentID</code>.
      * @param documentID the document id.
-     * @param userID the user id.
+     * @param user the user.
      * @return true if has grant, false otherwise.
      */
-    boolean hasGrant(String documentID, String userID);
+    boolean hasGrant(String documentID, User user);
 
     /**
      * Uploads a document.
