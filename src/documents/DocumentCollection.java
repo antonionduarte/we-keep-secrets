@@ -68,4 +68,18 @@ public interface DocumentCollection {
      * @return a specific document on the collection.
      */
     Document getDocument(String documentID);
+
+    /**
+     * Grants access to a document to a specific user.
+     * @param documentID ID of the document to give the user access to.
+     * @param relatedUser user to revoke access from the document.
+     */
+    void grant(String documentID, User relatedUser);
+
+    /**
+     * Revokes a document from a user.
+     * @param documentID ID of the document.
+     * @param relatedUser user to revoke access from the document.
+     */
+    void revoke(String documentID, User relatedUser);
 }

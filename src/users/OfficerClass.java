@@ -9,13 +9,12 @@ public class OfficerClass extends UserAbstractClass implements Officer {
 
     public OfficerClass(String userKind, String userID, Clearance clearance) {
         super(userKind, userID, clearance);
-
         grantCount = 0;
     }
 
     @Override
-    public void write(User relatedUser, String documentID, String description) {
-    	document.setDescription(message);
+    public void write(ClassifiedDocument document, User writer, String description) {
+    	document.setDescription(description, writer);
     }
 
     @Override
@@ -27,5 +26,10 @@ public class OfficerClass extends UserAbstractClass implements Officer {
     @Override
     public void revoke(ClassifiedDocument document, User user) {
     	document.revoke(user);
+    }
+
+    @Override
+    public int getGrantCount() {
+        return grantCount;
     }
 }

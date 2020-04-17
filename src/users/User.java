@@ -81,17 +81,11 @@ public interface User {
     int getGrantCount();
 
     /**
-     * TODO: Exclusive to officers.
+     * TODO: Exclusive to officers. (And is this necessary?)
      * Gets the revoke count.
      * @return the revoke count.
      */
     int getRevokeCount();
-
-    /**
-     * Gets the document number the user owns.
-     * @return the document number.
-     */
-    int getDocumentNumber();
 
     /**
      * Checks if user has an id greater than <code>otherID</code>.
@@ -99,5 +93,19 @@ public interface User {
      * @return true if is greater, false otherwise.
      */
     boolean idGreaterThan(String otherID);
+
+    /**
+     * Returns the documentCollection of a User.
+     * This method is only neccessary for the class OfficerClass.
+     * @return the documentCollection of the user.
+     */
+    DocumentCollection getUploadedDocs();
+
+    /**
+     * Returns a document with the specific documentID.
+     * @param documentID of the document to return.
+     * @return the document with the given documentID.
+     */
+    Document getDocument(String documentID); 
 
 }

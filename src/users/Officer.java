@@ -6,11 +6,11 @@ public interface Officer extends User {
 
 	/**
      * Writes to a document.
-     * @param relatedUser user that writes in the specific document.
-     * @param documentID ID of the document to write on.
+     * @param writer user that writes in the specific document.
+     * @param document the document to write on.
      * @param description to write on the document.
      */
-    void write(User relatedUser, String documentID, String description);
+    void write(ClassifiedDocument document, User writer, String description);
 
 	/**
 	 * Grants a user access to a document.
@@ -25,4 +25,10 @@ public interface Officer extends User {
 	 * @param user to revoke the grant of.
 	 */
 	void revoke(ClassifiedDocument document, User user);
+
+	/**
+	 * Returns the grant count of the Officer.
+	 * @return ammount of times the officer has given someone a grant.
+	 */
+	int getGrantCount();
 }

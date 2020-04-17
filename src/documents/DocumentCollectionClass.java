@@ -114,4 +114,16 @@ public class DocumentCollectionClass implements DocumentCollection {
     public Document getDocument(String documentID) {
         return documents[searchIndex(documentID)];
     }
+
+    @Override
+    public void grant(String documentID, User relatedUser) {
+        ClassifiedDocument document = (ClassifiedDocument) documents[searchIndex(documentID)];
+        document.grant(relatedUser);
+    }
+
+    @Override
+    public void revoke(String documentID, User relatedUser) {
+        ClassifiedDocument document = (ClassifiedDocument) documents[searchIndex(documentID)];
+        document.revoke(relatedUser);
+    }
 }
