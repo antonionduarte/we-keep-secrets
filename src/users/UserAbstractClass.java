@@ -26,7 +26,7 @@ public abstract class UserAbstractClass implements User {
         this.userKind = userKind;
         this.userID = userID;
         this.clearance = clearance;
-        uploadedDocs = new DocumentCollectionClass(this); // Assigns this user as the manager of the DocumentCollection.
+        uploadedDocs = new DocumentCollectionClass(); // Assigns this user as the manager of the DocumentCollection.
         grantCount = 0;
         revokeCount = 0;
     }
