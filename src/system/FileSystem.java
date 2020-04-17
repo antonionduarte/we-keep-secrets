@@ -42,6 +42,14 @@ public interface FileSystem {
 	void write(String documentID, String managerID, String userID, String description);
 
 	/**
+	 * Reads from a document and register the action.
+	 * @param managerID ID of the manager of the document to read from.
+	 * @param userID ID of the user that reads from the document.
+	 * @param documentID of the document to read from.
+	 */
+	void read(String managerID, String userID, String documentID);
+
+	/**
 	 * Checks if a user with the given <code>userID</code> is in the system.
 	 * @param userID the ID of the User.
 	 * @return true if the User is in the system, false if otherwise.

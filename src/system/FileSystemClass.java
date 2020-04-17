@@ -36,8 +36,12 @@ public class FileSystemClass implements FileSystem {
 
     @Override
     public void write(String documentID, String managerID, String userID, String description) {
-        userCollection.write(managerID, userID, documentID, description); // TODO implement this is usercollection
-    	// TODO: Document has to log the operation
+        userCollection.write(managerID, userID, documentID, description);
+    }
+
+    @Override
+    public void read(String managerID, String userID, String documentID) {
+        userCollection.read(managerID, userID, documentID);
     }
 
     @Override

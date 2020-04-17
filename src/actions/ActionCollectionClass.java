@@ -14,6 +14,8 @@ public class ActionCollectionClass implements ActionCollection {
 	private Document relatedDocument;
 	private int actionCounter;
 
+	// Public methods.
+
 	/**
 	 * Constructor of ActionCollectionClass.
 	 * @param relatedDocument document related to the collection.
@@ -42,6 +44,13 @@ public class ActionCollectionClass implements ActionCollection {
 	public Iterator<Action> actionIterator() {
 		return new IteratorClass<Action>(actions, actionCounter);
 	}
+
+	@Override
+	public User getRelatedUser(int actionIndex) {
+		return actions[actionIndex].getRelatedUser();
+	}
+
+	// Private methods.
 
 	/**
 	 * Determines if the array is full.
@@ -78,10 +87,5 @@ public class ActionCollectionClass implements ActionCollection {
 	 */
 	private void insert(Action action) {
 		actions[actionCounter++] = action;
-	}
-
-	@Override
-	public User getRelatedUser(int actionIndex) {
-		return actions[actionIndex].getRelatedUser();
 	}
 }

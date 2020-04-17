@@ -31,11 +31,6 @@ public abstract class AbstractDocument implements Document {
     private Clearance clearance;
 
     /**
-     * ActionCollection that stores the grants and revokes.
-     */
-    private ActionCollection grantsRevokes;
-
-    /**
      * ActionCollection that stores the reads and writes.
      */
     private ActionCollection readsWrites;
@@ -51,7 +46,6 @@ public abstract class AbstractDocument implements Document {
         this.description = description;
         this.manager = manager;
         this.clearance = clearance;
-        grantsRevokes = new ActionCollectionClass(this);
         readsWrites = new ActionCollectionClass(this);
     }
 
@@ -64,7 +58,8 @@ public abstract class AbstractDocument implements Document {
     }
 
     @Override
-    public String getDescription() {
+    public String getDescription(User reader) {
+        readsWrites.addAction(reader, Actions.READ);
         return this.description;
     }
 

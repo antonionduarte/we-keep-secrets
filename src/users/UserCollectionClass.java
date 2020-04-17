@@ -86,21 +86,22 @@ public class UserCollectionClass implements UserCollection {
         else
             document = new ClassifiedDocumentClass(documentID, description, user, clearance);
         user.upload(document);
+    }    
+    
+    @Override
+    public String read(String managerID, String userID, String documentID) {
+        return users[searchIndexOf(managerID)].read(documentID, getUser(userID));
     }
 
     @Override
-    public String read(String managerID, String documentID) {
-        return users[searchIndexOf(managerID)].read(documentID);
+    public void write(String managerID, String userID, String documentID, String description) {
+        Officer user = (Officer) users[searchIndexOf(managerID)];
+        user.write(getUser(userID), documentID, description);
     }
 
     @Override
     public Iterator<Document> userDocs(String userID) {
         return users[searchIndexOf(userID)].userDocs();
-    }
-
-    @Override
-    public void write(String managerID, String userID, String documentID, String description) {
-        users[searchIndexOf(managerID)].write(userID, documentID, description);
     }
 
     @Override

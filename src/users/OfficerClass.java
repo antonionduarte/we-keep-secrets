@@ -14,7 +14,7 @@ public class OfficerClass extends UserAbstractClass implements Officer {
     }
 
     @Override
-    public void write(Document document, String message) {
+    public void write(User relatedUser, String documentID, String description) {
     	document.setDescription(message);
     }
 

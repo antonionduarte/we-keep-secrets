@@ -41,21 +41,22 @@ public interface DocumentCollection {
 
     /**
      * Returns the description of the document.
-     * @param documentID of the Document to get the description of.
+     * @param documentID ID of the Document to get the description of.
+     * @param reader user that reads the document.
      * @return the description of the Document with the given documentID.
      */
-    String getDocumentDescription(String documentID);
+    String getDocumentDescription(String documentID, User reader);
 
     /**
      * Changes the description of the document with the given documentID.
      * @param documentID of the document to change the description of.
+     * @param relatedUser user that writes in the document.
      * @param description that will replace the old description.
      */
-    void setDocumentDescription(String documentID, String description);
+    void setDocumentDescription(String documentID,User relatedUser, String description);
     
     /**
      * Checks if a given user is the manager of the Document.
-     * TODO: Might not be needed. 
      * @param documentID of the document to check the manager of.
      * @param user user that we will verify if is the manager of the document.
      * @return true if the user is the manager, false if otherwise.

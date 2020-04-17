@@ -33,29 +33,29 @@ public interface UserCollection {
 
 	/**
 	 * Gets the user id as it is stored in the array.
-	 * @param userID  The user id.
+	 * @param userID the user id.
 	 * @return the user id stored in the array.
 	 */
 	String getUserID(String userID);
 
 	/**
 	 * Gets the user kind.
-	 * @param userID  The user id.
+	 * @param userID the user id.
 	 * @return the user kind.
 	 */
     String getUserKind(String userID);
 
     /**
      * Gets the user clearance.
-     * @param userID  the user id.
+     * @param userID the user id.
      * @return the user clearance.
      */
     Clearance getUserClearance(String userID);
 
     /**
      * Gets the document clearance.
-     * @param managerID   The manager id.
-     * @param documentID  The document id.
+     * @param managerID the manager id.
+     * @param documentID the document id.
      * @return the document clearance.
      */
     Clearance getDocumentClearance(String managerID, String documentID);
@@ -69,17 +69,17 @@ public interface UserCollection {
     boolean userHasDocument(String userID, String documentID);
 
     /**
+     * TODO: Only Officers have grants, move to OfficerClass.
      * Checks if user with <code>userID</code> has a grant for the document with <code>documentID</code>.
-     *
-     * @param      managerID   The manager id
-     * @param      documentId  The document id
-     * @param      userID      The user id
-     *
-     * @return     True if has grant, False otherwise.
+     * @param managerID the id of the manager.
+     * @param documentId the id of the document.
+     * @param userID the id of the user.
+     * @return true if has grant, false otherwise.
      */
     boolean userHasGrant(String managerID, String documentID, String userID);
 
     /**
+     * TODO: Can normal users upload documents? Verify that (note to self).
      * Uploads a document to the user's document collection. The user will become the manager of this document.
      * @param userID the user id.
      * @param documentID the document id.
@@ -89,19 +89,19 @@ public interface UserCollection {
     void upload(String documentID, String description, String managerID, Clearance clearance);
 
     /**
-     * Reads the <code>description</code> of a document owned by a user.
-     * @param managerID the manager id.
-     * @param documentID the document id.
-     * @return Description of the document
+     * Reads from a document.
+     * @param managerID ID of the Document manager.
+     * @param userID ID of the user reading from the document.
+     * @param documentID ID of the document that the user reads from.
+     * @return the description of the document with the given documentID.
      */
-    String read(String managerID, String documentID);
+    String read(String managerID, String userID, String documentID);
 
     /**
      * Writes <code>description</code> to document with id <code>documentID</code>.
-     *
-     * @param      userID       The user id
-     * @param      documentID   The document id
-     * @param      description  The description
+     * @param userID the id of the user.
+     * @param documentID the id of the document.
+     * @param description the new description to write on the document.
      */
     void write(String managerID, String userID, String documentID, String description);
 

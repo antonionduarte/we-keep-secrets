@@ -40,11 +40,9 @@ public interface User {
 
     /**
      * Checks if uses with <code>userID</code> has grant for document with id <code>documentID</code>.
-     *
-     * @param      documentID  The document id
-     * @param      userID      The user id
-     *
-     * @return     True if has grant, False otherwise.
+     * @param documentID the document id.
+     * @param userID the user id.
+     * @return true if has grant, false otherwise.
      */
     boolean hasGrant(String documentID, String userID);
 
@@ -55,22 +53,12 @@ public interface User {
     void upload(Document document);
 
     /**
-     * Reads content of a document
-     *
-     * @param      documentID  The document id
-     *
-     * @return     The content of the document
+     * Reads content of a document.
+     * @param documentID the document id.
+     * @param reader user that reads from the document.
+     * @return the content of the document.
      */
-    String read(String documentID);
-
-    /**
-     * Writes <code>description</code> to document with id <code>documentID</code>.
-     *
-     * @param      userID       The user id
-     * @param      documentID   The document id
-     * @param      description  The description
-     */
-    void write(String userID, String documentID, String description);
+    String read(String documentID, User reader);
 
     /**
      * Returns an iterator of the User Documents.
@@ -79,41 +67,36 @@ public interface User {
     Iterator<Document> userDocs();
 
     /**
-     * Gets clearance from a user owned document
-     *
-     * @param      documentID  The document id
-     *
-     * @return     The document clearance.
+     * Gets clearance from a user owned document.
+     * @param documentID the id of the document.
+     * @return the document clearance.
      */
     Clearance getDocumentClearance(String documentID);
 
     /**
+     * TODO: Exclusive to officers.
      * Gets the grant count.
-     *
-     * @return     The grant count.
+     * @return the grant count.
      */
     int getGrantCount();
 
     /**
+     * TODO: Exclusive to officers.
      * Gets the revoke count.
-     *
-     * @return     The revoke count.
+     * @return the revoke count.
      */
     int getRevokeCount();
 
     /**
      * Gets the document number the user owns.
-     *
-     * @return     The document number.
+     * @return the document number.
      */
     int getDocumentNumber();
 
     /**
      * Checks if user has an id greater than <code>otherID</code>.
-     *
-     * @param      otherID  The other id
-     *
-     * @return     True if is greater, False otherwise
+     * @param otherID the id of the other user.
+     * @return true if is greater, false otherwise.
      */
     boolean idGreaterThan(String otherID);
 

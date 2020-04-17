@@ -2,7 +2,7 @@ package documents;
 
 import clearance.Clearance;
 import iterators.*;
-import users.User;
+import users.*;
 
 public class DocumentCollectionClass implements DocumentCollection {
 
@@ -14,6 +14,11 @@ public class DocumentCollectionClass implements DocumentCollection {
     // Variables
 
     /**
+     * The manager of the documents in the collection.
+     */
+    User manager;
+
+    /**
      * The array of documents.
      */
     private Document[] documents;
@@ -23,8 +28,9 @@ public class DocumentCollectionClass implements DocumentCollection {
      */
     private int counter;
 
-    public DocumentCollectionClass() {
+    public DocumentCollectionClass(User manager) {
         this.documents = new Document[DEFAULT_SIZE];
+        this.manager = manager;
     }
 
     // Methods
@@ -90,19 +96,18 @@ public class DocumentCollectionClass implements DocumentCollection {
     }
 
     @Override
-    public String getDocumentDescription(String documentID) {
-        return documents[searchIndex(documentID)].getDescription();
+    public String getDocumentDescription(String documentID, User reader) {
+        return documents[searchIndex(documentID)].getDescription(reader);
     }
 
     @Override
-    public void setDocumentDescription(String documentID, String userID, String description) {
-        documents[searchIndex(documentID)].setDescription(description);
+    public void setDocumentDescription(String documentID, User relatedUser, String description) {
+        documents[searchIndex(documentID)].setDescription(description, relatedUser);
     }
 
     @Override
     public boolean isDocumentManager(String documentID, User user) {
-        // TODO: Implement this
-        return false;
+        return user.equals(manager);
     }
 
     @Override

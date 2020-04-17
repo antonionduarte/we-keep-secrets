@@ -5,11 +5,12 @@ import documents.*;
 public interface Officer extends User {
 
 	/**
-	 * Writes a message to a Document.
-	 * @param document to write to.
-	 * @param message to write in the Document.
-	 */
-	void write(Document document, String message);
+     * Writes to a document.
+     * @param relatedUser user that writes in the specific document.
+     * @param documentID ID of the document to write on.
+     * @param description to write on the document.
+     */
+    void write(User relatedUser, String documentID, String description);
 
 	/**
 	 * Grants a user access to a document.

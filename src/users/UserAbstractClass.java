@@ -18,15 +18,15 @@ public abstract class UserAbstractClass implements User {
 
     /**
      * UserClass Constructor
-     * @param userKind  The user kind (clerk/officer)
-     * @param userID    The user unique ID
-     * @param clearance the user clearance
+     * @param userKind the user kind (clerk/officer).
+     * @param userID the user unique ID.
+     * @param clearance the user clearance.
      */
     protected UserAbstractClass(String userKind, String userID, Clearance clearance) {
         this.userKind = userKind;
         this.userID = userID;
         this.clearance = clearance;
-        uploadedDocs = new DocumentCollectionClass();
+        uploadedDocs = new DocumentCollectionClass(this); // Assigns this user as the manager of the DocumentCollection.
         grantCount = 0;
         revokeCount = 0;
     }
@@ -67,13 +67,8 @@ public abstract class UserAbstractClass implements User {
     }
 
     @Override
-    public String read(String documentID) {
-        return uploadedDocs.getDocumentDescription(documentID);
-    }
-
-    @Override
-    public void write(String userID, String documentID, String description) {
-        uploadedDocs.write(documentID, userID, description);
+    public String read(String documentID, User reader) {
+        return uploadedDocs.getDocumentDescription(documentID, reader);
     }
 
     @Override
@@ -95,6 +90,7 @@ public abstract class UserAbstractClass implements User {
         return revokeCount;
     }
 
+    // TODO: Is this needed?
     @Override
     public int getDocumentNumber() {
         return uploadedDocs.getDocumentNumber();

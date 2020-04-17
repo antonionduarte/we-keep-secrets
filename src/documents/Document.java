@@ -15,10 +15,11 @@ public interface Document {
 
     /**
      * Shows the description of the document.
+     * @param reader user that reads from the document.
      * @return <code>description</code> of the document.
      * PRE: description != NULL
      */
-    String getDescription();
+    String getDescription(User reader);
 
     /**
      * Shows the ID of the document.
