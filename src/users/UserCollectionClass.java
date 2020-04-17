@@ -82,9 +82,9 @@ public class UserCollectionClass implements UserCollection {
         Document document;
         User user = users[searchIndexOf(managerID)];
         if (clearance == Clearance.CLERK)
-            document = new OfficialDocumentClass(documentID, description, user, clearance);
+            document = new OfficialDocumentClass(documentID, description, clearance);
         else
-            document = new ClassifiedDocumentClass(documentID, description, user, clearance);
+            document = new ClassifiedDocumentClass(documentID, description, clearance);
         user.upload(document);
     }    
     
@@ -150,7 +150,7 @@ public class UserCollectionClass implements UserCollection {
 
     @Override
     public void trim(int trimSize) {
-        User[] aux;
+        User[] aux = new User[trimSize];
         for (int i=0 ; i<trimSize ; i++)
             aux[i] = users[i];
         users = aux;
