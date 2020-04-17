@@ -21,11 +21,6 @@ public abstract class AbstractDocument implements Document {
     private String ID;
 
     /**
-     * The manager of the document (user who created it).
-     */
-    private User manager;
-
-    /**
      * Clearance level of the document.
      */
     private Clearance clearance;
@@ -41,10 +36,9 @@ public abstract class AbstractDocument implements Document {
      * @param description or content that the document has.
      * @param manager is the user that created the document.
      */
-    protected AbstractDocument(String ID, String description, User manager, Clearance clearance) {
+    protected AbstractDocument(String ID, String description, Clearance clearance) {
         this.ID = ID;
         this.description = description;
-        this.manager = manager;
         this.clearance = clearance;
         readsWrites = new ActionCollectionClass(this);
     }

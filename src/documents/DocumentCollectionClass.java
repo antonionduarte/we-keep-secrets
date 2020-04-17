@@ -14,11 +14,6 @@ public class DocumentCollectionClass implements DocumentCollection {
     // Variables
 
     /**
-     * The manager of the documents in the collection.
-     */
-    User manager;
-
-    /**
      * The array of documents.
      */
     private Document[] documents;
@@ -28,9 +23,8 @@ public class DocumentCollectionClass implements DocumentCollection {
      */
     private int counter;
 
-    public DocumentCollectionClass(User manager) {
+    public DocumentCollectionClass() {
         this.documents = new Document[DEFAULT_SIZE];
-        this.manager = manager;
     }
 
     // Methods
@@ -75,8 +69,7 @@ public class DocumentCollectionClass implements DocumentCollection {
 
     @Override
     public void addDocument(Document document) {
-        if (isFull())
-            resize();
+        if (isFull()) resize();
         documents[counter++] = document;
     }
 
@@ -105,7 +98,7 @@ public class DocumentCollectionClass implements DocumentCollection {
         documents[searchIndex(documentID)].setDescription(description, relatedUser);
     }
 
-    @Override
+    @Override // TODO: Remake this.
     public boolean isDocumentManager(String documentID, User user) {
         return user.equals(manager);
     }

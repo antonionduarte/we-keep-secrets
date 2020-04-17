@@ -19,8 +19,8 @@ public class ClassifiedDocumentClass extends AbstractDocument implements Classif
      * @param description or content that the document has.
      * @param manager is the user that created the document.
      */
-    public ClassifiedDocumentClass(String ID, String description, User manager, Clearance clearance) {
-        super(ID, description, manager, clearance);
+    public ClassifiedDocumentClass(String ID, String description, Clearance clearance) {
+        super(ID, description, clearance);
         grantsRevokes = new ActionCollectionClass(this);
     }
 
