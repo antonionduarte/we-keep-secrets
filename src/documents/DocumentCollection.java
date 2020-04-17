@@ -54,14 +54,6 @@ public interface DocumentCollection {
      * @param description that will replace the old description.
      */
     void setDocumentDescription(String documentID,User relatedUser, String description);
-    
-    /**
-     * Checks if a given user is the manager of the Document.
-     * @param documentID of the document to check the manager of.
-     * @param user user that we will verify if is the manager of the document.
-     * @return true if the user is the manager, false if otherwise.
-     */
-    boolean isDocumentManager(String documentID, User user);
 
     /**
      * Returns a specific document off the collection.
