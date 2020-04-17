@@ -96,7 +96,8 @@ public class UserCollectionClass implements UserCollection {
     @Override
     public void write(String managerID, String userID, String documentID, String description) {
         Officer user = (Officer) users[searchIndexOf(managerID)];
-        user.write(getUser(userID), documentID, description);
+        ClassifiedDocument document = (ClassifiedDocument) user.getDocument(documentID);
+        user.write(document ,getUser(userID), description);
     }
 
     @Override
@@ -107,14 +108,12 @@ public class UserCollectionClass implements UserCollection {
     @Override
     public Iterator<Document> topleaked() {
         DocumentCollection topleaked = new DocumentCollectionClass();
-
         for (int i=0 ; i<userCounter ; i++) {
             Iterator<User> iter = users[i].userDocs();
             while (iter.hasNext()) {
                 topleaked.addDocument((Document) iter.next());
             }
         }
-        
         topleaked.bubbleSort(); // Sort by number of grants and alphabetically if tie
         topleaked.trim(TOP_LEAKED_MAX_ITERATOR_SIZE);
         return topleaked.documentIterator();
@@ -124,12 +123,10 @@ public class UserCollectionClass implements UserCollection {
     public Iterator<User> topgranters() {
         UserCollection topgranters;
         int grantCount;
-
         topgranters = new UserCollectionClass();
         for (int i=0 ; i<userCounter ; i++) {
             topgranters.insertSort(users[i]);
         }
-
         topgranters.trim(TOP_GRANTERS_MAX_ITERATOR_SIZE);
         return topgranters.userIterator();
     }
@@ -168,10 +165,7 @@ public class UserCollectionClass implements UserCollection {
         return users[searchIndexOf(userID)];
     }
 
-
-
     /* Private Methods */
-
 
     /**
      * Searches for the index of a user in the array.
@@ -205,6 +199,4 @@ public class UserCollectionClass implements UserCollection {
         }
         users = temp;
     }
-
-
 }
