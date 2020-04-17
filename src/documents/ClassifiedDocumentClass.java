@@ -36,7 +36,6 @@ public class ClassifiedDocumentClass extends AbstractDocument implements Classif
 
     @Override
     public boolean hasGrant(User user) {
-        // TODO: Make this logic tomorrow.
-        return false;
+        return grantsRevokes.hasGrant(user);
     }
 }

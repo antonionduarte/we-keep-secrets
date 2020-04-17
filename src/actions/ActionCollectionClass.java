@@ -50,6 +50,18 @@ public class ActionCollectionClass implements ActionCollection {
 		return actions[actionIndex].getRelatedUser();
 	}
 
+	@Override
+	public boolean hasGrant(User user) {
+		boolean hasGrant = false;
+		for (int i = actionCounter - 1; (i > 0) && (hasGrant == false); i--) {
+			if (actions[i].getRelatedUser().equals(user)) {
+				if (actions[i].getActionType().equals(Actions.REVOKE)) hasGrant = false;
+				else if (actions[i].getActionType().equals(Actions.GRANT)) hasGrant = true;
+			}
+		}
+		return hasGrant;
+	}
+
 	// Private methods.
 
 	/**

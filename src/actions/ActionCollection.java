@@ -23,4 +23,11 @@ public interface ActionCollection {
      * @return user related to the action.
      */
     User getRelatedUser(int actionIndex);
+
+    /**
+     * Checks if a specific user has a grant to a document.
+     * @param user to check for.
+     * @return true if the user has an active grant to a document, false if otherwise.
+     */
+    boolean hasGrant(User user);
 }
