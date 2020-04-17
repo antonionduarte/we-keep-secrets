@@ -14,7 +14,7 @@ public interface User {
 
     /**
      * Returns the kind of the User (Officer or Clerk).
-     * @return the kind of the User.
+     * @return
      */
     String getKind();
 
@@ -96,7 +96,7 @@ public interface User {
 
     /**
      * Returns the documentCollection of a User.
-     * This method is only necessary for the class OfficerClass.
+     * This method is only neccessary for the class OfficerClass.
      * @return the documentCollection of the user.
      */
     DocumentCollection getUploadedDocs();

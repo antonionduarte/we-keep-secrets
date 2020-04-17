@@ -92,7 +92,9 @@ public abstract class UserAbstractClass implements User {
 
     @Override
     public boolean idGreaterThan(String otherID) {
-        return this.getID().compareTo(otherID) > 0;
+        if (this.getID().compareTo(otherID) > 0)
+            return true;
+        return false;
     }
 
     @Override

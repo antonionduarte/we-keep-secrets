@@ -20,8 +20,8 @@ public interface UserCollection {
 
 	/**
 	 * Checks if the user with the specified <code>userID</code> is in the collection.
-	 * @param userID of the User whose existence in the collection we wish to verify.
-	 * @return true if there is a User in the collection with the specified <code>userID</code>.
+	 * @param userID of the User whose existance in the collection we wish to verify.
+	 * @return true if there is a User in the colection with the specified <code>userID</code>.
 	 */
 	boolean hasUser(String userID);
 
@@ -72,7 +72,7 @@ public interface UserCollection {
      * TODO: Only Officers have grants, move to OfficerClass.
      * Checks if user with <code>userID</code> has a grant for the document with <code>documentID</code>.
      * @param managerID the id of the manager.
-     * @param documentID the id of the document.
+     * @param documentId the id of the document.
      * @param userID the id of the user.
      * @return true if has grant, false otherwise.
      */
@@ -81,7 +81,7 @@ public interface UserCollection {
     /**
      * TODO: Can normal users upload documents? Verify that (note to self).
      * Uploads a document to the user's document collection. The user will become the manager of this document.
-     * @param managerID the user id.
+     * @param userID the user id.
      * @param documentID the document id.
      * @param description the document's description.
      * @param clearance the document's clearance.

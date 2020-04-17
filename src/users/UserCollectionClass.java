@@ -187,7 +187,7 @@ public class UserCollectionClass implements UserCollection {
     }
 
     /**
-     * Resize the array. The new array will always have two times the length of the previous array.
+     * Resizes the array. The new array will always have two times the length of the previous array.
      */
     private void resize() {
         User[] temp = new User[users.length * GROWTH_FACTOR];

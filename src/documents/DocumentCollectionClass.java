@@ -36,7 +36,7 @@ public class DocumentCollectionClass implements DocumentCollection {
     // Methods
 
     /**
-     * Resize the document array when it reaches the maximum length.
+     * Resizes the document array when it reaches the maximum length.
      */
     private void resize() {
         Document[] tempDocuments = new Document[documents.length * GROWTH_FACTOR];
