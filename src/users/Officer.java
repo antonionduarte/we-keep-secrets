@@ -28,7 +28,7 @@ public interface Officer extends User {
 
 	/**
 	 * Returns the grant count of the Officer.
-	 * @return ammount of times the officer has given someone a grant.
+	 * @return amount of times the officer has given someone a grant.
 	 */
 	int getGrantCount();
 }

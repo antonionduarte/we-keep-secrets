@@ -23,7 +23,7 @@ public interface FileSystem {
 	/**
 	 * Uploads a new document into the system with <code>clearance</code> and <code>description</code>.
 	 * @param documentID the ID of the document.
-	 * @param userID the ID of the document.
+	 * @param managerID the ID of the document's manager.
 	 * @param clearance the clearance of the document.
 	 * @param description the description of the document.
 	 */
@@ -79,7 +79,7 @@ public interface FileSystem {
 
 	/**
 	 * Returns the clearance of a specific user.
-	 * @param userID of the User whose clerance we want to get.
+	 * @param userID of the User whose clearance we want to get.
 	 * @return the Clearance of the User.
 	 */
 	Clearance getUserClearance(String userID);

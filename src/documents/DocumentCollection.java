@@ -7,8 +7,8 @@ import users.*;
 public interface DocumentCollection {
 
     /**
-     * Adds a document to the colection.
-     * @param document to add to the colection.
+     * Adds a document to the collection.
+     * @param document to add to the collection.
      */
     void addDocument(Document document);
 
