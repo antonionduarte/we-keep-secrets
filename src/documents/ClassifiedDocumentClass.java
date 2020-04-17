@@ -14,6 +14,16 @@ public class ClassifiedDocumentClass extends AbstractDocument implements Classif
     private ActionCollection grantsRevokes;
 
     /**
+     * Ammount of times that the document has been granted.
+     */
+    private int grantCount;
+
+    /**
+     * Ammount of times that the document has been revoked.
+     */
+    private int revokeCount;
+
+    /**
      * Constructor of the Classified Documents.
      * @param ID that identifies the document.
      * @param description or content that the document has.
@@ -27,11 +37,23 @@ public class ClassifiedDocumentClass extends AbstractDocument implements Classif
     @Override
     public void grant(User relatedUser) {
         grantsRevokes.addAction(relatedUser, Actions.GRANT);
+        grantCount++;
+    }
+
+    @Override
+    public int getGrantCount() {
+        return grantCount;
     }
 
     @Override
     public void revoke(User relatedUser) {
         grantsRevokes.addAction(relatedUser, Actions.REVOKE);
+        revokeCount++;
+    }
+
+    @Override 
+    public int getRevokeCount() {
+        return revokeCount;
     }
 
     @Override

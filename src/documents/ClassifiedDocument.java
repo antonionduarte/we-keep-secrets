@@ -22,4 +22,16 @@ public interface ClassifiedDocument extends Document {
      * @return true if the user has an active grant to the document.
      */
     boolean hasGrant(User user);
+
+    /**
+     * Returns the ammount of times a document has been granted.
+     * @return the grantCount of the document.
+     */
+    int getGrantCount();
+
+    /**
+     * Returns the ammount of times a document has been revoked.
+     * @return the revokeCount of the document.
+     */
+    int getRevokeCount();
 }
