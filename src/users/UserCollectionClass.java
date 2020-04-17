@@ -74,7 +74,7 @@ public class UserCollectionClass implements UserCollection {
 
     @Override
     public boolean userHasGrant(String managerID, String documentID, String userID) {
-        return users[searchIndexOf(managerID)].hasGrant(documentID, userID);
+        return users[searchIndexOf(managerID)].hasGrant(documentID, getUser(userID));
     }
 
     @Override
