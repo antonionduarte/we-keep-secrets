@@ -78,7 +78,7 @@ public class UserCollectionClass implements UserCollection {
     }
 
     @Override
-    public void upload(String documentID, String description, String managerID, Clearance clearance) {
+    public void upload(String documentID, String managerID, String description, Clearance clearance) {
         Document document;
         User user = users[searchIndexOf(managerID)];
         if (clearance == Clearance.CLERK)

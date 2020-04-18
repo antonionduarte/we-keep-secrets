@@ -86,7 +86,7 @@ public interface UserCollection {
      * @param description the document's description.
      * @param clearance the document's clearance.
      */
-    void upload(String documentID, String description, String managerID, Clearance clearance);
+    void upload(String documentID, String mangerID, String description, Clearance clearance);
 
     /**
      * Reads from a document.
