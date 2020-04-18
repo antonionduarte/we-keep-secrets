@@ -3,6 +3,8 @@ package documents;
 import actions.*;
 import clearance.*;
 import users.*;
+import iterators.*;
+import actions.*;
 
 public abstract class AbstractDocument implements Document {
 
@@ -65,5 +67,10 @@ public abstract class AbstractDocument implements Document {
     @Override
     public Clearance getClearance() {
         return clearance;
+    }
+
+    @Override
+    public Iterator<Action> documentReadsWritesIterator() {
+        return readsWrites.actionIterator();
     }
 }

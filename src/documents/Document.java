@@ -2,6 +2,8 @@ package documents;
 
 import users.*;
 import clearance.*;
+import iterators.*;
+import actions.*;
 
 public interface Document {
 
@@ -33,5 +35,12 @@ public interface Document {
      * @return the clearance level of the Document.
      */
     Clearance getClearance();
+
+    /**
+     * Returns read and write action's iterator
+     *
+     * @return     An Action Iterator
+     */
+    Iterator<Action> documentReadsWritesIterator();
 
 }

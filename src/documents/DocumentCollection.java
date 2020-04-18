@@ -3,6 +3,7 @@ package documents;
 import iterators.*;
 import clearance.*;
 import users.*;
+import actions.*;
 
 public interface DocumentCollection {
 
@@ -31,6 +32,13 @@ public interface DocumentCollection {
      * @return a Document Iterator.
      */
     Iterator<Document> documentIterator();
+
+    /**
+     * Returns an Iterator of document actions
+     * @param      documentID  The document id
+     * @return     A Document Iterator
+     */
+    Iterator<Action> documentReadsWritesIterator(String documentID);
 
     /**
      * Returns the clearance of the document.

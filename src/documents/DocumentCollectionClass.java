@@ -3,6 +3,7 @@ package documents;
 import clearance.Clearance;
 import iterators.*;
 import users.*;
+import actions.*;
 
 public class DocumentCollectionClass implements DocumentCollection {
 
@@ -81,6 +82,11 @@ public class DocumentCollectionClass implements DocumentCollection {
     @Override
     public Iterator<Document> documentIterator() {
         return new IteratorClass<Document>(documents, documentCounter);
+    }
+
+    @Override
+    public Iterator<Action> documentReadsWritesIterator(String documentID) {
+        return documents[searchIndex(documentID)].documentReadsWritesIterator();
     }
 
     @Override
