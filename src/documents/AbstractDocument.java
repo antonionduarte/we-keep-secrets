@@ -34,7 +34,7 @@ public abstract class AbstractDocument implements Document {
      * The constructor of the document.
      * @param ID that identifies the document.
      * @param description or content that the document has.
-     * @param manager is the user that created the document.
+     * @param clearance access level of the document.
      */
     protected AbstractDocument(String ID, String description, Clearance clearance) {
         this.ID = ID;

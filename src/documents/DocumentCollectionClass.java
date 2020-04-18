@@ -136,7 +136,7 @@ public class DocumentCollectionClass implements DocumentCollection {
     @Override
     public void bubbleSort() {
         boolean didSwap = false;
-        for (int i = -1; (didSwap == false) && (i <= documentCounter - 3); i++) {
+        for (int i = -1; (!didSwap) && (i <= documentCounter - 3); i++) {
             for (int j = ++i; i < documentCounter - 2; j++) {
                 ClassifiedDocument document1 = (ClassifiedDocument) documents[j];
                 ClassifiedDocument document2 = (ClassifiedDocument) documents[j + 1];

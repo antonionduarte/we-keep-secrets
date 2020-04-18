@@ -14,12 +14,12 @@ public class ClassifiedDocumentClass extends AbstractDocument implements Classif
     private ActionCollection grantsRevokes;
 
     /**
-     * Ammount of times that the document has been granted.
+     * Amount of times that the document has been granted.
      */
     private int grantCount;
 
     /**
-     * Ammount of times that the document has been revoked.
+     * Amount of times that the document has been revoked.
      */
     private int revokeCount;
 
@@ -27,7 +27,7 @@ public class ClassifiedDocumentClass extends AbstractDocument implements Classif
      * Constructor of the Classified Documents.
      * @param ID that identifies the document.
      * @param description or content that the document has.
-     * @param manager is the user that created the document.
+     * @param clearance access level of the document.
      */
     public ClassifiedDocumentClass(String ID, String description, Clearance clearance) {
         super(ID, description, clearance);

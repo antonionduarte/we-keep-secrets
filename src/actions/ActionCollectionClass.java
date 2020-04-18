@@ -73,7 +73,7 @@ public class ActionCollectionClass implements ActionCollection {
 	}
 
 	/**
-	 * Resizes the array. This method is only available for classified documents.
+	 * Resize the array. This method is only available for classified documents.
 	 */
 	private void resize() {
 		Action[] temp = new ActionClass[actions.length * GROWTH_FACTOR];

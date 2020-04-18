@@ -24,13 +24,13 @@ public interface ClassifiedDocument extends Document {
     boolean hasGrant(User user);
 
     /**
-     * Returns the ammount of times a document has been granted.
+     * Returns the amount of times a document has been granted.
      * @return the grantCount of the document.
      */
     int getGrantCount();
 
     /**
-     * Returns the ammount of times a document has been revoked.
+     * Returns the amount of times a document has been revoked.
      * @return the revokeCount of the document.
      */
     int getRevokeCount();
