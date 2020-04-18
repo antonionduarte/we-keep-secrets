@@ -96,4 +96,16 @@ public interface DocumentCollection {
      * @return true if the user has a grant to the document with the specified documentID.
      */
     boolean hasGrant(String documentID, User user);
+
+    /**
+     * Orders the collection by grantCounter, if two elements have the same grantCounter
+     * the sorter will sort them by alphabetic order.
+     */
+    void bubbleSort();
+
+    /**
+     * Trims the collection to have a specified trimSize.
+     * @param trimSize size that we will trim the collection to have.
+     */
+    void trim(int trimSize);
 }

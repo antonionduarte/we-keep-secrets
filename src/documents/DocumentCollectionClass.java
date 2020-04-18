@@ -21,7 +21,7 @@ public class DocumentCollectionClass implements DocumentCollection {
     /**
      * The counter associated with the document array <code>documents</code>.
      */
-    private int counter;
+    private int documentCounter;
 
     public DocumentCollectionClass() {
         this.documents = new Document[DEFAULT_SIZE];
@@ -34,7 +34,7 @@ public class DocumentCollectionClass implements DocumentCollection {
      */
     private void resize() {
         Document[] tempDocuments = new Document[documents.length * GROWTH_FACTOR];
-        for (int i = 0; i < counter; i++)
+        for (int i = 0; i < documentCounter; i++)
             tempDocuments[i] = documents[i];
         documents = tempDocuments;
     }
@@ -44,7 +44,7 @@ public class DocumentCollectionClass implements DocumentCollection {
      * @return true if the array of documents is full. False if otherwise.
      */
     private boolean isFull() {
-        return counter == documents.length;
+        return documentCounter == documents.length;
     }
 
     /**
@@ -55,7 +55,7 @@ public class DocumentCollectionClass implements DocumentCollection {
      */
     private int searchIndex(String documentID) {
         int pos = -1;
-        for (int i = 0; i < counter && pos == -1; i++) {
+        for (int i = 0; i < documentCounter && pos == -1; i++) {
             if (documents[i].getID().equals(documentID))
                 pos = i;
         }
@@ -70,7 +70,7 @@ public class DocumentCollectionClass implements DocumentCollection {
     @Override
     public void addDocument(Document document) {
         if (isFull()) resize();
-        documents[counter++] = document;
+        documents[documentCounter++] = document;
     }
 
     @Override
@@ -80,7 +80,7 @@ public class DocumentCollectionClass implements DocumentCollection {
 
     @Override
     public Iterator<Document> documentIterator() {
-        return new IteratorClass<Document>(documents, counter);
+        return new IteratorClass<Document>(documents, documentCounter);
     }
 
     @Override
@@ -131,5 +131,38 @@ public class DocumentCollectionClass implements DocumentCollection {
     public boolean hasGrant(String documentID, User user) {
         ClassifiedDocument document = (ClassifiedDocument) documents[searchIndex(documentID)];
         return document.hasGrant(user);
+    }
+
+    @Override
+    public void bubbleSort() {
+        boolean didSwap = false;
+        for (int i = -1; (didSwap == false) && (i <= documentCounter - 3); i++) {
+            for (int j = ++i; i < documentCounter - 2; j++) {
+                ClassifiedDocument document1 = (ClassifiedDocument) documents[j];
+                ClassifiedDocument document2 = (ClassifiedDocument) documents[j + 1];
+                if (document1.getGrantCount() > document2.getGrantCount()) {
+                    didSwap = true;
+                    ClassifiedDocument temp = (ClassifiedDocument) documents[j + 1];
+                    documents[j + 1] = documents[j];
+                    documents[j] = temp;
+                } else if (document1.getGrantCount() == document2.getGrantCount()) {
+                    if (document1.getID().compareToIgnoreCase(document2.getID()) > 0) {
+                        didSwap = true;
+                        ClassifiedDocument temp = (ClassifiedDocument) documents[j + 1];
+                        documents[j + 1] = documents[j];
+                        documents[j] = temp;
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    public void trim(int trimSize) {
+        Document[] aux = new Document[trimSize];
+        for (int i = 0; (i < trimSize) && (i < documentCounter); i++)
+            aux[i] = documents[i];
+        documents = aux;
+        documentCounter = trimSize;
     }
 }
