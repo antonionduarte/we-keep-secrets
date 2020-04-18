@@ -27,6 +27,7 @@ public class Main {
     private static final String DOCUMENT_UPLOADED           = "Document %s was uploaded.\n";
     private static final String DOCUMENT_UPDATED            = "Document %s was updated.\n";
 
+    private static final String UNKNOWN_COMMAND				= "Unknown command. Type help to see available commands.";
     private static final String EXIT_MESSAGE = "Bye!";
 
     // System error out messages
@@ -99,20 +100,28 @@ public class Main {
             case HELP:
                 processHelp();
                 break;
+            default:
+            	System.out.println(UNKNOWN_COMMAND);
         }
     }
 
     private static void processRegister(Scanner in, FileSystem fs) {
+    	Clearance c = Clearance.CLERK;
+    	
         String userKind = in.next();
         String userID = in.next();
-        String clearance = in.nextLine();
+        String clearance = in.nextLine().trim();
+        
+        if (!userKind.equals(c.getClearanceString()))
+        	c = searchClearance(clearance);
 
         if (fs.hasUser(userID)) {
-            Clearance c = searchClearance(clearance);
-            fs.register(userKind, userID, c);
-            System.out.printf(USER_SUCCESSFULLY_REGISTER, userID);
-        } else
-            System.out.printf(USER_ALREADY_REGISTERED, userID);
+        	System.out.printf(USER_ALREADY_REGISTERED, userID);
+            
+        } else {
+        	fs.register(userKind, userID, c);
+        	System.out.printf(USER_SUCCESSFULLY_REGISTER, userID);
+        }
     }
 
     private static void processListUsers(Scanner in, FileSystem fs) {
@@ -130,7 +139,7 @@ public class Main {
     private static void processUpload(Scanner in, FileSystem fs) {
         String documentID = in.next();
         String managerID = in.next();
-        String securityLevel = in.nextLine();
+        String securityLevel = in.nextLine().trim();
         String description = in.nextLine();
 
         Clearance c = searchClearance(securityLevel);
@@ -143,7 +152,7 @@ public class Main {
                     fs.upload(documentID, managerID, description, c);
                     System.out.printf(DOCUMENT_UPLOADED, documentID);
                 } else {
-                    System.out.printf(NOT_ENOUGH_CLEARANCE);
+                    System.out.println(NOT_ENOUGH_CLEARANCE);
                 }
             }
         } else {
@@ -154,7 +163,7 @@ public class Main {
     private static void processWrite(Scanner in, FileSystem fs) {
         String documentID = in.next();
         String managerID = in.next();
-        String userID = in.nextLine();
+        String userID = in.nextLine().trim();
         String description = in.nextLine();
 
         if (fs.hasUser(managerID) && fs.hasUser(userID)) {
@@ -186,8 +195,15 @@ public class Main {
 
     }
 
-    private static void processUserDocs(Scanner in, FileSystem fs) {
-        
+    private static void processUserDocs(Scanner in, FileSystem fs) { // this works
+        String userID = in.nextLine().trim();
+
+        Iterator<Document> iter = fs.userDocs(userID);
+        while (iter.hasNext()) {
+            Document doc = iter.next();
+            System.out.println(doc.getID());
+            System.out.println(doc.getClearance());
+        }
     }
 
     private static void processTopLeaked(Scanner in, FileSystem fs) {
