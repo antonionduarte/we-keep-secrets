@@ -112,12 +112,28 @@ public interface UserCollection {
      */
     Iterator<Document> userDocs(String userID);
 
+    /**
+     * Returns an Iterator that iterates through the documents with most grants.
+     * @return Iterator of the documents with more grants.
+     */
     Iterator<Document> topLeaked();
 
+    /**
+     * Returns an Iterator with the users that granted more times.
+     * @return iterator with the users that granted more times.
+     */
     Iterator<User> topGranters();
 
+    /**
+     * Inserts a User in the collection.
+     * @param user to insert.
+     */
     void insertSort(User user);
 
+    /**
+     * Trims the user collection to a specific size.
+     * @param trimSize size to trim the collection to.
+     */
     void trim(int trimSize);
 
     /**
