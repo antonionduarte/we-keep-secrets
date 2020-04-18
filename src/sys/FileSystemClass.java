@@ -1,6 +1,7 @@
 package sys;
 
 import users.*;
+import documents.Document;
 import iterators.*;
 import clearance.*;
 
@@ -40,6 +41,11 @@ public class FileSystemClass implements FileSystem {
     @Override
     public void read(String managerID, String userID, String documentID) {
         userCollection.read(managerID, userID, documentID);
+    }
+
+    @Override
+    public Iterator<Document> userDocs(String userID) {
+        return userCollection.userDocs(userID);
     }
 
     @Override

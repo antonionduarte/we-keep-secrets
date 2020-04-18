@@ -1,6 +1,7 @@
 package sys;
 
 import users.*;
+import documents.Document;
 import iterators.*;
 import clearance.*;
 
@@ -46,6 +47,15 @@ public interface FileSystem {
 	 * @param documentID of the document to read from.
 	 */
 	void read(String managerID, String userID, String documentID);
+
+	/**
+	 * Creates iterator for user documents
+	 *
+	 * @param      userID  The user id
+	 *
+	 * @return     An interator object
+	 */
+	Iterator<Document> userDocs(String userID);
 
 	/**
 	 * Checks if a user with the given <code>userID</code> is in the system.
