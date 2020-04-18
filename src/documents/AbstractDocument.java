@@ -4,7 +4,6 @@ import actions.*;
 import clearance.*;
 import users.*;
 import iterators.*;
-import actions.*;
 
 public abstract class AbstractDocument implements Document {
 
