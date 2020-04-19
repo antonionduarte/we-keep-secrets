@@ -107,11 +107,9 @@ public class Main {
 
     private static void processRegister(Scanner in, FileSystem fs) {
     	Clearance c = Clearance.CLERK;
-    	
         String userKind = in.next();
         String userID = in.next();
         String clearance = in.nextLine().trim();
-        
         if (!userKind.equals(c.getClearanceString()))
         	c = searchClearance(clearance);
 
@@ -141,9 +139,7 @@ public class Main {
         String managerID = in.next();
         String securityLevel = in.nextLine().trim();
         String description = in.nextLine();
-
         Clearance c = searchClearance(securityLevel);
-
         if (fs.hasUser(managerID)) {
             if (fs.userHasDocument(managerID, documentID)) {
                 System.out.printf(USER_HAS_DOCUMENT, documentID);
@@ -165,7 +161,6 @@ public class Main {
         String managerID = in.next();
         String userID = in.nextLine().trim();
         String description = in.nextLine();
-
         if (fs.hasUser(managerID) && fs.hasUser(userID)) {
             if (fs.userHasDocument(managerID, documentID)) {
                 if (fs.isOfficial(managerID, documentID)) {
@@ -184,7 +179,18 @@ public class Main {
     }
 
     private static void processRead(Scanner in, FileSystem fs) {
-        
+        String documentID = in.next();
+        String managerID = in.next();
+        String userID = in.nextLine().trim();
+        if (fs.hasUser(managerID) && fs.hasUser(userID)) {
+            if (fs.userHasDocument(managerID, documentID)) {
+                
+            } else {
+                System.out.printf(USER_DOESNT_HAVE_DOCUMENT, documentID);
+            }
+        } else {
+            System.out.println(NOT_A_REGISTERED_USER);
+        }
     }
 
     private static void processGrant(Scanner in, FileSystem fs) {
