@@ -8,10 +8,6 @@ import sys.*;
 
 public class Main {
 
-    // Tags
-    private static final String OFFICIAL    = "official";
-    private static final String CLASSIFIED  = "clasified";
-
     // Command constants
     public static final String REGISTER     = "REGISTER";
     public static final String LISTUSERS    = "LISTUSERS";
@@ -32,7 +28,7 @@ public class Main {
     private static final String DOCUMENT_UPDATED            = "Document %s was updated.\n";
 
     private static final String UNKNOWN_COMMAND				= "Unknown command. Type help to see available commands.";
-    private static final String EXIT_MESSAGE = "Bye!";
+    private static final String EXIT_MESSAGE                = "Bye!";
 
     // System error out messages
     private static final String USER_ALREADY_REGISTERED     = "Identifier %s is already assigned to another user.\n";
@@ -45,6 +41,7 @@ public class Main {
     private static final String INNAPROPRIATE_CLEARANCE     = "Innapropriate security level.";
     private static final String CANNOT_UPDATE               = "Document %s cannot be updated.\n";
     private static final String NO_ACCESSES                 = "There are no accesses.";
+    private static final String NO_GRANTS                   = "There are no grants.";
 
     
     public static void main(String[] args) {
@@ -226,7 +223,7 @@ public class Main {
                     Iterator<Action> readWriteIterator = doc.documentReadsWritesIterator();
 
                     if (c == Clearance.OFFICIAL) {
-                        System.out.printf("%s %s: ");
+                        System.out.printf("%s %s: ", doc.getID(), readWriteIterator.itemCount());
                         if (readWriteIterator.hasNext()) {
 
                             Action act = readWriteIterator.next();
