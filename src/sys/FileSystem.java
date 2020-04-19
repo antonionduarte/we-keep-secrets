@@ -114,4 +114,16 @@ public interface FileSystem {
 	 * @param documentID ID of the document that the user will lose access from.
 	 */
 	void revoke(String userID, String documentID);
+
+	/**
+	 * Returns an Iterator of the documents that were leaked most times.
+	 * @return Iterator of documents to the ones that were leaked the most times.
+	 */
+	Iterator<Document> topLeaked();
+
+	/**
+	 * Returns an Iterator of the Users that granted access to documents the most times.
+	 * @return Iterator of users to the ones that granted others access to documents the most times.
+	 */
+	Iterator<User> topGranters();
 }

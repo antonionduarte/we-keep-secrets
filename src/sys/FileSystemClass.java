@@ -87,4 +87,14 @@ public class FileSystemClass implements FileSystem {
     public void revoke(String userID, String documentID) {
         userCollection.revoke(userID, documentID);
     }
+
+    @Override
+    public Iterator<User> topGranters() {
+        return userCollection.topGranters();
+    }
+
+    @Override
+    public Iterator<Document> topLeaked() {
+        return userCollection.topLeaked();
+    }
 }
