@@ -79,7 +79,6 @@ public interface UserCollection {
     boolean userHasGrant(String managerID, String documentID, String userID);
 
     /**
-     * TODO: Can normal users upload documents? Verify that (note to self).
      * Uploads a document to the user's document collection. The user will become the manager of this document.
      * @param managerID the user id.
      * @param documentID the document id.
