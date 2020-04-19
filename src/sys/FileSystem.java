@@ -100,4 +100,18 @@ public interface FileSystem {
 	 * @return the Clearance of the Document.
 	 */
 	Clearance getDocumentClearance(String managerID, String documentID);
+
+	/**
+	 * Grants a user access to a document.
+	 * @param userID ID of the user that the access will be granted to.
+	 * @param documentID ID of the document that the user will have access to.
+	 */
+	void grant(String userID, String documentID);
+
+	/**
+	 * Revokes a user access to a document.
+	 * @param userID ID of the user to revoke access from a document.
+	 * @param documentID ID of the document that the user will lose access from.
+	 */
+	void revoke(String userID, String documentID);
 }

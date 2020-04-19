@@ -14,17 +14,17 @@ public interface Officer extends User {
 
 	/**
 	 * Grants a user access to a document.
-	 * @param document to grant access to.
+	 * @param documentID ID of the document to grant access to.
 	 * @param user who we the grant is gonna be given to.
 	 */
-	void grant(ClassifiedDocument document, User user);
+	void grant(String documentID, User user);
 
 	/**
 	 * Revokes a grant from a user.
-	 * @param document that has the grant to revoke.
+	 * @param documentID ID of the document to revoke access from.
 	 * @param user to revoke the grant of.
 	 */
-	void revoke(ClassifiedDocument document, User user);
+	void revoke(String documentID, User user);
 
 	/**
 	 * Returns the grant count of the Officer.

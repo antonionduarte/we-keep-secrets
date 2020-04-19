@@ -77,4 +77,14 @@ public class FileSystemClass implements FileSystem {
     public Clearance getDocumentClearance(String managerID, String documentID) {
     	return userCollection.getDocumentClearance(managerID, documentID);
     }
+
+    @Override
+    public void grant(String userID, String documentID) {
+        userCollection.revoke(userID, documentID);
+    }
+
+    @Override
+    public void revoke(String userID, String documentID) {
+        userCollection.revoke(userID, documentID);
+    }
 }
