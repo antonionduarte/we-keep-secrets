@@ -119,9 +119,9 @@ public class UserCollectionClass implements UserCollection {
         Iterator<Document> iter = users[searchIndexOf(userID)].userDocs();
         while (iter.hasNext()) {
             Document doc = iter.next();
-            if (clearance == Clearance.OFFICIAL && doc.getClearance().toInt() == Clearance.OFFICIAL.toInt())
+            if (clearance.toInt() == Clearance.OFFICIAL.toInt() && doc.getClearance().toInt() == Clearance.OFFICIAL.toInt())
                 userDocs.addDocument(doc);
-            else if (clearance == Clearance.CLASSIFIED && doc.getClearance().toInt() >= Clearance.OFFICIAL.toInt())
+            else if (clearance.toInt() == Clearance.CLASSIFIED.toInt() && doc.getClearance().toInt() > Clearance.OFFICIAL.toInt())
                 userDocs.addDocument(doc);
 
         }

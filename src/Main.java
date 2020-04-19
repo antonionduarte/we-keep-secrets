@@ -42,6 +42,7 @@ public class Main {
     private static final String CANNOT_UPDATE               = "Document %s cannot be updated.\n";
     private static final String NO_ACCESSES                 = "There are no accesses.";
     private static final String NO_GRANTS                   = "There are no grants.";
+    private static final String NO_DOCUMENT_FOR_CLEARANCE   = "There are no %s documents.\n";
 
     
     public static void main(String[] args) {
@@ -190,7 +191,7 @@ public class Main {
         String userID = in.nextLine().trim();
         if (fs.hasUser(managerID) && fs.hasUser(userID)) {
             if (fs.userHasDocument(managerID, documentID)) {
-                
+                System.out.println(fs.read(managerID, userID, documentID));
             } else {
                 System.out.printf(USER_DOESNT_HAVE_DOCUMENT, documentID);
             }
@@ -208,7 +209,7 @@ public class Main {
     }
 
     private static void processUserDocs(Scanner in, FileSystem fs) { // this works
-        String userID = in.nextLine().trim();
+        String userID = in.next().trim();
         String clearance = in.nextLine().trim();
 
         Clearance c = searchClearance(clearance);
@@ -218,35 +219,42 @@ public class Main {
 
                 Iterator<Document> iter = fs.userDocs(userID, c);
 
-                while (iter.hasNext()) {
-                    Document doc = iter.next();
-                    Iterator<Action> readWriteIterator = doc.documentReadsWritesIterator();
+                if (iter.hasNext()) {
+                    while (iter.hasNext()) {
+                        Document doc = iter.next();
+                        Iterator<Action> readWriteIterator = doc.documentReadsWritesIterator();
 
-                    if (c == Clearance.OFFICIAL) {
-                        System.out.printf("%s %s: ", doc.getID(), readWriteIterator.itemCount());
-                        if (readWriteIterator.hasNext()) {
+                        if (c.toInt() == Clearance.OFFICIAL.toInt()) {
+                            System.out.printf("%s %s: ", doc.getID(), readWriteIterator.itemCount());
+                            if (readWriteIterator.hasNext()) {
 
-                            Action act = readWriteIterator.next();
-                            User user = act.getRelatedUser();
-                            Actions actionType = act.getActionType();
-                            System.out.printf("%s [%s]", actionType.getActionString(), user.getID());
+                                Action act = readWriteIterator.next();
+                                User user = act.getRelatedUser();
+                                Actions actionType = act.getActionType();
+                                System.out.printf("%s [%s]", user.getID(), actionType.getActionString());
 
-                            while (readWriteIterator.hasNext()) {
-                                act = readWriteIterator.next();
-                                user = act.getRelatedUser();
-                                actionType = act.getActionType();
-                                System.out.printf(", %s [%s]");
+                                while (readWriteIterator.hasNext()) {
+                                    act = readWriteIterator.next();
+                                    user = act.getRelatedUser();
+                                    actionType = act.getActionType();
+                                    System.out.printf(", %s [%s]", user.getID(), actionType.getActionString());
 
+                                }
+                                System.out.println();
+
+                            } else {
+                                System.out.println(NO_ACCESSES);
                             }
-                            System.out.println();
-
                         } else {
-                            System.out.println(NO_ACCESSES);
+                            System.out.println(doc.getClearance());
+
+                            // TODO: Implement userdocs for classified option
                         }
-                    } else {
-                        // TODO: Implement userdocs for classified option
                     }
+                } else {
+                    System.out.printf(NO_DOCUMENT_FOR_CLEARANCE, clearance);
                 }
+                
 
             } else {
                 System.out.println(INNAPROPRIATE_CLEARANCE);

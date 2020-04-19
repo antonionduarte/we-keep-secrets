@@ -46,7 +46,7 @@ public interface FileSystem {
 	 * @param userID ID of the user that reads from the document.
 	 * @param documentID of the document to read from.
 	 */
-	void read(String managerID, String userID, String documentID);
+	String read(String managerID, String userID, String documentID);
 
 	/**
 	 * Creates iterator for user documents

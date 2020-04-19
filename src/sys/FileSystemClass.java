@@ -39,8 +39,8 @@ public class FileSystemClass implements FileSystem {
     }
 
     @Override
-    public void read(String managerID, String userID, String documentID) {
-        userCollection.read(managerID, userID, documentID);
+    public String read(String managerID, String userID, String documentID) {
+        return userCollection.read(managerID, userID, documentID);
     }
 
     @Override
