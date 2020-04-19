@@ -134,7 +134,7 @@ public class Main {
         Iterator<User> iter = fs.listUsers();
         if (iter.hasNext()) {
             while (iter.hasNext()) {
-                User u = (User) iter.next();
+                User u = iter.next();
                 System.out.printf("%s %s %s\n", u.getKind(), u.getID(), u.getClearance().getClearanceString());
             }
         } else {
