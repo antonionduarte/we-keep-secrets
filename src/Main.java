@@ -135,9 +135,8 @@ public class Main {
                 User u = iter.next();
                 System.out.printf("%s %s %s\n", u.getKind(), u.getID(), u.getClearance().getClearanceString());
             }
-        } else {
+        } else
             System.out.println(NO_USER_REGISTERED);
-        }
     }
 
     private static void processUpload(Scanner in, FileSystem fs) {
@@ -147,19 +146,17 @@ public class Main {
         String description = in.nextLine();
         Clearance c = searchClearance(securityLevel);
         if (fs.hasUser(managerID)) {
-            if (fs.userHasDocument(managerID, documentID)) {
+            if (fs.userHasDocument(managerID, documentID))
                 System.out.printf(USER_HAS_DOCUMENT, documentID);
-            } else {
+            else {
                 if (fs.getUserClearance(managerID).toInt() >= c.toInt()) {
                     fs.upload(documentID, managerID, description, c);
                     System.out.printf(DOCUMENT_UPLOADED, documentID);
-                } else {
+                } else
                     System.out.println(NOT_ENOUGH_CLEARANCE);
-                }
             }
-        } else {
+        } else
             System.out.printf(USER_NOT_REGISTERED, managerID);
-        }
     }
 
     private static void processWrite(Scanner in, FileSystem fs) {
@@ -170,19 +167,17 @@ public class Main {
 
         if (fs.hasUser(managerID) && fs.hasUser(userID)) {
             if (fs.userHasDocument(managerID, documentID)) {
-                if (fs.isOfficial(managerID, documentID)) {
+                if (fs.isOfficial(managerID, documentID))
                     System.out.printf(CANNOT_UPDATE, documentID);
-                } else {
+                else {
                     if ( (fs.getUserClearance(userID).toInt() >= fs.getUserClearance(managerID).toInt()) || fs.hasGrant(managerID, userID, documentID) )
                         fs.write(documentID, managerID, userID, description);
                         System.out.printf(DOCUMENT_UPDATED, documentID);
                 }
-            } else {
+            } else 
                 System.out.printf(USER_DOESNT_HAVE_DOCUMENT, documentID);
-            }
-        } else {
+        } else
             System.out.println(NOT_A_REGISTERED_USER);
-        }
     }
 
     private static void processRead(Scanner in, FileSystem fs) {
@@ -190,14 +185,12 @@ public class Main {
         String managerID = in.next();
         String userID = in.nextLine().trim();
         if (fs.hasUser(managerID) && fs.hasUser(userID)) {
-            if (fs.userHasDocument(managerID, documentID)) {
+            if (fs.userHasDocument(managerID, documentID))
                 System.out.println(fs.read(managerID, userID, documentID));
-            } else {
+            else
                 System.out.printf(USER_DOESNT_HAVE_DOCUMENT, documentID);
-            }
-        } else {
+        } else
             System.out.println(NOT_A_REGISTERED_USER);
-        }
     }
 
     private static void processGrant(Scanner in, FileSystem fs) {
@@ -211,7 +204,6 @@ public class Main {
     private static void processUserDocs(Scanner in, FileSystem fs) { // this works
         String userID = in.next().trim();
         String clearance = in.nextLine().trim();
-
         Clearance c = searchClearance(clearance);
 
         if (fs.hasUser(userID)) {
@@ -223,11 +215,9 @@ public class Main {
                     while (iter.hasNext()) {
                         Document doc = iter.next();
                         Iterator<Action> readWriteIterator = doc.documentReadsWritesIterator();
-
                         if (c.toInt() == Clearance.OFFICIAL.toInt()) {
                             System.out.printf("%s %s: ", doc.getID(), readWriteIterator.itemCount());
                             if (readWriteIterator.hasNext()) {
-
                                 Action act = readWriteIterator.next();
                                 User user = act.getRelatedUser();
                                 Actions actionType = act.getActionType();
@@ -241,27 +231,18 @@ public class Main {
 
                                 }
                                 System.out.println();
-
-                            } else {
+                            } else
                                 System.out.println(NO_ACCESSES);
-                            }
-                        } else {
+                        } else
                             System.out.println(doc.getClearance());
-
                             // TODO: Implement userdocs for classified option
-                        }
                     }
-                } else {
+                } else
                     System.out.printf(NO_DOCUMENT_FOR_CLEARANCE, clearance);
-                }
-                
-
-            } else {
+            } else
                 System.out.println(INNAPROPRIATE_CLEARANCE);
-            }
-        } else {
+        } else
             System.out.println(NOT_A_REGISTERED_USER);
-        }
     }
 
     private static void processTopLeaked(Scanner in, FileSystem fs) {
