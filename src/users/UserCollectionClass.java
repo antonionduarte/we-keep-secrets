@@ -74,14 +74,16 @@ public class UserCollectionClass implements UserCollection {
 
     @Override
     public void grant(String userID, String documentID) {
-        Officer user = (Officer) users[searchIndexOf(userID)];
-        user.grant(documentID, user);
+        User user = users[searchIndexOf(userID)];
+        if (user instanceof Officer)
+            ((Officer) user).grant(documentID, user);
     }
 
     @Override
     public void revoke(String userID, String documentID) {
-        Officer user = (Officer) users[searchIndexOf(userID)];
-        user.revoke(documentID, user);
+        User user = users[searchIndexOf(userID)];
+        if (user instanceof Officer)
+            ((Officer) user).revoke(documentID, user);
     }
 
     @Override
@@ -107,9 +109,11 @@ public class UserCollectionClass implements UserCollection {
 
     @Override
     public void write(String managerID, String userID, String documentID, String description) {
-        Officer user = (Officer) users[searchIndexOf(managerID)];
-        ClassifiedDocument document = (ClassifiedDocument) user.getDocument(documentID);
-        user.write(document ,getUser(userID), description);
+        User user = users[searchIndexOf(managerID)];
+        if ((user instanceof Officer) && (user.getDocument(documentID) instanceof ClassifiedDocument)) {
+            ClassifiedDocument document = (ClassifiedDocument) user.getDocument(documentID);
+            ((Officer) user).write(document, getUser(userID), description);
+        }
     }
 
     @Override
