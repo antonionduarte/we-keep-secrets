@@ -64,6 +64,6 @@ public class ClassifiedDocumentClass extends AbstractDocument implements Classif
 
     @Override
     public Iterator<Action> documentGrantsRevokesIterator() {
-        return grantsRevokes.actionIterator();
+        return grantsRevokes.actionIterator(false);
     }
 }

@@ -16,7 +16,7 @@ public interface ActionCollection {
      * Initiates an iterator of Actions.
      * @return iterator of actions.
      */
-    Iterator<Action> actionIterator();
+    Iterator<Action> actionIterator(boolean reverse);
 
     /**
      * Gets the user related to the action.

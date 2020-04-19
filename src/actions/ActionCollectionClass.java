@@ -30,19 +30,25 @@ public class ActionCollectionClass implements ActionCollection {
 	public void addAction(User relatedUser, Actions actionType) {
 		Action action = new ActionClass(relatedUser, actionType);
 		if (isFull()) {
-			if (relatedDocument.getClearance().toInt() == Clearance.CLERK.toInt())
-				insertDeleteLast(action);
-			else {
-				resize();
-				insert(action);
-			}
-		} else
-			insert(action);
+			resize();
+			
+		}
+		actions[actionCounter++] = action;
 	}
 
 	@Override
-	public Iterator<Action> actionIterator() {
+	public Iterator<Action> actionIterator(boolean reverse) {
+		if (reverse) {
+			// Reverse the order
+			Action[] temp = new Action[actions.length];
+			int j = 0;
+			for (int i=actionCounter-1 ; i>=0 ; i--)
+				temp[j++] = actions[i];
+			return new IteratorClass<Action>(temp, actionCounter);
+		}
 		return new IteratorClass<Action>(actions, actionCounter);
+
+		
 	}
 
 	@Override
@@ -80,24 +86,5 @@ public class ActionCollectionClass implements ActionCollection {
 		for (int i = 0; i < actionCounter; i++)
 			temp[i] = actions[i];
 		actions = temp;
-	}
-
-	/**
-	 * Inserts a new action by deleting the last inserted action.
-	 * @param action the action to insert.
-	 */
-	private void insertDeleteLast(Action action) {
-		for (int i = 0; i < actionCounter - 1; i++)
-			actions[i] = actions[++i];
-		insert(action);
-		actionCounter--;
-	}
-
-	/**
-	 * Inserts a new action in the array.
-	 * @param action the action to insert.
-	 */
-	private void insert(Action action) {
-		actions[actionCounter++] = action;
 	}
 }
