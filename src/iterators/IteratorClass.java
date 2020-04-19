@@ -21,4 +21,9 @@ public class IteratorClass<E> implements Iterator<E> {
     public E next() {
         return vector[current++];
     }
+
+    @Override
+    public int itemCount() {
+        return counter;
+    }
 }
