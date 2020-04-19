@@ -110,7 +110,7 @@ public interface UserCollection {
      * @param userID the user id.
      * @return an iterator object.
      */
-    Iterator<Document> userDocs(String userID);
+    Iterator<Document> userDocs(String userID, Clearance clearance);
 
     /**
      * Returns an Iterator that iterates through the documents with most grants.

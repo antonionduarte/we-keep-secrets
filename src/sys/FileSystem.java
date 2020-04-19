@@ -55,7 +55,7 @@ public interface FileSystem {
 	 *
 	 * @return     An interator object
 	 */
-	Iterator<Document> userDocs(String userID);
+	Iterator<Document> userDocs(String userID, Clearance clearance);
 
 	/**
 	 * Checks if a user with the given <code>userID</code> is in the system.

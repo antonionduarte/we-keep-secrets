@@ -8,6 +8,10 @@ import sys.*;
 
 public class Main {
 
+    // Tags
+    private static final String OFFICIAL    = "official";
+    private static final String CLASSIFIED  = "clasified";
+
     // Command constants
     public static final String REGISTER     = "REGISTER";
     public static final String LISTUSERS    = "LISTUSERS";
@@ -38,7 +42,9 @@ public class Main {
     private static final String USER_DOESNT_HAVE_DOCUMENT   = "Document %s does not exist in the user account.\n";
     private static final String NO_USER_REGISTERED          = "There are no registered users.";
     private static final String NOT_ENOUGH_CLEARANCE        = "Insufficient security clearance.";
+    private static final String INNAPROPRIATE_CLEARANCE     = "Innapropriate security level.";
     private static final String CANNOT_UPDATE               = "Document %s cannot be updated.\n";
+    private static final String NO_ACCESSES                 = "There are no accesses.";
 
     
     public static void main(String[] args) {
@@ -107,9 +113,11 @@ public class Main {
 
     private static void processRegister(Scanner in, FileSystem fs) {
     	Clearance c = Clearance.CLERK;
-        String userKind = in.next();
+    	
+        String userKind = in.next().toLowerCase();
         String userID = in.next();
-        String clearance = in.nextLine().trim();
+        String clearance = in.nextLine().trim().toLowerCase();
+        
         if (!userKind.equals(c.getClearanceString()))
         	c = searchClearance(clearance);
 
@@ -161,6 +169,7 @@ public class Main {
         String managerID = in.next();
         String userID = in.nextLine().trim();
         String description = in.nextLine();
+
         if (fs.hasUser(managerID) && fs.hasUser(userID)) {
             if (fs.userHasDocument(managerID, documentID)) {
                 if (fs.isOfficial(managerID, documentID)) {
@@ -203,12 +212,50 @@ public class Main {
 
     private static void processUserDocs(Scanner in, FileSystem fs) { // this works
         String userID = in.nextLine().trim();
+        String clearance = in.nextLine().trim();
 
-        Iterator<Document> iter = fs.userDocs(userID);
-        while (iter.hasNext()) {
-            Document doc = iter.next();
-            System.out.println(doc.getID());
-            System.out.println(doc.getClearance());
+        Clearance c = searchClearance(clearance);
+
+        if (fs.hasUser(userID)) {
+            if (fs.getUserClearance(userID).toInt() >= c.toInt()) {
+
+                Iterator<Document> iter = fs.userDocs(userID, c);
+
+                while (iter.hasNext()) {
+                    Document doc = iter.next();
+                    Iterator<Action> readWriteIterator = doc.documentReadsWritesIterator();
+
+                    if (c == Clearance.OFFICIAL) {
+                        System.out.printf("%s %s: ");
+                        if (readWriteIterator.hasNext()) {
+
+                            Action act = readWriteIterator.next();
+                            User user = act.getRelatedUser();
+                            Actions actionType = act.getActionType();
+                            System.out.printf("%s [%s]", actionType.getActionString(), user.getID());
+
+                            while (readWriteIterator.hasNext()) {
+                                act = readWriteIterator.next();
+                                user = act.getRelatedUser();
+                                actionType = act.getActionType();
+                                System.out.printf(", %s [%s]");
+
+                            }
+                            System.out.println();
+
+                        } else {
+                            System.out.println(NO_ACCESSES);
+                        }
+                    } else {
+                        // TODO: Implement userdocs for classified option
+                    }
+                }
+
+            } else {
+                System.out.println(INNAPROPRIATE_CLEARANCE);
+            }
+        } else {
+            System.out.println(NOT_A_REGISTERED_USER);
         }
     }
 

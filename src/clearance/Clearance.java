@@ -2,6 +2,10 @@ package clearance;
 
 public enum Clearance {
 
+    // Tags. These are not used as clearance levels. They are only used to help identify documents as OFFICIAL or CLASSIFIED
+    OFFICIAL ("official", 0),
+    CLASSIFIED ("classified", 1),
+
     // Clearance Levels
     CLERK ("official", 0),
     CONFIDENTIAL ("confidential", 1),

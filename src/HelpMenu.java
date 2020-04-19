@@ -10,6 +10,7 @@ public enum HelpMenu {
     REVOKE ("revoke - revoke a grant to access a document"),
     USERDOCS ("userdocs - list the official or classified documents of an user"),
     TOPLEAKED ("topleaked - list the top 10 documents with more grants"),
+    TOPGRANTERS ("topgranters - list the top 10 officers that have given more grants"),
     HELP ("help - shows the available commands"),
     EXIT ("exit - terminates the execution of the program");
 

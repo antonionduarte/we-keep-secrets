@@ -113,8 +113,19 @@ public class UserCollectionClass implements UserCollection {
     }
 
     @Override
-    public Iterator<Document> userDocs(String userID) {
-        return users[searchIndexOf(userID)].userDocs();
+    public Iterator<Document> userDocs(String userID, Clearance clearance) {
+        DocumentCollection userDocs = new DocumentCollectionClass();
+
+        Iterator<Document> iter = users[searchIndexOf(userID)].userDocs();
+        while (iter.hasNext()) {
+            Document doc = iter.next();
+            if (clearance == Clearance.OFFICIAL && doc.getClearance().toInt() == Clearance.OFFICIAL.toInt())
+                userDocs.addDocument(doc);
+            else if (clearance == Clearance.CLASSIFIED && doc.getClearance().toInt() >= Clearance.OFFICIAL.toInt())
+                userDocs.addDocument(doc);
+
+        }
+        return userDocs.documentIterator();
     }
 
     @Override

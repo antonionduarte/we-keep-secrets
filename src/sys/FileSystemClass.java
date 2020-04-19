@@ -44,8 +44,8 @@ public class FileSystemClass implements FileSystem {
     }
 
     @Override
-    public Iterator<Document> userDocs(String userID) {
-        return userCollection.userDocs(userID);
+    public Iterator<Document> userDocs(String userID, Clearance clearance) {
+        return userCollection.userDocs(userID, clearance);
     }
 
     @Override
