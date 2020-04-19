@@ -15,9 +15,8 @@ public interface Iterator<E> {
     E next();
 
     /**
-     * Returns the ammount of items in the iterator's array
-     *
-     * @return     The number of items in the iterator's array
+     * Returns the ammount of items in the iterator's array.
+     * @return the number of items in the iterator's array.
      */
     int itemCount();
 }
