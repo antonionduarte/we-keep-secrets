@@ -8,6 +8,9 @@ import sys.*;
 
 public class Main {
 
+    // Generic constants
+    public static final int MAX_ACCESSES_SHOWN = 10;
+
     // Command constants
     public static final String REGISTER     = "REGISTER";
     public static final String LISTUSERS    = "LISTUSERS";
@@ -206,6 +209,8 @@ public class Main {
         String clearance = in.nextLine().trim();
         Clearance c = searchClearance(clearance);
 
+        int accessCounter = 0;
+
         if (fs.hasUser(userID)) {
             if (fs.getUserClearance(userID).toInt() >= c.toInt()) {
 
@@ -222,12 +227,14 @@ public class Main {
                                 User user = act.getRelatedUser();
                                 Actions actionType = act.getActionType();
                                 System.out.printf("%s [%s]", user.getID(), actionType.getActionString());
+                                accessCounter++;
 
-                                while (readWriteIterator.hasNext()) {
+                                while (readWriteIterator.hasNext() && accessCounter < MAX_ACCESSES_SHOWN) {
                                     act = readWriteIterator.next();
                                     user = act.getRelatedUser();
                                     actionType = act.getActionType();
                                     System.out.printf(", %s [%s]", user.getID(), actionType.getActionString());
+                                    accessCounter++;
 
                                 }
                                 System.out.println();
