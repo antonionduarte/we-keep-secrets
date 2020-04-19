@@ -3,6 +3,7 @@ package documents;
 import clearance.*;
 import users.*;
 import actions.*;
+import iterators.*;
 
 public class ClassifiedDocumentClass extends AbstractDocument implements ClassifiedDocument {
     
@@ -59,5 +60,10 @@ public class ClassifiedDocumentClass extends AbstractDocument implements Classif
     @Override
     public boolean hasGrant(User user) {
         return grantsRevokes.hasGrant(user);
+    }
+
+    @Override
+    public Iterator<Action> documentGrantsRevokesIterator() {
+        return grantsRevokes.actionIterator();
     }
 }

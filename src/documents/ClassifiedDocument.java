@@ -1,6 +1,8 @@
 package documents;
 
 import users.*;
+import iterators.*;
+import actions.Action;
 
 public interface ClassifiedDocument extends Document {
 
@@ -34,4 +36,11 @@ public interface ClassifiedDocument extends Document {
      * @return the revokeCount of the document.
      */
     int getRevokeCount();
+
+    /**
+     * Returns grants and revokes action iterator
+     *
+     * @return     An iterator object
+     */
+    Iterator<Action> documentGrantsRevokesIterator();
 }
