@@ -94,6 +94,11 @@ public class UserCollectionClass implements UserCollection {
     }
 
     @Override
+    public boolean userIsRevoked(String managerID, String documentID, String userID) {
+        return users[searchIndexOf(managerID)].isRevoked(documentID, getUser(userID));
+    }
+
+    @Override
     public void upload(String documentID, String managerID, String description, Clearance clearance) {
         Document document;
         User user = users[searchIndexOf(managerID)];

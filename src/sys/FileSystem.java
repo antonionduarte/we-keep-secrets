@@ -72,11 +72,21 @@ public interface FileSystem {
 
 	/**
 	 * Checks if a user has a grant to access a specific document.
+	 * @param managerID ID of the document's manager.
 	 * @param userID of the User to check.
 	 * @param documentID of the Document to check.
 	 * @return true if the User has a grant, false if otherwise.
 	 */
 	boolean hasGrant(String managerID, String userID, String documentID);
+
+	/**
+	 * Checks if a user is revoked from a specific document.
+	 * @param managerID ID of the manager of the document.
+	 * @param userID ID of the user to check.
+	 * @param documentID ID of the document.
+	 * @return true if the user is revoked from the document, false if otherwise.
+	 */
+	boolean isRevoked(String managerID, String userID, String documentID);
 
 	/**
 	 * Checks if a given document is an official document.

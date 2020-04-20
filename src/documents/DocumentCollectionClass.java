@@ -123,20 +123,34 @@ public class DocumentCollectionClass implements DocumentCollection {
 
     @Override
     public void grant(String documentID, User relatedUser) {
-        ClassifiedDocument document = (ClassifiedDocument) documents[searchIndex(documentID)];
-        document.grant(relatedUser);
+        Document document = documents[searchIndex(documentID)];
+        if (document instanceof ClassifiedDocument)
+            ((ClassifiedDocument) document).grant(relatedUser);
     }
 
     @Override
     public void revoke(String documentID, User relatedUser) {
-        ClassifiedDocument document = (ClassifiedDocument) documents[searchIndex(documentID)];
-        document.revoke(relatedUser);
+        Document document = documents[searchIndex(documentID)];
+        if (document instanceof ClassifiedDocument)
+            ((ClassifiedDocument) document).revoke(relatedUser);
     }
 
     @Override
     public boolean hasGrant(String documentID, User user) {
-        ClassifiedDocument document = (ClassifiedDocument) documents[searchIndex(documentID)];
-        return document.hasGrant(user);
+        boolean hasGrant = false;
+        Document document = documents[searchIndex(documentID)];
+        if (document instanceof ClassifiedDocument)
+            hasGrant = ((ClassifiedDocument) document).isRevoked(user);
+        return hasGrant;
+    }
+
+    @Override
+    public boolean isRevoked(String documentID, User user) {
+        boolean isRevoked = false;
+        Document document = documents[searchIndex(documentID)];
+        if (document instanceof ClassifiedDocument)
+            isRevoked = ((ClassifiedDocument) document).isRevoked(user);
+        return isRevoked;
     }
 
     @Override

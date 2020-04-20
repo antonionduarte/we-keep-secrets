@@ -69,7 +69,6 @@ public interface UserCollection {
     boolean userHasDocument(String userID, String documentID);
 
     /**
-     * TODO: Only Officers have grants, move to OfficerClass.
      * Checks if user with <code>userID</code> has a grant for the document with <code>documentID</code>.
      * @param managerID the id of the manager.
      * @param documentID the id of the document.
@@ -77,6 +76,15 @@ public interface UserCollection {
      * @return true if has grant, false otherwise.
      */
     boolean userHasGrant(String managerID, String documentID, String userID);
+
+    /**
+     * Checks if a specific user has been revoked from a document.
+     * @param managerID the user ID of the manager.
+     * @param documentID the document ID.
+     * @param userID the user ID of the user to be checked.
+     * @return true if the user has been revoked from a document, false if otherwise.
+     */
+    boolean userIsRevoked(String managerID, String documentID, String userID);
 
     /**
      * Uploads a document to the user's document collection. The user will become the manager of this document.

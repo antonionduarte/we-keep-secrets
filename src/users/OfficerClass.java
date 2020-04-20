@@ -19,15 +19,16 @@ public class OfficerClass extends UserAbstractClass implements Officer {
 
     @Override
     public void grant(String documentID, User user) {
-        ClassifiedDocument document = (ClassifiedDocument) getDocument(documentID);
-    	document.grant(user);
-        grantCount++;
+        Document document = getDocument(documentID);
+        if (document instanceof ClassifiedDocument)
+            ((ClassifiedDocument) document).grant(user);
     }
 
     @Override
     public void revoke(String documentID, User user) {
-        ClassifiedDocument document = (ClassifiedDocument) getDocument(documentID);
-        document.revoke(user);
+        Document document = getDocument(documentID);
+        if (document instanceof ClassifiedDocument)
+            ((ClassifiedDocument) document).revoke(user);
     }
 
     @Override

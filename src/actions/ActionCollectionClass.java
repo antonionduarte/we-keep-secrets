@@ -62,6 +62,18 @@ public class ActionCollectionClass implements ActionCollection {
 		return hasGrant;
 	}
 
+	@Override
+	public boolean isRevoked(User user) {
+		boolean isRevoked = false;
+		for (int i = actionCounter - 1; (i > 0) && (isRevoked == false); i--) {
+			if (actions[i].getRelatedUser().equals(user)) {
+				if (actions[i].getActionType().equals(Actions.REVOKE)) isRevoked = true;
+				else if (actions[i].getActionType().equals(Actions.GRANT)) isRevoked = false;
+			}
+		}
+		return isRevoked;
+	}
+
 	// Private methods.
 
 	/**

@@ -62,6 +62,11 @@ public abstract class UserAbstractClass implements User {
     }
 
     @Override
+    public boolean isRevoked(String documentID, User user) {
+        return uploadedDocs.isRevoked(documentID, user);
+    }
+
+    @Override
     public void upload(Document document) {
         uploadedDocs.addDocument(document);
     }

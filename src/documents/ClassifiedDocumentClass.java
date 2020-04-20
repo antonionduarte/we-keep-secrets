@@ -63,6 +63,11 @@ public class ClassifiedDocumentClass extends AbstractDocument implements Classif
     }
 
     @Override
+    public boolean isRevoked(User user) {
+        return grantsRevokes.isRevoked(user);
+    }
+
+    @Override
     public Iterator<Action> documentGrantsRevokesIterator() {
         return grantsRevokes.actionIterator(false);
     }
