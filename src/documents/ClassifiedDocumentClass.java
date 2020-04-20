@@ -30,8 +30,8 @@ public class ClassifiedDocumentClass extends AbstractDocument implements Classif
      * @param description or content that the document has.
      * @param clearance access level of the document.
      */
-    public ClassifiedDocumentClass(String ID, String description, Clearance clearance) {
-        super(ID, description, clearance);
+    public ClassifiedDocumentClass(String ID, String description, Clearance clearance, User manager) {
+        super(ID, description, clearance, manager);
         grantsRevokes = new ActionCollectionClass();
     }
 

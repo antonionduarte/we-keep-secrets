@@ -37,13 +37,19 @@ public abstract class AbstractDocument implements Document {
     private int numberAccesses;
 
     /**
+     * Manager of the document.
+     */
+    private User manager;
+
+    /**
      * The constructor of the document.
      * @param ID that identifies the document.
      * @param description or content that the document has.
      * @param clearance access level of the document.
      */
-    protected AbstractDocument(String ID, String description, Clearance clearance) {
+    protected AbstractDocument(String ID, String description, Clearance clearance, User manager) {
         this.ID = ID;
+        this.manager = manager;
         this.description = description;
         this.clearance = clearance;
         readsWrites = new ActionCollectionClass();
@@ -56,6 +62,11 @@ public abstract class AbstractDocument implements Document {
         this.description = text;
         readsWrites.addAction(writer, Actions.WRITE);
         numberAccesses++;
+    }
+
+    @Override
+    public String getManagerID() {
+        return manager.getID();
     }
 
     @Override

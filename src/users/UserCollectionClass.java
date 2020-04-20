@@ -103,9 +103,9 @@ public class UserCollectionClass implements UserCollection {
         Document document;
         User user = users[searchIndexOf(managerID)];
         if (clearance == Clearance.CLERK)
-            document = new OfficialDocumentClass(documentID, description, clearance);
+            document = new OfficialDocumentClass(documentID, description, clearance, getUser(managerID));
         else
-            document = new ClassifiedDocumentClass(documentID, description, clearance);
+            document = new ClassifiedDocumentClass(documentID, description, clearance, getUser(managerID));
         user.upload(document);
     }    
     
