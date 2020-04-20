@@ -146,7 +146,11 @@ public class UserCollectionClass implements UserCollection {
             Iterator<Document> userDocs = users[i].userDocs();
             while (userDocs.hasNext()) {
                 doc = userDocs.next();
-                topLeaked.addDocument(doc);
+                int grantCount = 0;
+                if (doc instanceof ClassifiedDocument)
+                    grantCount = ((ClassifiedDocument) doc).getGrantCount();
+                if (grantCount > 0)
+                    topLeaked.addDocument(doc);
             }
         }
         topLeaked.bubbleSort(); // Sort by number of grants and alphabetically if tie.

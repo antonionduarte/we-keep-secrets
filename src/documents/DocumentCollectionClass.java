@@ -150,27 +150,38 @@ public class DocumentCollectionClass implements DocumentCollection {
 
     @Override
     public void bubbleSort() {
-        boolean didSwap = false;
-        for (int i = -1; (!didSwap) && (i <= documentCounter - 3); i++) {
-            for (int j = ++i; i < documentCounter - 2; j++) {
+        boolean didSwap = true;
+        for (int i = -1; didSwap && (i <= documentCounter - 3); i++) {
+            didSwap = false;
+            for (int j = ++i; j < documentCounter - 1; j++) {
                 ClassifiedDocument document1 = (ClassifiedDocument) documents[j];
                 ClassifiedDocument document2 = (ClassifiedDocument) documents[j + 1];
-                if (document1.getGrantCount() > document2.getGrantCount()) {
+                ClassifiedDocument temp = (ClassifiedDocument) documents[j];
+                if (document1.getGrantCount() < document2.getGrantCount()) {
                     didSwap = true;
-                    ClassifiedDocument temp = (ClassifiedDocument) documents[j + 1];
-                    documents[j + 1] = documents[j];
-                    documents[j] = temp;
+                    documents[j] = documents[j + 1];
+                    documents[j + 1] = temp;
                 } else if (document1.getGrantCount() == document2.getGrantCount()) {
                     if (document1.getID().compareToIgnoreCase(document2.getID()) > 0) {
                         didSwap = true;
-                        ClassifiedDocument temp = (ClassifiedDocument) documents[j + 1];
-                        documents[j + 1] = documents[j];
-                        documents[j] = temp;
+                        documents[j] = documents[j + 1];
+                        documents[j + 1] = temp;
                     }
                 }
             }
         }
     }
+
+    public void insertSort(Document document) {
+        if (isFull())
+            resize();
+        int toInsertGrantCount = 0;
+        if (document instanceOf ClassifiedDocument)
+            toInsertGrantCount = 
+    }
+
+    // for (int i = -1; didSwap && (i <= documentCounter - 3); i++) {
+    //     for (int j = ++i; j < documentCounter - 1; j++) {
 
     @Override
     public void trim(int trimSize) {
@@ -178,7 +189,7 @@ public class DocumentCollectionClass implements DocumentCollection {
         for (int i = 0; (i < trimSize) && (i < documentCounter); i++)
             aux[i] = documents[i];
         documents = aux;
-        if (documentCounter>trimSize)
+        if (documentCounter > trimSize)
             documentCounter = trimSize;
     }
 }

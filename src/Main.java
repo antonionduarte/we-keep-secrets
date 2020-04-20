@@ -339,7 +339,6 @@ public class Main {
                                 } else
                                     System.out.println(NO_GRANTS);
                             }
-                            
                         }
                     }
                 } else
@@ -361,7 +360,7 @@ public class Main {
                     numberGrants = ((ClassifiedDocument) next).getGrantCount();
                     numberRevokes = ((ClassifiedDocument) next).getRevokeCount();
                 }
-                System.out.printf("%s %s %s %d %d %d", next.getID(), next.getManagerID(), next.getClearance().toString(), next.getNumberAccesses(), numberGrants, numberRevokes);
+                System.out.printf("%s %s %s %d %d %d\n", next.getID(), next.getManagerID(), next.getClearance().getClearanceString(), next.getNumberAccesses(), numberGrants, numberRevokes);
             }
         } else
             System.out.println(NO_LEAKED_DOCUMENTS);
