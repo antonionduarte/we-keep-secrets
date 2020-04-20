@@ -13,9 +13,6 @@ public abstract class UserAbstractClass implements User {
 
     private DocumentCollection uploadedDocs;
 
-    private int grantCount;
-    private int revokeCount;
-
     /**
      * UserClass Constructor
      * @param userKind the user kind (clerk/officer).
@@ -27,8 +24,6 @@ public abstract class UserAbstractClass implements User {
         this.userID = userID;
         this.clearance = clearance;
         uploadedDocs = new DocumentCollectionClass(); // Assigns this user as the manager of the DocumentCollection.
-        grantCount = 0;
-        revokeCount = 0;
     }
 
     @Override
@@ -57,16 +52,6 @@ public abstract class UserAbstractClass implements User {
     }
 
     @Override
-    public boolean hasGrant(String documentID, User user) {
-        return uploadedDocs.hasGrant(documentID, user);
-    }
-
-    @Override
-    public boolean isRevoked(String documentID, User user) {
-        return uploadedDocs.isRevoked(documentID, user);
-    }
-
-    @Override
     public void upload(Document document) {
         uploadedDocs.addDocument(document);
     }
@@ -83,16 +68,6 @@ public abstract class UserAbstractClass implements User {
 
     public Clearance getDocumentClearance(String documentID) {
         return uploadedDocs.getDocumentClearance(documentID);
-    }
-
-    @Override
-    public int getGrantCount() {
-        return grantCount;
-    }
-
-    @Override
-    public int getRevokeCount() {
-        return revokeCount;
     }
 
     @Override
