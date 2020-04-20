@@ -13,7 +13,8 @@ public interface ActionCollection {
     void addAction(User relatedUser, Actions actionType);
 
     /**
-     * Initiates an iterator of Actions.
+     * Initiates an iterator of Actions. The parameter <code>reverse</code> allows the user to reverse the actions array. This is useful because the read and writes must be displayed from newest to oldest (reverse order).
+     * @param reverse If true reverses the action array, if false does nothing
      * @return iterator of actions.
      */
     Iterator<Action> actionIterator(boolean reverse);
