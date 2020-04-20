@@ -20,9 +20,9 @@ TEST_LIST = [
 
 NUMBER_OF_TESTS = 15
 
-system("javac -Xlint Main.java")
+system("javac -Xlint -d ../bin Main.java")
 
-COMMAND_RUN = "java Main < ../WeKeepSecretsTests/%.2d_in_%s.txt > ../tests/%.2d_%s_test_out.txt"
+COMMAND_RUN = "cd ../bin ; java Main < ../WeKeepSecretsTests/%.2d_in_%s.txt > ../tests/%.2d_%s_test_out.txt"
 
 for i in range(0, NUMBER_OF_TESTS):
 	system(COMMAND_RUN % (i+1, TEST_LIST[i], i+1, TEST_LIST[i]))
