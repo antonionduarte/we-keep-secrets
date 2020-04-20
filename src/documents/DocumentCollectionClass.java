@@ -90,6 +90,11 @@ public class DocumentCollectionClass implements DocumentCollection {
     }
 
     @Override
+    public int getNumberDocuments() {
+        return documentCounter;
+    }
+
+    @Override
     public Clearance getDocumentClearance(String documentID) {
         return documents[searchIndex(documentID)].getClearance();
     }

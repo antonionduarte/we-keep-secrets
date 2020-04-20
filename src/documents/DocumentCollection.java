@@ -28,6 +28,12 @@ public interface DocumentCollection {
     Document getDocumentObject(String docID);
 
     /**
+     * Returns the number of documents in the collection.
+     * @return the number of the documents in the collection.
+     */
+    int getNumberDocuments();
+
+    /**
      * Returns an Iterator of documents.
      * @return a Document Iterator.
      */

@@ -42,6 +42,11 @@ public abstract class UserAbstractClass implements User {
     }
 
     @Override
+    public int getNumberDocuments() {
+        return uploadedDocs.getNumberDocuments();
+    }
+
+    @Override
     public boolean hasClearance(Clearance clearance) {
         return this.clearance.toInt() >= clearance.toInt();
     }

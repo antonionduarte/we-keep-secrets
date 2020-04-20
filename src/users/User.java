@@ -84,5 +84,11 @@ public interface User {
      * @param documentID of the document to return.
      * @return the document with the given documentID.
      */
-    Document getDocument(String documentID); 
+    Document getDocument(String documentID);
+    
+    /**
+     * Returns the amount of documents that the user has.
+     * @return the number of documents that the user has.
+     */
+    int getNumberDocuments();
 }
