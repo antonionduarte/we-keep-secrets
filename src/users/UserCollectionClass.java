@@ -90,12 +90,18 @@ public class UserCollectionClass implements UserCollection {
 
     @Override
     public boolean userHasGrant(String managerID, String documentID, String userID) {
-        return users[searchIndexOf(managerID)].hasGrant(documentID, getUser(userID));
+        boolean hasGrant = false;
+        if (users[searchIndexOf(managerID)] instanceof Officer)
+            hasGrant = ((Officer) users[searchIndexOf(managerID)]).hasGrant(documentID, getUser(userID));
+        return hasGrant;
     }
 
     @Override
     public boolean userIsRevoked(String managerID, String documentID, String userID) {
-        return users[searchIndexOf(managerID)].isRevoked(documentID, getUser(userID));
+        boolean isRevoked = false;
+        if (users[searchIndexOf(managerID)] instanceof Officer)
+            isRevoked = ((Officer) users[searchIndexOf(managerID)]).isRevoked(documentID, getUser(userID));
+        return isRevoked;
     }
 
     @Override
@@ -165,10 +171,16 @@ public class UserCollectionClass implements UserCollection {
     public void insertSort(User user) {
         if (isFull())
             resize();
+        int toInsertGrantCount = 0;
+        if (user instanceof Officer)
+            toInsertGrantCount = ((Officer) user).getGrantCount();
         for (int i = userCounter - 1; i > 0; i--) {
-            if (users[i].getGrantCount() > user.getGrantCount())
+            int grantCount = 0;
+            if (users[i] instanceof Officer)
+                grantCount = ((Officer) users[i]).getGrantCount();
+            if (grantCount > toInsertGrantCount)
                 users[i + 1] = user;
-            else if (users[i].getGrantCount() < user.getGrantCount())
+            else if (grantCount < toInsertGrantCount)
                 users[i + 1] = users[i];
             else {
                 if (users[i].idGreaterThan(user.getID()))

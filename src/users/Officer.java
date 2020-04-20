@@ -31,4 +31,26 @@ public interface Officer extends User {
 	 * @return amount of times the officer has given someone a grant.
 	 */
 	int getGrantCount();
+
+	/**
+	 * Returns the amount of times the user has issued a revoke.
+	 * @return the revokeCount of the user.
+	 */
+	int getRevokeCount();
+	
+	/**
+	* Checks if user has grant for document with id <code>documentID</code>.
+	* @param documentID the document id.
+	* @param user the user.
+	* @return true if has grant, false otherwise.
+	*/
+   boolean hasGrant(String documentID, User user);
+
+   /**
+	* Checks if the specified user is revoked from the document.
+	* @param documentID the document ID.
+	* @param user the user.
+	* @return true if is revoked, false otherwise.
+	*/
+   boolean isRevoked(String documentID, User user);
 }

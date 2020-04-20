@@ -39,24 +39,6 @@ public interface User {
     boolean hasDocument(String docID);
 
     /**
-     * Checks if user has grant for document with id <code>documentID</code>.
-     * TODO: I think this method is exclusive to Officers.
-     * @param documentID the document id.
-     * @param user the user.
-     * @return true if has grant, false otherwise.
-     */
-    boolean hasGrant(String documentID, User user);
-
-    /**
-     * Checks if the specified user is revoked from the document.
-     * TODO: I think this method is exclusive to Officers.
-     * @param documentID the document ID.
-     * @param user the user.
-     * @return true if is revoked, false otherwise.
-     */
-    boolean isRevoked(String documentID, User user);
-
-    /**
      * Uploads a document.
      * @param document to upload.
      */
@@ -84,20 +66,6 @@ public interface User {
     Clearance getDocumentClearance(String documentID);
 
     /**
-     * TODO: Exclusive to officers.
-     * Gets the grant count.
-     * @return the grant count.
-     */
-    int getGrantCount();
-
-    /**
-     * TODO: Exclusive to officers. (And is this necessary?)
-     * Gets the revoke count.
-     * @return the revoke count.
-     */
-    int getRevokeCount();
-
-    /**
      * Checks if user has an id greater than <code>otherID</code>.
      * @param otherID the id of the other user.
      * @return true if is greater, false otherwise.
@@ -117,5 +85,4 @@ public interface User {
      * @return the document with the given documentID.
      */
     Document getDocument(String documentID); 
-
 }

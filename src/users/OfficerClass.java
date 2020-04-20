@@ -7,9 +7,22 @@ public class OfficerClass extends UserAbstractClass implements Officer {
 
     private int grantCount;
 
+    private int revokeCount;
+
     public OfficerClass(String userKind, String userID, Clearance clearance) {
         super(userKind, userID, clearance);
         grantCount = 0;
+        revokeCount = 0;
+    }
+
+    @Override
+    public boolean hasGrant(String documentID, User user) {
+        return getUploadedDocs().hasGrant(documentID, user);
+    }
+
+    @Override
+    public boolean isRevoked(String documentID, User user) {
+        return getUploadedDocs().isRevoked(documentID, user);
     }
 
     @Override
@@ -22,6 +35,7 @@ public class OfficerClass extends UserAbstractClass implements Officer {
         Document document = getDocument(documentID);
         if (document instanceof ClassifiedDocument)
             ((ClassifiedDocument) document).grant(user);
+        grantCount++;
     }
 
     @Override
@@ -29,10 +43,16 @@ public class OfficerClass extends UserAbstractClass implements Officer {
         Document document = getDocument(documentID);
         if (document instanceof ClassifiedDocument)
             ((ClassifiedDocument) document).revoke(user);
+        revokeCount++;
     }
 
     @Override
     public int getGrantCount() {
         return grantCount;
+    }
+
+    @Override 
+    public int getRevokeCount() {
+        return revokeCount;
     }
 }
