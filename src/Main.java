@@ -360,7 +360,7 @@ public class Main {
                 if (next instanceof ClassifiedDocument) {
                     numberGrants = ((ClassifiedDocument) next).getGrantCount();
                     numberRevokes = ((ClassifiedDocument) next).getRevokeCount();
-                }  
+                }
                 System.out.printf("%s %s %s %d %d %d", next.getID(), next.getManagerID(), next.getClearance().toString(), next.getNumberAccesses(), numberGrants, numberRevokes);
             }
         } else

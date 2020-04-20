@@ -178,6 +178,7 @@ public class DocumentCollectionClass implements DocumentCollection {
         for (int i = 0; (i < trimSize) && (i < documentCounter); i++)
             aux[i] = documents[i];
         documents = aux;
-        documentCounter = trimSize;
+        if (documentCounter>trimSize)
+            documentCounter = trimSize;
     }
 }

@@ -140,11 +140,14 @@ public class UserCollectionClass implements UserCollection {
 
     @Override
     public Iterator<Document> topLeaked() {
+        Document doc;
         DocumentCollection topLeaked = new DocumentCollectionClass();
         for (int i = 0; i < userCounter; i++) {
-            Iterator<Document> iterator = users[i].userDocs();
-            while (iterator.hasNext())
-                topLeaked.addDocument(iterator.next());
+            Iterator<Document> userDocs = users[i].userDocs();
+            while (userDocs.hasNext()) {
+                doc = userDocs.next();
+                topLeaked.addDocument(doc);
+            }
         }
         topLeaked.bubbleSort(); // Sort by number of grants and alphabetically if tie.
         topLeaked.trim(TOP_LEAKED_MAX_ITERATOR_SIZE);
@@ -191,7 +194,8 @@ public class UserCollectionClass implements UserCollection {
         for (int i = 0; i < trimSize; i++)
             aux[i] = users[i];
         users = aux;
-        userCounter = trimSize;
+        if (userCounter > trimSize)
+            userCounter = trimSize;
     }
 
     @Override
