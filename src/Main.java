@@ -162,8 +162,9 @@ public class Main {
                 } else
                     System.out.println(NOT_ENOUGH_CLEARANCE);
             }
-        } else
-            System.out.printf(USER_NOT_REGISTERED, managerID);
+        } else {
+            System.out.println(NOT_A_REGISTERED_USER);
+        }
     }
 
     private static void processWrite(Scanner in, FileSystem fs) {

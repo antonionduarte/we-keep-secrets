@@ -6,7 +6,7 @@ public enum HelpMenu {
     UPLOAD ("upload - upload a document"),
     READ ("read - read a document"),
     WRITE ("write - write a document"),
-    GRANT ("grant - grant access a document"),
+    GRANT ("grant - grant access to a document"),
     REVOKE ("revoke - revoke a grant to access a document"),
     USERDOCS ("userdocs - list the official or classified documents of an user"),
     TOPLEAKED ("topleaked - list the top 10 documents with more grants"),
