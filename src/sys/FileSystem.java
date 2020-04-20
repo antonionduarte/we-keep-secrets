@@ -49,11 +49,9 @@ public interface FileSystem {
 	String read(String managerID, String userID, String documentID);
 
 	/**
-	 * Creates iterator for user documents
-	 *
-	 * @param      userID  The user id
-	 *
-	 * @return     An interator object
+	 * Creates iterator for user documents.
+	 * @param userID the user id.
+	 * @return an iterator object.
 	 */
 	Iterator<Document> userDocs(String userID, Clearance clearance);
 
@@ -105,15 +103,17 @@ public interface FileSystem {
 	 * Grants a user access to a document.
 	 * @param userID ID of the user that the access will be granted to.
 	 * @param documentID ID of the document that the user will have access to.
+	 * @param managerID ID of the document's manager.
 	 */
-	void grant(String userID, String documentID);
+	void grant(String userID, String documentID, String managerID);
 
 	/**
 	 * Revokes a user access to a document.
 	 * @param userID ID of the user to revoke access from a document.
 	 * @param documentID ID of the document that the user will lose access from.
+	 * @param managerID ID of the document's manager.
 	 */
-	void revoke(String userID, String documentID);
+	void revoke(String userID, String documentID, String managerID);
 
 	/**
 	 * Returns an Iterator of the documents that were leaked most times.

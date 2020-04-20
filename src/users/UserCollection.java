@@ -146,13 +146,15 @@ public interface UserCollection {
      * Grants a user access to a document.
      * @param userID ID of the user to grant access to.
      * @param documentID ID of the document.
+     * @param managerID ID of the document's manager.
      */
-    void grant(String userID, String documentID);
+    void grant(String userID, String documentID, String managerID);
 
     /**
      * Revokes a user access from a document.
      * @param userID ID of the user to revoke access from.
      * @param documentID ID of the document to revoke access from.
+     * @param managerID ID of the document's manager.
      */
-    void revoke(String userID, String documentID);
+    void revoke(String userID, String documentID, String managerID);
 }

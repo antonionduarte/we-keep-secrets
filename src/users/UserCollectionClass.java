@@ -73,17 +73,19 @@ public class UserCollectionClass implements UserCollection {
     }
 
     @Override
-    public void grant(String userID, String documentID) {
+    public void grant(String userID, String documentID, String managerID) {
         User user = users[searchIndexOf(userID)];
-        if (user instanceof Officer)
-            ((Officer) user).grant(documentID, user);
+        User manager = users[searchIndexOf(managerID)];
+        if ((manager instanceof Officer) && (user instanceof Officer))
+            ((Officer) manager).grant(documentID, user);
     }
 
     @Override
-    public void revoke(String userID, String documentID) {
+    public void revoke(String userID, String documentID, String managerID) {
         User user = users[searchIndexOf(userID)];
-        if (user instanceof Officer)
-            ((Officer) user).revoke(documentID, user);
+        User manager = users[searchIndexOf(managerID)];
+        if ((user instanceof Officer) && (manager instanceof Officer))
+            ((Officer) manager).revoke(documentID, user);
     }
 
     @Override

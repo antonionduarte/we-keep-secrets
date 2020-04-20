@@ -79,13 +79,13 @@ public class FileSystemClass implements FileSystem {
     }
 
     @Override
-    public void grant(String userID, String documentID) {
-        userCollection.revoke(userID, documentID);
+    public void grant(String userID, String documentID, String managerID) {
+        userCollection.grant(userID, documentID, managerID);
     }
 
     @Override
-    public void revoke(String userID, String documentID) {
-        userCollection.revoke(userID, documentID);
+    public void revoke(String userID, String documentID, String managerID) {
+        userCollection.revoke(userID, documentID, managerID);
     }
 
     @Override
