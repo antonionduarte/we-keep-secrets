@@ -46,8 +46,11 @@ public class Main {
     private static final String NO_ACCESSES                 = "There are no accesses.";
     private static final String NO_GRANTS                   = "There are no grants.";
     private static final String NO_DOCUMENT_FOR_CLEARANCE   = "There are no %s documents.\n";
+    private static final String GRANTS_FOR_OFFICERS         = "Grants can only be issued between officers.";
+    private static final String USER_ALREADY_HAS_ACCESS     = "Already has access to document %s.\n";
+    private static final String GRANT_DOES_NOT_EXIST        = "Grant for officer %s does not exist.\n";
+    private static final String ALREADY_BEEN_REVOKED        = "Grant for officer %s was already revoked.\n";
 
-    
     public static void main(String[] args) {
 
         // Initiate Scanner
@@ -197,11 +200,44 @@ public class Main {
     }
 
     private static void processGrant(Scanner in, FileSystem fs) {
-        
+        String documentID = in.next();
+        String managerID = in.next();
+        String userID = in.nextLine().trim();
+        if (fs.hasUser(managerID) && fs.hasUser(userID)) {
+            if (!fs.getUserClearance(userID).equals(Clearance.CLERK) && !fs.getUserClearance(managerID).equals(Clearance.CLERK)) {
+                if (fs.userHasDocument(managerID, documentID)) {
+                    if ((fs.getDocumentClearance(managerID, documentID).toInt() > fs.getUserClearance(userID).toInt()) || fs.hasGrant(managerID, userID, documentID))
+                        fs.grant(userID, documentID, managerID);
+                    else
+                        System.out.printf(USER_ALREADY_HAS_ACCESS, documentID);
+                } else
+                    System.out.printf(USER_DOESNT_HAVE_DOCUMENT, documentID);
+            } else
+                System.out.println(GRANTS_FOR_OFFICERS);
+        } else
+            System.out.println(NOT_A_REGISTERED_USER);
     }
 
     private static void processRevoke(Scanner in, FileSystem fs) {
-
+        String documentID = in.next();
+        String managerID = in.next();
+        String userID = in.nextLine().trim();
+        if (fs.hasUser(managerID) && fs.hasUser(userID)) {
+            if (!fs.getUserClearance(userID).equals(Clearance.CLERK) && !fs.getUserClearance(managerID).equals(Clearance.CLERK)) {
+                if (fs.userHasDocument(managerID, documentID)) {
+                    if (fs.hasGrant(managerID, userID, documentID)) {
+                        if (fs.isRevoked(managerID, userID, documentID))
+                            fs.revoke(userID, documentID, managerID);
+                        else
+                            System.out.printf(ALREADY_BEEN_REVOKED, userID);
+                    } else
+                        System.out.printf(GRANT_DOES_NOT_EXIST, userID);
+                } else
+                    System.out.printf(USER_DOESNT_HAVE_DOCUMENT, documentID);
+            } else
+                System.out.println(GRANTS_FOR_OFFICERS);
+        } else
+            System.out.println(NOT_A_REGISTERED_USER);
     }
 
     private static void processUserDocs(Scanner in, FileSystem fs) { // this works
