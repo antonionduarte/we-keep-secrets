@@ -100,11 +100,6 @@ public class DocumentCollectionClass implements DocumentCollection {
     }
 
     @Override
-    public void setDocumentDescription(String documentID, User relatedUser, String description) {
-        documents[searchIndex(documentID)].setDescription(description, relatedUser);
-    }
-
-    @Override
     public int getGrantCount(String documentID) {
         ClassifiedDocument document = (ClassifiedDocument) documents[searchIndex(documentID)];
         return document.getGrantCount();
