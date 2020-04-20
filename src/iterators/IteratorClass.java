@@ -36,6 +36,6 @@ public class IteratorClass<E> implements Iterator<E> {
 
     @Override
     public boolean hasNextBackwards() {
-        return currentLast != 0;
+        return currentLast != -1;
     }
 }
