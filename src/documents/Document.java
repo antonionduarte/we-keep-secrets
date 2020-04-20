@@ -16,12 +16,24 @@ public interface Document {
     void setDescription(String text, User writer);
 
     /**
+     * Returns the ID of the document's manager.
+     * @return returns the userID of the document's manager.
+     */
+    String getManagerID();
+
+    /**
      * Shows the description of the document.
      * @param reader user that reads from the document.
      * @return <code>description</code> of the document.
      * PRE: description != NULL
      */
     String getDescription(User reader);
+
+    /**
+     * Returns the number of accesses to the document.
+     * @return the numberAccesses of the document.
+     */
+    int getNumberAccesses();
 
     /**
      * Shows the ID of the document.
@@ -37,9 +49,8 @@ public interface Document {
     Clearance getClearance();
 
     /**
-     * Returns read and write action's iterator
-     *
-     * @return     An Action Iterator
+     * Returns read and write action's iterator.
+     * @return an action iterator.
      */
     Iterator<Action> documentReadsWritesIterator();
 

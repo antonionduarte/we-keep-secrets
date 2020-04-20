@@ -26,6 +26,13 @@ public interface ClassifiedDocument extends Document {
     boolean hasGrant(User user);
 
     /**
+     * Checks if a specific user is revoked to a document.
+     * @param user to check for.
+     * @return true if the user has an active revoke to a document, false if otherwise.
+     */
+    boolean isRevoked(User user);
+
+    /**
      * Returns the amount of times a document has been granted.
      * @return the grantCount of the document.
      */

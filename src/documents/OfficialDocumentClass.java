@@ -1,6 +1,7 @@
 package documents;
 
 import clearance.*;
+import users.*;
 
 public class OfficialDocumentClass extends AbstractDocument implements OfficialDocument {
 
@@ -10,7 +11,7 @@ public class OfficialDocumentClass extends AbstractDocument implements OfficialD
      * @param description or content that the document has.
      * @param clearance access level of the document.
      */
-    public OfficialDocumentClass(String ID, String description, Clearance clearance) {
-        super(ID, description, clearance);
+    public OfficialDocumentClass(String ID, String description, Clearance clearance, User manager) {
+        super(ID, description, clearance, manager);
     }
 }

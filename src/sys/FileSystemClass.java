@@ -61,7 +61,12 @@ public class FileSystemClass implements FileSystem {
     @Override
  	public boolean hasGrant(String managerID, String userID, String documentID) {
  		return userCollection.userHasGrant(managerID, documentID, userID);
- 	}
+     }
+    
+    @Override
+    public boolean isRevoked(String managerID, String userID, String documentID) {
+        return userCollection.userIsRevoked(managerID, documentID, userID);
+    }
 
     @Override
  	public boolean isOfficial(String managerID, String documentID) {
@@ -79,13 +84,13 @@ public class FileSystemClass implements FileSystem {
     }
 
     @Override
-    public void grant(String userID, String documentID) {
-        userCollection.revoke(userID, documentID);
+    public void grant(String userID, String documentID, String managerID) {
+        userCollection.grant(userID, documentID, managerID);
     }
 
     @Override
-    public void revoke(String userID, String documentID) {
-        userCollection.revoke(userID, documentID);
+    public void revoke(String userID, String documentID, String managerID) {
+        userCollection.revoke(userID, documentID, managerID);
     }
 
     @Override

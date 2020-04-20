@@ -69,7 +69,6 @@ public interface UserCollection {
     boolean userHasDocument(String userID, String documentID);
 
     /**
-     * TODO: Only Officers have grants, move to OfficerClass.
      * Checks if user with <code>userID</code> has a grant for the document with <code>documentID</code>.
      * @param managerID the id of the manager.
      * @param documentID the id of the document.
@@ -79,7 +78,15 @@ public interface UserCollection {
     boolean userHasGrant(String managerID, String documentID, String userID);
 
     /**
-     * TODO: Can normal users upload documents? Verify that (note to self).
+     * Checks if a specific user has been revoked from a document.
+     * @param managerID the user ID of the manager.
+     * @param documentID the document ID.
+     * @param userID the user ID of the user to be checked.
+     * @return true if the user has been revoked from a document, false if otherwise.
+     */
+    boolean userIsRevoked(String managerID, String documentID, String userID);
+
+    /**
      * Uploads a document to the user's document collection. The user will become the manager of this document.
      * @param managerID the user id.
      * @param documentID the document id.
@@ -147,13 +154,15 @@ public interface UserCollection {
      * Grants a user access to a document.
      * @param userID ID of the user to grant access to.
      * @param documentID ID of the document.
+     * @param managerID ID of the document's manager.
      */
-    void grant(String userID, String documentID);
+    void grant(String userID, String documentID, String managerID);
 
     /**
      * Revokes a user access from a document.
      * @param userID ID of the user to revoke access from.
      * @param documentID ID of the document to revoke access from.
+     * @param managerID ID of the document's manager.
      */
-    void revoke(String userID, String documentID);
+    void revoke(String userID, String documentID, String managerID);
 }

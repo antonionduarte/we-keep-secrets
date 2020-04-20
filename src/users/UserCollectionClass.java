@@ -73,15 +73,19 @@ public class UserCollectionClass implements UserCollection {
     }
 
     @Override
-    public void grant(String userID, String documentID) {
-        Officer user = (Officer) users[searchIndexOf(userID)];
-        user.grant(documentID, user);
+    public void grant(String userID, String documentID, String managerID) {
+        User user = users[searchIndexOf(userID)];
+        User manager = users[searchIndexOf(managerID)];
+        if ((manager instanceof Officer) && (user instanceof Officer))
+            ((Officer) manager).grant(documentID, user);
     }
 
     @Override
-    public void revoke(String userID, String documentID) {
-        Officer user = (Officer) users[searchIndexOf(userID)];
-        user.revoke(documentID, user);
+    public void revoke(String userID, String documentID, String managerID) {
+        User user = users[searchIndexOf(userID)];
+        User manager = users[searchIndexOf(managerID)];
+        if ((user instanceof Officer) && (manager instanceof Officer))
+            ((Officer) manager).revoke(documentID, user);
     }
 
     @Override
@@ -90,13 +94,18 @@ public class UserCollectionClass implements UserCollection {
     }
 
     @Override
+    public boolean userIsRevoked(String managerID, String documentID, String userID) {
+        return users[searchIndexOf(managerID)].isRevoked(documentID, getUser(userID));
+    }
+
+    @Override
     public void upload(String documentID, String managerID, String description, Clearance clearance) {
         Document document;
         User user = users[searchIndexOf(managerID)];
         if (clearance == Clearance.CLERK)
-            document = new OfficialDocumentClass(documentID, description, clearance);
+            document = new OfficialDocumentClass(documentID, description, clearance, getUser(managerID));
         else
-            document = new ClassifiedDocumentClass(documentID, description, clearance);
+            document = new ClassifiedDocumentClass(documentID, description, clearance, getUser(managerID));
         user.upload(document);
     }    
     
@@ -107,9 +116,11 @@ public class UserCollectionClass implements UserCollection {
 
     @Override
     public void write(String managerID, String userID, String documentID, String description) {
-        Officer user = (Officer) users[searchIndexOf(managerID)];
-        ClassifiedDocument document = (ClassifiedDocument) user.getDocument(documentID);
-        user.write(document ,getUser(userID), description);
+        User user = users[searchIndexOf(managerID)];
+        if ((user instanceof Officer) && (user.getDocument(documentID) instanceof ClassifiedDocument)) {
+            ClassifiedDocument document = (ClassifiedDocument) user.getDocument(documentID);
+            ((Officer) user).write(document, getUser(userID), description);
+        }
     }
 
     @Override

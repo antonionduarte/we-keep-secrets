@@ -106,6 +106,14 @@ public interface DocumentCollection {
     boolean hasGrant(String documentID, User user);
 
     /**
+     * Checks if a specific user is revoked from a document.
+     * @param documentID ID of the document to verify.
+     * @param user user to verify.
+     * @return true if the user is currently revoked from the document, false if otherwise.
+     */
+    public boolean isRevoked(String documentID, User user);
+
+    /**
      * Orders the collection by grantCounter, if two elements have the same grantCounter
      * the sorter will sort them by alphabetic order.
      */

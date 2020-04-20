@@ -30,9 +30,9 @@ public class ClassifiedDocumentClass extends AbstractDocument implements Classif
      * @param description or content that the document has.
      * @param clearance access level of the document.
      */
-    public ClassifiedDocumentClass(String ID, String description, Clearance clearance) {
-        super(ID, description, clearance);
-        grantsRevokes = new ActionCollectionClass(this);
+    public ClassifiedDocumentClass(String ID, String description, Clearance clearance, User manager) {
+        super(ID, description, clearance, manager);
+        grantsRevokes = new ActionCollectionClass();
     }
 
     @Override
@@ -60,6 +60,11 @@ public class ClassifiedDocumentClass extends AbstractDocument implements Classif
     @Override
     public boolean hasGrant(User user) {
         return grantsRevokes.hasGrant(user);
+    }
+
+    @Override
+    public boolean isRevoked(User user) {
+        return grantsRevokes.isRevoked(user);
     }
 
     @Override
