@@ -31,6 +31,7 @@ public class Main {
     private static final String DOCUMENT_UPDATED            = "Document %s was updated.\n";
     private static final String READ_DOCUMENT_PROMPT        = "Document: %s\n";
     private static final String GRANTED_ACCESS              = "Access to document %s has been granted.\n";
+    private static final String REVOKED_ACCESS              = "Access to document %s has been revoked.\n";
 
     private static final String UNKNOWN_COMMAND				= "Unknown command. Type help to see available commands.";
     private static final String EXIT_MESSAGE                = "Bye!";
@@ -181,7 +182,7 @@ public class Main {
                 if (fs.isOfficial(managerID, documentID))
                     System.out.printf(CANNOT_UPDATE, documentID);
                 else {
-                    if ( (fs.getUserClearance(userID).toInt() >= fs.getDocumentClearance(managerID, documentID).toInt()) || fs.hasGrant(managerID, userID, documentID) ) {
+                    if ( (fs.getUserClearance(userID).toInt() >= fs.getDocumentClearance(managerID, documentID).toInt()) || fs.hasGrant(managerID, userID, documentID) ) {  
                         fs.write(documentID, managerID, userID, description);
                         System.out.printf(DOCUMENT_UPDATED, documentID);
                     } else {
@@ -200,7 +201,7 @@ public class Main {
         String userID = in.nextLine().trim();
         if (fs.hasUser(managerID) && fs.hasUser(userID)) {
             if (fs.userHasDocument(managerID, documentID)) {
-                if (fs.getUserClearance(userID).toInt() >= fs.getDocumentClearance(managerID, documentID).toInt())
+                if ( (fs.getUserClearance(userID).toInt() >= fs.getDocumentClearance(managerID, documentID).toInt() ) || ( fs.hasGrant(managerID, userID, documentID) && !fs.isRevoked(managerID, userID, documentID) ) ) 
                     System.out.printf(READ_DOCUMENT_PROMPT, fs.read(managerID, userID, documentID));
                 else
                     System.out.println(NOT_ENOUGH_CLEARANCE);
@@ -219,7 +220,7 @@ public class Main {
         if (fs.hasUser(managerID) && fs.hasUser(userID)) {
             if (!fs.getUserClearance(userID).equals(Clearance.CLERK) && !fs.getUserClearance(managerID).equals(Clearance.CLERK)) {
                 if (fs.userHasDocument(managerID, documentID)) {
-                    if ((fs.getDocumentClearance(managerID, documentID).toInt() > fs.getUserClearance(userID).toInt()) || fs.hasGrant(managerID, userID, documentID)) {
+                    if ( (fs.getDocumentClearance(managerID, documentID).toInt() > fs.getUserClearance(userID).toInt() ) && !fs.hasGrant(managerID, userID, documentID)) {
                         fs.grant(userID, documentID, managerID);
                         System.out.printf(GRANTED_ACCESS, documentID);
                     }
@@ -241,8 +242,10 @@ public class Main {
             if (!fs.getUserClearance(userID).equals(Clearance.CLERK) && !fs.getUserClearance(managerID).equals(Clearance.CLERK)) {
                 if (fs.userHasDocument(managerID, documentID)) {
                     if (fs.hasGrant(managerID, userID, documentID)) {
-                        if (fs.isRevoked(managerID, userID, documentID))
+                        if (!fs.isRevoked(managerID, userID, documentID)) {
                             fs.revoke(userID, documentID, managerID);
+                            System.out.printf(REVOKED_ACCESS, documentID);
+                        }
                         else
                             System.out.printf(ALREADY_BEEN_REVOKED, userID);
                     } else

@@ -135,7 +135,7 @@ public class DocumentCollectionClass implements DocumentCollection {
         boolean hasGrant = false;
         Document document = documents[searchIndex(documentID)];
         if (document instanceof ClassifiedDocument)
-            hasGrant = ((ClassifiedDocument) document).isRevoked(user);
+            hasGrant = ((ClassifiedDocument) document).hasGrant(user);
         return hasGrant;
     }
 
