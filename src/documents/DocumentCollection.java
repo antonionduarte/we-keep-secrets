@@ -21,13 +21,6 @@ public interface DocumentCollection {
     boolean hasDocument(String docID);
 
     /**
-     * Returns the Document object with the specified <code>docID</code>.
-     * @param docID of the Document.
-     * @return the Document.
-     */
-    Document getDocumentObject(String docID);
-
-    /**
      * Returns the number of documents in the collection.
      * @return the number of the documents in the collection.
      */
@@ -62,15 +55,8 @@ public interface DocumentCollection {
     String getDocumentDescription(String documentID, User reader);
 
     /**
-     * Changes the description of the document with the given documentID.
-     * @param documentID of the document to change the description of.
-     * @param relatedUser user that writes in the document.
-     * @param description that will replace the old description.
-     */
-    void setDocumentDescription(String documentID,User relatedUser, String description);
-
-    /**
      * Returns the grant count of the document with the given documentID.
+     * TODO: Might be useless (check when userDocs is finished).
      * @param documentID ID of the document.
      * @return the grantCount of the document.
      */
@@ -78,6 +64,7 @@ public interface DocumentCollection {
 
     /**
      * Returns the revoke count of the document with the given documentID.
+     * TODO: Might be useless (check when userDocs is finished).
      * @param documentID ID of the document.
      * @return revokeCount of the document.
      */
@@ -117,7 +104,7 @@ public interface DocumentCollection {
      * @param user user to verify.
      * @return true if the user is currently revoked from the document, false if otherwise.
      */
-    public boolean isRevoked(String documentID, User user);
+    boolean isRevoked(String documentID, User user);
 
     /**
      * Orders the collection by grantCounter, if two elements have the same grantCounter

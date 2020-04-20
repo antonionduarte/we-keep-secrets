@@ -15,7 +15,6 @@ public class ActionCollectionClass implements ActionCollection {
 
 	/**
 	 * Constructor of ActionCollectionClass.
-	 * @param relatedDocument document related to the collection.
 	 */
 	public ActionCollectionClass() {
 		actions = new ActionClass[DEFAULT_VECTOR_SIZE];
@@ -53,7 +52,7 @@ public class ActionCollectionClass implements ActionCollection {
 	@Override
 	public boolean hasGrant(User user) {
 		boolean hasGrant = false;
-		for (int i = actionCounter - 1; (i > 0) && (hasGrant == false); i--) {
+		for (int i = actionCounter - 1; (i > 0) && (!hasGrant); i--) {
 			if (actions[i].getRelatedUser().equals(user)) {
 				if (actions[i].getActionType().equals(Actions.REVOKE)) hasGrant = false;
 				else if (actions[i].getActionType().equals(Actions.GRANT)) hasGrant = true;
@@ -65,7 +64,7 @@ public class ActionCollectionClass implements ActionCollection {
 	@Override
 	public boolean isRevoked(User user) {
 		boolean isRevoked = false;
-		for (int i = actionCounter - 1; (i > 0) && (isRevoked == false); i--) {
+		for (int i = actionCounter - 1; (i > 0) && (!isRevoked); i--) {
 			if (actions[i].getRelatedUser().equals(user)) {
 				if (actions[i].getActionType().equals(Actions.REVOKE)) isRevoked = true;
 				else if (actions[i].getActionType().equals(Actions.GRANT)) isRevoked = false;

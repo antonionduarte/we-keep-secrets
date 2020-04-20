@@ -5,12 +5,6 @@ import clearance.Clearance;
 import documents.Document;
 
 public interface UserCollection {
-	
-	/**
-	 * Removes a user from the array.
-	 * @param user to remove from the array.
-	 */
-	void removeUser(User user);
 
 	/**
 	 * Adds a user to the collection.
@@ -33,6 +27,7 @@ public interface UserCollection {
 
 	/**
 	 * Gets the user id as it is stored in the array.
+     * TODO: Might be useless.
 	 * @param userID the user id.
 	 * @return the user id stored in the array.
 	 */
@@ -40,6 +35,7 @@ public interface UserCollection {
 
 	/**
 	 * Gets the user kind.
+     * TODO: Might be useless.
 	 * @param userID the user id.
 	 * @return the user kind.
 	 */
@@ -93,7 +89,7 @@ public interface UserCollection {
      * @param description the document's description.
      * @param clearance the document's clearance.
      */
-    void upload(String documentID, String mangerID, String description, Clearance clearance);
+    void upload(String documentID, String managerID, String description, Clearance clearance);
 
     /**
      * Reads from a document.

@@ -16,7 +16,7 @@ public enum HelpMenu {
 
     private final String message;
 
-    private HelpMenu(String message) {
+    HelpMenu(String message) {
         this.message = message;
     }
 

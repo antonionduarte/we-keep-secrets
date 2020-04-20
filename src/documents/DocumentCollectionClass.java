@@ -75,11 +75,6 @@ public class DocumentCollectionClass implements DocumentCollection {
     }
 
     @Override
-    public Document getDocumentObject(String documentID) {
-        return documents[searchIndex(documentID)];
-    }
-
-    @Override
     public Iterator<Document> documentIterator() {
         return new IteratorClass<Document>(documents, documentCounter);
     }

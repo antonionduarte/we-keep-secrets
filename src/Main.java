@@ -41,7 +41,7 @@ public class Main {
     private static final String USER_DOESNT_HAVE_DOCUMENT   = "Document %s does not exist in the user account.\n";
     private static final String NO_USER_REGISTERED          = "There are no registered users.";
     private static final String NOT_ENOUGH_CLEARANCE        = "Insufficient security clearance.";
-    private static final String INNAPROPRIATE_CLEARANCE     = "Innapropriate security level.";
+    private static final String INAPPROPRIATE_CLEARANCE = "Inappropriate security level.";
     private static final String CANNOT_UPDATE               = "Document %s cannot be updated.\n";
     private static final String NO_ACCESSES                 = "There are no accesses.";
     private static final String NO_GRANTS                   = "There are no grants.";
@@ -285,7 +285,7 @@ public class Main {
                 } else
                     System.out.printf(NO_DOCUMENT_FOR_CLEARANCE, clearance);
             } else
-                System.out.println(INNAPROPRIATE_CLEARANCE);
+                System.out.println(INAPPROPRIATE_CLEARANCE);
         } else
             System.out.println(NOT_A_REGISTERED_USER);
     }

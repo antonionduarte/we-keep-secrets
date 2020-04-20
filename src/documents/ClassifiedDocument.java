@@ -45,9 +45,9 @@ public interface ClassifiedDocument extends Document {
     int getRevokeCount();
 
     /**
-     * Returns grants and revokes action iterator
-     *
-     * @return     An iterator object
+     * Returns grants and revokes action iterator.
+     * TODO: Might be useless.
+     * @return an iterator object.
      */
     Iterator<Action> documentGrantsRevokesIterator();
 }

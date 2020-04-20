@@ -31,13 +31,6 @@ public class UserCollectionClass implements UserCollection {
     }
 
     @Override
-    public void removeUser(User user) {
-        int index = searchIndexOf(user.getID());
-        for (int i = index + 1; i <= userCounter - 1; i++)
-            users[index++] = users[i++];
-    }
-
-    @Override
     public boolean hasUser(String userID) {
         return searchIndexOf(userID) != -1;
     }

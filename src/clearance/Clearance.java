@@ -15,7 +15,7 @@ public enum Clearance {
     private final String clearanceString;
     private final int clearance;
 
-    private Clearance(String clearanceString, int clearance) {
+    Clearance(String clearanceString, int clearance) {
         this.clearanceString = clearanceString;
         this.clearance = clearance;
     }
