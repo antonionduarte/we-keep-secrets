@@ -5,6 +5,10 @@ we-keep-secrets.iml
 .project
 .classpath
 
+# Dirs
+/WeKeepSecretsTests/
+/tests/
+
 
 # .class files
 *.class

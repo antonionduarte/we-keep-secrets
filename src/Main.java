@@ -29,6 +29,7 @@ public class Main {
     private static final String USER_SUCCESSFULLY_REGISTER  = "User %s was registered.\n";
     private static final String DOCUMENT_UPLOADED           = "Document %s was uploaded.\n";
     private static final String DOCUMENT_UPDATED            = "Document %s was updated.\n";
+    private static final String READ_DOCUMENT_PROMPT        = "Document: %s\n";
 
     private static final String UNKNOWN_COMMAND				= "Unknown command. Type help to see available commands.";
     private static final String EXIT_MESSAGE                = "Bye!";
@@ -178,9 +179,12 @@ public class Main {
                 if (fs.isOfficial(managerID, documentID))
                     System.out.printf(CANNOT_UPDATE, documentID);
                 else {
-                    if ( (fs.getUserClearance(userID).toInt() >= fs.getUserClearance(managerID).toInt()) || fs.hasGrant(managerID, userID, documentID) )
+                    if ( (fs.getUserClearance(userID).toInt() >= fs.getDocumentClearance(managerID, documentID).toInt()) || fs.hasGrant(managerID, userID, documentID) ) {
                         fs.write(documentID, managerID, userID, description);
                         System.out.printf(DOCUMENT_UPDATED, documentID);
+                    } else {
+                        System.out.println(NOT_ENOUGH_CLEARANCE);
+                    }    
                 }
             } else 
                 System.out.printf(USER_DOESNT_HAVE_DOCUMENT, documentID);
@@ -193,10 +197,15 @@ public class Main {
         String managerID = in.next();
         String userID = in.nextLine().trim();
         if (fs.hasUser(managerID) && fs.hasUser(userID)) {
-            if (fs.userHasDocument(managerID, documentID))
-                System.out.println(fs.read(managerID, userID, documentID));
-            else
+            if (fs.userHasDocument(managerID, documentID)) {
+                if (fs.getUserClearance(userID).toInt() >= fs.getDocumentClearance(managerID, documentID).toInt())
+                    System.out.printf(READ_DOCUMENT_PROMPT, fs.read(managerID, userID, documentID));
+                else
+                    System.out.println(NOT_ENOUGH_CLEARANCE);
+            }
+            else {
                 System.out.printf(USER_DOESNT_HAVE_DOCUMENT, documentID);
+            }
         } else
             System.out.println(NOT_A_REGISTERED_USER);
     }
@@ -243,7 +252,7 @@ public class Main {
     }
 
     private static void processUserDocs(Scanner in, FileSystem fs) { // this works
-        String userID = in.next().trim();
+        String userID = in.next();
         String clearance = in.nextLine().trim();
         Clearance c = searchClearance(clearance);
 
