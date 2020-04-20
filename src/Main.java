@@ -45,6 +45,7 @@ public class Main {
     private static final String CANNOT_UPDATE               = "Document %s cannot be updated.\n";
     private static final String NO_ACCESSES                 = "There are no accesses.";
     private static final String NO_GRANTS                   = "There are no grants.";
+    private static final String NO_LEAKED_DOCUMENTS         = "THere are no leaked documents.";
     private static final String NO_DOCUMENT_FOR_CLEARANCE   = "There are no %s documents.\n";
     private static final String GRANTS_FOR_OFFICERS         = "Grants can only be issued between officers.";
     private static final String USER_ALREADY_HAS_ACCESS     = "Already has access to document %s.\n";
@@ -289,11 +290,24 @@ public class Main {
     }
 
     private static void processTopLeaked(Scanner in, FileSystem fs) {
-        
+        Iterator<Document> iterator = fs.topLeaked();
+        if (iterator.hasNext()) {
+            for (int i = 0; (iterator.hasNext()) && (i < 10); i++) {
+                Document next = iterator.next();
+                int numberGrants = 0;
+                int numberRevokes = 0;
+                if (next instanceof ClassifiedDocument) {
+                    numberGrants = ((ClassifiedDocument) next).getGrantCount();
+                    numberRevokes = ((ClassifiedDocument) next).getRevokeCount();
+                }  
+                System.out.printf("%s %s %s %d %d %d", next.getID(), next.getManagerID(), next.getClearance().toString(), next.getNumberAccesses(), numberGrants, numberRevokes);
+            }
+        } else
+            System.out.println(NO_LEAKED_DOCUMENTS);
     }
 
     private static void processTopGranters(Scanner in, FileSystem fs) {
-        
+        // TODO: Finish this.
     }
 
     private static void processHelp() {
