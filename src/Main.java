@@ -51,6 +51,7 @@ public class Main {
     private static final String USER_ALREADY_HAS_ACCESS     = "Already has access to document %s.\n";
     private static final String GRANT_DOES_NOT_EXIST        = "Grant for officer %s does not exist.\n";
     private static final String ALREADY_BEEN_REVOKED        = "Grant for officer %s was already revoked.\n";
+    private static final String NO_GIVEN_GRANTS             = "No officer has given grants.";
 
     public static void main(String[] args) {
 
@@ -307,7 +308,20 @@ public class Main {
     }
 
     private static void processTopGranters(Scanner in, FileSystem fs) {
-        // TODO: Finish this.
+        Iterator<User> iterator = fs.topGranters();
+        if (iterator.hasNext()) {
+            while (iterator.hasNext()) {
+                User next = iterator.next();
+                int numberGrants = 0;
+                int numberRevokes = 0;
+                if (next instanceof Officer) {
+                    numberGrants = ((Officer) next).getGrantCount();
+                    numberRevokes = ((Officer) next).getRevokeCount();
+                }
+                System.out.printf("%s %s %d %d %d", next.getID(), next.getClearance().getClearanceString(), next.getNumberDocuments(), numberGrants, numberRevokes);
+            }
+        } else
+            System.out.println(NO_GIVEN_GRANTS);
     }
 
     private static void processHelp() {
