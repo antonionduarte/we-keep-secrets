@@ -32,6 +32,11 @@ public abstract class AbstractDocument implements Document {
     private ActionCollection readsWrites;
 
     /**
+     * Number of accesses to a document (both reads and writes).
+     */
+    private int numberAccesses;
+
+    /**
      * The constructor of the document.
      * @param ID that identifies the document.
      * @param description or content that the document has.
@@ -50,12 +55,19 @@ public abstract class AbstractDocument implements Document {
     public void setDescription(String text, User writer) {
         this.description = text;
         readsWrites.addAction(writer, Actions.WRITE);
+        numberAccesses++;
     }
 
     @Override
     public String getDescription(User reader) {
         readsWrites.addAction(reader, Actions.READ);
+        numberAccesses++;
         return this.description;
+    }
+
+    @Override
+    public int getNumberAccesses() {
+        return numberAccesses;
     }
 
     @Override

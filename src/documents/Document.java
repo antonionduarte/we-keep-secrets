@@ -24,6 +24,12 @@ public interface Document {
     String getDescription(User reader);
 
     /**
+     * Returns the number of accesses to the document.
+     * @return the numberAccesses of the document.
+     */
+    int getNumberAccesses();
+
+    /**
      * Shows the ID of the document.
      * @return the <code>ID</code> of the document.
      * PRE ID != NULL
@@ -37,9 +43,8 @@ public interface Document {
     Clearance getClearance();
 
     /**
-     * Returns read and write action's iterator
-     *
-     * @return     An Action Iterator
+     * Returns read and write action's iterator.
+     * @return an action iterator.
      */
     Iterator<Action> documentReadsWritesIterator();
 
