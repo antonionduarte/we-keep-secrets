@@ -17,7 +17,7 @@ public interface ActionCollection {
      * @param reverse If true reverses the action array, if false does nothing
      * @return iterator of actions.
      */
-    Iterator<Action> actionIterator(boolean reverse);
+    Iterator<Action> actionIterator();
 
     /**
      * Gets the user related to the action.

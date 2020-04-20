@@ -220,7 +220,7 @@ public class Main {
         if (fs.hasUser(managerID) && fs.hasUser(userID)) {
             if (!fs.getUserClearance(userID).equals(Clearance.CLERK) && !fs.getUserClearance(managerID).equals(Clearance.CLERK)) {
                 if (fs.userHasDocument(managerID, documentID)) {
-                    if ( (fs.getDocumentClearance(managerID, documentID).toInt() > fs.getUserClearance(userID).toInt() ) && !fs.hasGrant(managerID, userID, documentID)) {
+                    if ( (fs.getDocumentClearance(managerID, documentID).toInt() > fs.getUserClearance(userID).toInt() ) && (!fs.hasGrant(managerID, userID, documentID) || fs.isRevoked(managerID, userID, documentID)) ) {
                         fs.grant(userID, documentID, managerID);
                         System.out.printf(GRANTED_ACCESS, documentID);
                     }
@@ -263,7 +263,7 @@ public class Main {
         String clearance = in.nextLine().trim();
         Clearance c = searchClearance(clearance);
 
-        int accessCounter = 0;
+        int accessCounter;
 
         if (fs.hasUser(userID)) {
             if (fs.getUserClearance(userID).toInt() >= c.toInt()) {
@@ -274,29 +274,73 @@ public class Main {
                     while (iter.hasNext()) {
                         Document doc = iter.next();
                         Iterator<Action> readWriteIterator = doc.documentReadsWritesIterator();
+                        accessCounter = 0;
                         if (c.toInt() == Clearance.OFFICIAL.toInt()) {
                             System.out.printf("%s %s: ", doc.getID(), readWriteIterator.itemCount());
                             if (readWriteIterator.hasNext()) {
-                                Action act = readWriteIterator.next();
+                                Action act = readWriteIterator.nextBackwards();
                                 User user = act.getRelatedUser();
                                 Actions actionType = act.getActionType();
-                                System.out.printf("%s [%s]", user.getID(), actionType.getActionString());
+                                System.out.printf("%s [%s]", user.getID(), user.getClearance().getClearanceString());
                                 accessCounter++;
 
-                                while (readWriteIterator.hasNext() && accessCounter < MAX_ACCESSES_SHOWN) {
-                                    act = readWriteIterator.next();
+                                while (readWriteIterator.hasNextBackwards() && accessCounter < MAX_ACCESSES_SHOWN) {
+                                    act = readWriteIterator.nextBackwards();
                                     user = act.getRelatedUser();
                                     actionType = act.getActionType();
-                                    System.out.printf(", %s [%s]", user.getID(), actionType.getActionString());
+                                    System.out.printf(", %s [%s]", user.getID(), user.getClearance().getClearanceString());
                                     accessCounter++;
 
                                 }
                                 System.out.println();
                             } else
                                 System.out.println(NO_ACCESSES);
-                        } else
-                            System.out.println(doc.getClearance());
-                            // TODO: Implement userdocs for classified option
+                        } else {
+
+                            System.out.printf("%s %s %s\n", doc.getID(), doc.getClearance().getClearanceString(), readWriteIterator.itemCount());
+                            if (readWriteIterator.hasNext()) {
+                                Action act = readWriteIterator.next();
+                                User user = act.getRelatedUser();
+                                Actions actionType = act.getActionType();
+                                System.out.printf("%s [%s, %s]", user.getID(), user.getClearance().getClearanceString(), actionType.getActionString());
+                                accessCounter++;
+
+                                while (readWriteIterator.hasNext() && accessCounter < MAX_ACCESSES_SHOWN) {
+                                    act = readWriteIterator.next();
+                                    user = act.getRelatedUser();
+                                    actionType = act.getActionType();
+                                    System.out.printf(", %s [%s, %s]", user.getID(), user.getClearance().getClearanceString(), actionType.getActionString());
+                                    accessCounter++;
+                                }
+                                System.out.println();
+                            } else
+                                System.out.println(NO_ACCESSES);
+
+                            accessCounter = 0;
+
+                            if (doc instanceof ClassifiedDocumentClass) {
+                                ClassifiedDocument docClassified = (ClassifiedDocumentClass) doc;
+                                Iterator<Action> grantsRevokesIterator = docClassified.documentGrantsRevokesIterator();
+                                if (grantsRevokesIterator.hasNext()) {
+                                    Action act = grantsRevokesIterator.next();
+                                    User user = act.getRelatedUser();
+                                    Actions actionType = act.getActionType();
+                                    System.out.printf("%s [%s, %s]", user.getID(), user.getClearance().getClearanceString(), actionType.getActionString());
+                                    accessCounter++;
+
+                                    while (grantsRevokesIterator.hasNext() && accessCounter < MAX_ACCESSES_SHOWN) {
+                                        act = grantsRevokesIterator.next();
+                                        user = act.getRelatedUser();
+                                        actionType = act.getActionType();
+                                        System.out.printf(", %s [%s, %s]", user.getID(), user.getClearance().getClearanceString(), actionType.getActionString());
+                                        accessCounter++;
+                                    }
+                                    System.out.println();
+                                } else
+                                    System.out.println(NO_GRANTS);
+                            }
+                            
+                        }
                     }
                 } else
                     System.out.printf(NO_DOCUMENT_FOR_CLEARANCE, clearance);

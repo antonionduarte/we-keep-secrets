@@ -26,21 +26,12 @@ public class ActionCollectionClass implements ActionCollection {
 		Action action = new ActionClass(relatedUser, actionType);
 		if (isFull()) {
 			resize();
-			
 		}
 		actions[actionCounter++] = action;
 	}
 
 	@Override
-	public Iterator<Action> actionIterator(boolean reverse) {
-		if (reverse) {
-			// Reverses the order.
-			Action[] temp = new Action[actions.length];
-			int j = 0;
-			for (int i = actionCounter -1; i >= 0 ;i--)
-				temp[j++] = actions[i];
-			return new IteratorClass<Action>(temp, actionCounter);
-		}
+	public Iterator<Action> actionIterator() {
 		return new IteratorClass<Action>(actions, actionCounter);
 	}
 

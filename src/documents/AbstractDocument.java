@@ -93,6 +93,6 @@ public abstract class AbstractDocument implements Document {
 
     @Override
     public Iterator<Action> documentReadsWritesIterator() {
-        return readsWrites.actionIterator(true);
+        return readsWrites.actionIterator();
     }
 }

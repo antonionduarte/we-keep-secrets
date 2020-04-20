@@ -19,4 +19,8 @@ public interface Iterator<E> {
      * @return the number of items in the iterator's array.
      */
     int itemCount();
+
+    E nextBackwards();
+
+    boolean hasNextBackwards();
 }
