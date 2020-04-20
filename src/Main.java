@@ -43,11 +43,11 @@ public class Main {
     private static final String USER_DOESNT_HAVE_DOCUMENT   = "Document %s does not exist in the user account.\n";
     private static final String NO_USER_REGISTERED          = "There are no registered users.";
     private static final String NOT_ENOUGH_CLEARANCE        = "Insufficient security clearance.";
-    private static final String INAPPROPRIATE_CLEARANCE = "Inappropriate security level.";
+    private static final String INAPPROPRIATE_CLEARANCE     = "Inappropriate security level.";
     private static final String CANNOT_UPDATE               = "Document %s cannot be updated.\n";
     private static final String NO_ACCESSES                 = "There are no accesses.";
     private static final String NO_GRANTS                   = "There are no grants.";
-    private static final String NO_LEAKED_DOCUMENTS         = "THere are no leaked documents.";
+    private static final String NO_LEAKED_DOCUMENTS         = "There are no leaked documents.";
     private static final String NO_DOCUMENT_FOR_CLEARANCE   = "There are no %s documents.\n";
     private static final String GRANTS_FOR_OFFICERS         = "Grants can only be issued between officers.";
     private static final String USER_ALREADY_HAS_ACCESS     = "Already has access to document %s.\n";
