@@ -32,7 +32,7 @@ public class ClassifiedDocumentClass extends AbstractDocument implements Classif
      */
     public ClassifiedDocumentClass(String ID, String description, Clearance clearance) {
         super(ID, description, clearance);
-        grantsRevokes = new ActionCollectionClass(this);
+        grantsRevokes = new ActionCollectionClass();
     }
 
     @Override

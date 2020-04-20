@@ -2,8 +2,6 @@ package actions;
 
 import iterators.*;
 import users.*;
-import documents.*;
-import clearance.*;
 
 public class ActionCollectionClass implements ActionCollection {
 
@@ -11,7 +9,6 @@ public class ActionCollectionClass implements ActionCollection {
 	private static final int GROWTH_FACTOR = 2;
 
 	private Action[] actions;
-	private Document relatedDocument;
 	private int actionCounter;
 
 	// Public methods.
@@ -20,9 +17,8 @@ public class ActionCollectionClass implements ActionCollection {
 	 * Constructor of ActionCollectionClass.
 	 * @param relatedDocument document related to the collection.
 	 */
-	public ActionCollectionClass(Document relatedDocument) {
+	public ActionCollectionClass() {
 		actions = new ActionClass[DEFAULT_VECTOR_SIZE];
-		this.relatedDocument = relatedDocument;
 		actionCounter = 0;
 	}
 
@@ -39,16 +35,14 @@ public class ActionCollectionClass implements ActionCollection {
 	@Override
 	public Iterator<Action> actionIterator(boolean reverse) {
 		if (reverse) {
-			// Reverse the order
+			// Reverses the order.
 			Action[] temp = new Action[actions.length];
 			int j = 0;
-			for (int i=actionCounter-1 ; i>=0 ; i--)
+			for (int i = actionCounter -1; i >= 0 ;i--)
 				temp[j++] = actions[i];
 			return new IteratorClass<Action>(temp, actionCounter);
 		}
 		return new IteratorClass<Action>(actions, actionCounter);
-
-		
 	}
 
 	@Override

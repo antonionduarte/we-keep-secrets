@@ -41,7 +41,7 @@ public abstract class AbstractDocument implements Document {
         this.ID = ID;
         this.description = description;
         this.clearance = clearance;
-        readsWrites = new ActionCollectionClass(this);
+        readsWrites = new ActionCollectionClass();
     }
 
     // Methods
