@@ -172,12 +172,28 @@ public class DocumentCollectionClass implements DocumentCollection {
         }
     }
 
+    @Override
     public void insertSort(Document document) {
         if (isFull())
             resize();
         int toInsertGrantCount = 0;
-        if (document instanceOf ClassifiedDocument)
-            toInsertGrantCount = 
+        if (document instanceof ClassifiedDocument)
+            toInsertGrantCount = ((ClassifiedDocument) document).getGrantCount();
+        for (int i = documentCounter - 1; i > 0; i--) {
+            int grantCount = 0;
+            if (documents[i] instanceof ClassifiedDocument)
+                grantCount = ((ClassifiedDocument) documents[i]).getGrantCount();
+            if (grantCount > toInsertGrantCount)
+                documents[i + 1] = document;
+            else if (grantCount < toInsertGrantCount)
+                documents[i + 1] = documents[i];
+            else {
+                if (documents[i].getID().compareToIgnoreCase(document.getID()) < 0)
+                    documents[i + 1] = document;
+                else
+                    documents[i + 1] = documents[i];
+            }
+        }
     }
 
     // for (int i = -1; didSwap && (i <= documentCounter - 3); i++) {

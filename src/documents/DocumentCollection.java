@@ -13,6 +13,8 @@ public interface DocumentCollection {
      */
     void addDocument(Document document);
 
+    void insertSort(Document document);
+
     /**
      * Checks if the collection has a specific document.
      * @param docID of the Document to check.

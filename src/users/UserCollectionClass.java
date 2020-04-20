@@ -150,7 +150,7 @@ public class UserCollectionClass implements UserCollection {
                 if (doc instanceof ClassifiedDocument)
                     grantCount = ((ClassifiedDocument) doc).getGrantCount();
                 if (grantCount > 0)
-                    topLeaked.addDocument(doc);
+                    topLeaked.insertSort(doc);
             }
         }
         topLeaked.bubbleSort(); // Sort by number of grants and alphabetically if tie.
