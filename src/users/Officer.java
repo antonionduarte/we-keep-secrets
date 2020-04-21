@@ -2,6 +2,11 @@ package users;
 
 import documents.*;
 
+/**
+ * This interface describes an officer.
+ * @author Antonio Duarte 58278
+ * @author Luis Tripa 57882
+ */
 public interface Officer extends User {
 
 	/**

@@ -1,5 +1,10 @@
 package iterators;
 
+/**
+ * This interface describes an iterator.
+ * @author Antonio Duarte 58278
+ * @author Luis Tripa 57882
+ */
 public interface Iterator<E> {
 
     /**

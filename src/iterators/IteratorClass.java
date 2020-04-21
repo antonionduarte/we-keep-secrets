@@ -1,5 +1,10 @@
 package iterators;
 
+/**
+ * This class describes an iterator class.
+ * @author Antonio Duarte 58278
+ * @author Luis Tripa 57882
+ */
 public class IteratorClass<E> implements Iterator<E> {
 
     private E[] vector;

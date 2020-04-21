@@ -4,6 +4,11 @@ import users.*;
 import iterators.*;
 import actions.Action;
 
+/**
+ * This interface describes a classified document.
+ * @author Antonio Duarte 58278
+ * @author Luis Tripa 57882
+ */
 public interface ClassifiedDocument extends Document {
 
     /**

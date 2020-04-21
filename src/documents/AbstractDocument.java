@@ -5,6 +5,11 @@ import clearance.*;
 import users.*;
 import iterators.*;
 
+/**
+ * This class describes an abstract document.
+ * @author Antonio Duarte 58278
+ * @author Luis Tripa 57882
+ */
 public abstract class AbstractDocument implements Document {
 
     // Constants

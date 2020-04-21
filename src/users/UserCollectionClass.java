@@ -4,6 +4,11 @@ import iterators.*;
 import clearance.Clearance;
 import documents.*;
 
+/**
+ * This class describes an user collection class.
+ * @author Antonio Duarte 58278
+ * @author Luis Tripa 57882
+ */
 public class UserCollectionClass implements UserCollection {
 
     // Generic Constants

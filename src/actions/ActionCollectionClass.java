@@ -3,6 +3,11 @@ package actions;
 import iterators.*;
 import users.*;
 
+/**
+ * This class describes an action collection class.
+ * @author Antonio Duarte 58278
+ * @author Luis Tripa 57882
+ */
 public class ActionCollectionClass implements ActionCollection {
 
 	private static final int DEFAULT_VECTOR_SIZE = 10;

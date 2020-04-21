@@ -3,6 +3,11 @@ package actions;
 import users.*;
 import iterators.*;
 
+/**
+ * This interface describes a collection of actions.
+ * @author Antonio Duarte 58278
+ * @author Luis Tripa 57882
+ */
 public interface ActionCollection {
 
     /**

@@ -4,6 +4,11 @@ import documents.*;
 import iterators.*;
 import clearance.*;
 
+/**
+ * This interface describes an user.
+ * @author Antonio Duarte 58278
+ * @author Luis Tripa 57882
+ */
 public interface User {
 
     /**

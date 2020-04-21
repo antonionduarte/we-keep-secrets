@@ -5,6 +5,11 @@ import documents.Document;
 import iterators.*;
 import clearance.*;
 
+/**
+ * This interface describes a file system.
+ * @author Antonio Duarte 58278
+ * @author Luis Tripa 57882
+ */
 public interface FileSystem {
 
 	/**

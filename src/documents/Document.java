@@ -5,6 +5,11 @@ import clearance.*;
 import iterators.*;
 import actions.*;
 
+/**
+ * This interface describes a document.
+ * @author Antonio Duarte 58278
+ * @author Luis Tripa 57882
+ */
 public interface Document {
 
     /**

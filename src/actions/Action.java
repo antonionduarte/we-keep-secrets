@@ -2,6 +2,11 @@ package actions;
 
 import users.User;
 
+/**
+ * This interface describes an action
+ * @author Antonio Duarte 58278
+ * @author Luis Tripa 57882
+ */
 public interface Action {
 
 	/*

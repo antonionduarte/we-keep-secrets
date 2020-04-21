@@ -4,6 +4,11 @@ import iterators.*;
 import documents.*;
 import clearance.*;
 
+/**
+ * This class describes an user abstract class.
+ * @author Antonio Duarte 58278
+ * @author Luis Tripa 57882
+ */
 public abstract class UserAbstractClass implements User {
 
     //Instance variables

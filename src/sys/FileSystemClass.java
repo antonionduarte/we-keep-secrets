@@ -5,6 +5,11 @@ import documents.Document;
 import iterators.*;
 import clearance.*;
 
+/**
+ * This class describes a file system class.
+ * @author Antonio Duarte 58278
+ * @author Luis Tripa 57882
+ */
 public class FileSystemClass implements FileSystem {
     
     UserCollection userCollection;

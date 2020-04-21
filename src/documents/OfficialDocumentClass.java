@@ -3,6 +3,11 @@ package documents;
 import clearance.*;
 import users.*;
 
+/**
+ * This class describes an official document class.
+ * @author Antonio Duarte 58278
+ * @author Luis Tripa 57882
+ */
 public class OfficialDocumentClass extends AbstractDocument implements OfficialDocument {
 
     /**

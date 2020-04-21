@@ -1,7 +1,12 @@
 package actions;
 
 import users.*;
-
+	
+/**
+ * This class describes an action class.
+ * @author Antonio Duarte 58278
+ * @author Luis Tripa 57882
+ */
 public class ActionClass implements Action {
 
 	/**

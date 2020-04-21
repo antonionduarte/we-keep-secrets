@@ -4,6 +4,11 @@ import iterators.*;
 import clearance.Clearance;
 import documents.Document;
 
+/**
+ * This inteface describes a user collection
+ * @author Antonio Duarte 58278
+ * @author Luis Tripa 57882
+ */
 public interface UserCollection {
 
 	/**

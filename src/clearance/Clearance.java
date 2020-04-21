@@ -1,5 +1,10 @@
 package clearance;
 
+/**
+ * This enum describes all clearance levels available in the filesystem. The enum is extensible meaning that you can add or modify any of the clearance levels to fit your objective.
+ * @author Antonio Duarte 58278
+ * @author Luis Tripa 57882
+ */
 public enum Clearance {
 
     // Tags. These are not used as clearance levels. They are only used to help identify documents as OFFICIAL or CLASSIFIED

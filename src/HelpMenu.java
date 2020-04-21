@@ -1,3 +1,8 @@
+/**
+ * This enum describes the help menu. Every instance is one command.
+ * @author Antonio Duarte 58278
+ * @author Luis Tripa 57882
+ */
 public enum HelpMenu {
 
     // Command list for the help menu

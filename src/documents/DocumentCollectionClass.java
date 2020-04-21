@@ -4,6 +4,11 @@ import clearance.Clearance;
 import iterators.*;
 import users.*;
 
+/**
+ * This class describes a document collection class.
+ * @author Antonio Duarte 58278
+ * @author Luis Tripa 57882
+ */
 public class DocumentCollectionClass implements DocumentCollection {
 
     // Constants

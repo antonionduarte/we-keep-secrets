@@ -5,6 +5,11 @@ import users.*;
 import actions.*;
 import iterators.*;
 
+/**
+ * This class describes a classified document class.
+ * @author Antonio Duarte 58278
+ * @author Luis Tripa 57882
+ */
 public class ClassifiedDocumentClass extends AbstractDocument implements ClassifiedDocument {
     
     // Variables

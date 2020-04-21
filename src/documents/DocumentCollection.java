@@ -4,6 +4,11 @@ import iterators.*;
 import clearance.*;
 import users.*;
 
+/**
+ * This interface describes a document collection.
+ * @author Antonio Duarte 58278
+ * @author Luis Tripa 57882
+ */
 public interface DocumentCollection {
 
     /**
