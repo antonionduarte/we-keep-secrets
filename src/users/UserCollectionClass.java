@@ -176,7 +176,7 @@ public class UserCollectionClass implements UserCollection {
         for (int i = 0; i < userCounter && pos == -1; i++)
             if (((Officer) user).getGrantCount() > ((Officer) users[i]).getGrantCount())
                pos = i;
-            else if (((Officer) user).getGrantCount() > (((Officer) users[i]).getGrantCount())) {
+            else if (((Officer) user).getGrantCount() == (((Officer) users[i]).getGrantCount())) {
                 if (users[i].getID().compareToIgnoreCase(user.getID()) > 0)
                     pos = i;
             }

@@ -218,7 +218,7 @@ public class DocumentCollectionClass implements DocumentCollection {
         for (int i = 0; i < documentCounter && pos == -1; i++)
             if (((ClassifiedDocument) document).getGrantCount() > ((ClassifiedDocument) documents[i]).getGrantCount())
                pos = i;
-            else if (((ClassifiedDocument) document).getGrantCount() > (((ClassifiedDocument) documents[i]).getGrantCount())) {
+            else if (((ClassifiedDocument) document).getGrantCount() == (((ClassifiedDocument) documents[i]).getGrantCount())) {
                 if (documents[i].getID().compareToIgnoreCase(document.getID()) > 0)
                     pos = i;
             }
