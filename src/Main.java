@@ -257,7 +257,7 @@ public class Main {
             System.out.println(NOT_A_REGISTERED_USER);
     }
 
-    private static void processUserDocs(Scanner in, FileSystem fs) { // this works
+    private static void processUserDocs(Scanner in, FileSystem fs) {
         String userID = in.next();
         String clearance = in.nextLine().trim();
         Clearance c = searchClearance(clearance);

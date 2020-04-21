@@ -27,24 +27,6 @@ public interface UserCollection {
 	 */
 	Iterator<User> userIterator();
 
-	/**
-	 * Gets the user id as it is stored in the array.
-     * TODO: Might be useless.
-     * Pre: userID != NULL
-	 * @param userID the user id.
-	 * @return the user id stored in the array.
-	 */
-	String getUserID(String userID);
-
-	/**
-	 * Gets the user kind.
-     * Pre: userID != NULL
-     * TODO: Might be useless.
-	 * @param userID the user id.
-	 * @return the user kind.
-	 */
-    String getUserKind(String userID);
-
     /**
      * Gets the user clearance.
      * Pre: userID != NULL
@@ -124,7 +106,7 @@ public interface UserCollection {
      * Generates a user's document iterator.
      * Pre: userID != NULL && clearance != NULL
      * @param userID the user id.
-     * @param clearance
+     * @param clearance the clearance of the user.
      * @return an iterator object.
      */
     Iterator<Document> userDocs(String userID, Clearance clearance);

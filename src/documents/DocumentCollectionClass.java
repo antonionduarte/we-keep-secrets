@@ -80,11 +80,6 @@ public class DocumentCollectionClass implements DocumentCollection {
     }
 
     @Override
-    public Iterator<Action> documentReadsWritesIterator(String documentID) {
-        return documents[searchIndex(documentID)].documentReadsWritesIterator();
-    }
-
-    @Override
     public int getNumberDocuments() {
         return documentCounter;
     }
@@ -175,8 +170,8 @@ public class DocumentCollectionClass implements DocumentCollection {
     }
 
     /**
-     * Inserts a user in a specific position in the array.
-     * @param user to insert.
+     * Inserts a document in a specific position in the array.
+     * @param document to insert on the array.
      * @param pos position to insert on.
      */
     private void insertAt(Document document, int pos) {

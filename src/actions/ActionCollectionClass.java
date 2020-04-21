@@ -8,7 +8,14 @@ public class ActionCollectionClass implements ActionCollection {
 	private static final int DEFAULT_VECTOR_SIZE = 10;
 	private static final int GROWTH_FACTOR = 2;
 
+	/**
+	 * The array of actions.
+	 */
 	private Action[] actions;
+
+	/**
+	 * The counter of the action array.
+	 */
 	private int actionCounter;
 
 	// Public methods.
@@ -33,11 +40,6 @@ public class ActionCollectionClass implements ActionCollection {
 	@Override
 	public Iterator<Action> actionIterator() {
 		return new IteratorClass<Action>(actions, actionCounter);
-	}
-
-	@Override
-	public User getRelatedUser(int actionIndex) {
-		return actions[actionIndex].getRelatedUser();
 	}
 
 	@Override

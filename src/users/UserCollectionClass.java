@@ -13,7 +13,15 @@ public class UserCollectionClass implements UserCollection {
     private static final int TOP_GRANTERS_MAX_ITERATOR_SIZE = 10;
 
     // Instance variables
+
+    /**
+     * The array of users.
+     */
     private User[] users;
+
+    /**
+     * The counter of the array of users.
+     */
     private int userCounter;
 
     /**
@@ -38,16 +46,6 @@ public class UserCollectionClass implements UserCollection {
     @Override
     public Iterator<User> userIterator() {
         return new IteratorClass<User>(users, userCounter);
-    }
-
-    @Override
-    public String getUserID(String userID) {
-        return users[searchIndexOf(userID)].getID();
-    }
-
-    @Override
-    public String getUserKind(String userID) {
-        return users[searchIndexOf(userID)].getKind();
     }
     
     @Override

@@ -14,18 +14,10 @@ public interface ActionCollection {
     void addAction(User relatedUser, Actions actionType);
 
     /**
-     * Initiates an iterator of Actions. The parameter <code>reverse</code> allows the user to reverse the actions array. This is useful because the read and writes must be displayed from newest to oldest (reverse order).
-     * @param reverse If true reverses the action array, if false does nothing
+     * Initiates an iterator of Actions.
      * @return iterator of actions.
      */
     Iterator<Action> actionIterator();
-
-    /**
-     * Gets the user related to the action.
-     * Pre: actionIndex != NULL
-     * @return user related to the action.
-     */
-    User getRelatedUser(int actionIndex);
 
     /**
      * Checks if a specific user has a grant to a document.

@@ -42,14 +42,6 @@ public interface DocumentCollection {
     Iterator<Document> documentIterator();
 
     /**
-     * Returns an Iterator of document actions.
-     * Pre: documentID != NULL
-     * @param documentID the document id.
-     * @return a Document Iterator.
-     */
-    Iterator<Action> documentReadsWritesIterator(String documentID);
-
-    /**
      * Returns the clearance of the document.
      * Pre: documentID != NULL
      * @param documentID of the Document to get the clearance of.

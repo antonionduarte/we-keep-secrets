@@ -7,10 +7,25 @@ import clearance.*;
 public abstract class UserAbstractClass implements User {
 
     //Instance variables
+
+    /**
+     * The ID of the user.
+     */
     private String userID;
+
+    /**
+     * The kind of the user. (Officer or Clerk)
+     */
     private String userKind;
+
+    /**
+     * The clearance of the user.
+     */
     private Clearance clearance;
 
+    /**
+     * The collection of documents of the user.
+     */
     private DocumentCollection uploadedDocs;
 
     /**
@@ -47,11 +62,6 @@ public abstract class UserAbstractClass implements User {
     }
 
     @Override
-    public boolean hasClearance(Clearance clearance) {
-        return this.clearance.toInt() >= clearance.toInt();
-    }
-
-    @Override
     public boolean hasDocument(String docID) {
         return uploadedDocs.hasDocument(docID);
     }
@@ -73,11 +83,6 @@ public abstract class UserAbstractClass implements User {
 
     public Clearance getDocumentClearance(String documentID) {
         return uploadedDocs.getDocumentClearance(documentID);
-    }
-
-    @Override
-    public boolean idGreaterThan(String otherID) {
-        return this.getID().compareTo(otherID) > 0;
     }
 
     @Override

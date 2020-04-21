@@ -25,14 +25,6 @@ public interface User {
     Clearance getClearance();
 
     /**
-     * Checks if the User has a specific Clearance.
-     * Pre: clearance != NULL
-     * @param clearance to check for.
-     * @return true if the user has a clearance value superior or equal to clearance.
-     */
-    boolean hasClearance(Clearance clearance);
-
-    /**
      * Verified if the user is the owner of a specific document.
      * Pre: docID != NULL
      * @param docID of the document to check.
@@ -69,14 +61,6 @@ public interface User {
      * @return the document clearance.
      */
     Clearance getDocumentClearance(String documentID);
-
-    /**
-     * Checks if user has an id greater than <code>otherID</code>.
-     * Pre: otherID != NULL
-     * @param otherID the id of the other user.
-     * @return true if is greater, false otherwise.
-     */
-    boolean idGreaterThan(String otherID);
 
     /**
      * Returns the documentCollection of a User.
