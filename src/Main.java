@@ -38,7 +38,6 @@ public class Main {
 
     // System error out messages
     private static final String USER_ALREADY_REGISTERED     = "Identifier %s is already assigned to another user.\n";
-    private static final String USER_NOT_REGISTERED         = "User %s is not a registered user.\n";
     private static final String NOT_A_REGISTERED_USER       = "Not a registered user.";
     private static final String USER_HAS_DOCUMENT           = "Document %s already exists in the user account.\n";
     private static final String USER_DOESNT_HAVE_DOCUMENT   = "Document %s does not exist in the user account.\n";
@@ -280,14 +279,12 @@ public class Main {
                             if (readWriteIterator.hasNext()) {
                                 Action act = readWriteIterator.nextBackwards();
                                 User user = act.getRelatedUser();
-                                Actions actionType = act.getActionType();
                                 System.out.printf("%s [%s]", user.getID(), user.getClearance().getClearanceString());
                                 accessCounter++;
 
                                 while (readWriteIterator.hasNextBackwards() && accessCounter < MAX_ACCESSES_SHOWN) {
                                     act = readWriteIterator.nextBackwards();
                                     user = act.getRelatedUser();
-                                    actionType = act.getActionType();
                                     System.out.printf(", %s [%s]", user.getID(), user.getClearance().getClearanceString());
                                     accessCounter++;
 
