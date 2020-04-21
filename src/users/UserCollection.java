@@ -8,12 +8,14 @@ public interface UserCollection {
 
 	/**
 	 * Adds a user to the collection.
+     * Pre: user != NULL
 	 * @param user to add to the collection.
 	 */
 	void addUser(User user);
 
 	/**
 	 * Checks if the user with the specified <code>userID</code> is in the collection.
+     * Pre: userID != NULL
 	 * @param userID of the User whose existence in the collection we wish to verify.
 	 * @return true if there is a User in the collection with the specified <code>userID</code>.
 	 */
@@ -28,6 +30,7 @@ public interface UserCollection {
 	/**
 	 * Gets the user id as it is stored in the array.
      * TODO: Might be useless.
+     * Pre: userID != NULL
 	 * @param userID the user id.
 	 * @return the user id stored in the array.
 	 */
@@ -35,6 +38,7 @@ public interface UserCollection {
 
 	/**
 	 * Gets the user kind.
+     * Pre: userID != NULL
      * TODO: Might be useless.
 	 * @param userID the user id.
 	 * @return the user kind.
@@ -43,6 +47,7 @@ public interface UserCollection {
 
     /**
      * Gets the user clearance.
+     * Pre: userID != NULL
      * @param userID the user id.
      * @return the user clearance.
      */
@@ -50,6 +55,7 @@ public interface UserCollection {
 
     /**
      * Gets the document clearance.
+     * Pre: managerID != NULL && documentID != NULL
      * @param managerID the manager id.
      * @param documentID the document id.
      * @return the document clearance.
@@ -58,6 +64,7 @@ public interface UserCollection {
 
     /**
      * Checks if user is the manager of a given document.
+     * Pre: userID != NULL && documentID != NULL
      * @param userID the user id.
      * @param documentID the document id.
      * @return true if is manager, false otherwise.
@@ -66,6 +73,7 @@ public interface UserCollection {
 
     /**
      * Checks if user with <code>userID</code> has a grant for the document with <code>documentID</code>.
+     * Pre: managerID != NULL && documentID != NULL && userID != NULL
      * @param managerID the id of the manager.
      * @param documentID the id of the document.
      * @param userID the id of the user.
@@ -75,6 +83,7 @@ public interface UserCollection {
 
     /**
      * Checks if a specific user has been revoked from a document.
+     * Pre: managerID != NULL && documentID != NULL && userID != NULL
      * @param managerID the user ID of the manager.
      * @param documentID the document ID.
      * @param userID the user ID of the user to be checked.
@@ -84,6 +93,7 @@ public interface UserCollection {
 
     /**
      * Uploads a document to the user's document collection. The user will become the manager of this document.
+     * Pre: managerID != NULL && documentID != NULL && description != NULL && clearance != NULL
      * @param managerID the user id.
      * @param documentID the document id.
      * @param description the document's description.
@@ -93,6 +103,7 @@ public interface UserCollection {
 
     /**
      * Reads from a document.
+     * PRE: managerID != NULL && userID != NULL && documentID != NULL
      * @param managerID ID of the Document manager.
      * @param userID ID of the user reading from the document.
      * @param documentID ID of the document that the user reads from.
@@ -102,6 +113,7 @@ public interface UserCollection {
 
     /**
      * Writes <code>description</code> to document with id <code>documentID</code>.
+     * Pre: userID != NULL && documentID != NULL && description != NULL
      * @param userID the id of the user.
      * @param documentID the id of the document.
      * @param description the new description to write on the document.
@@ -110,7 +122,9 @@ public interface UserCollection {
 
     /**
      * Generates a user's document iterator.
+     * Pre: userID != NULL && clearance != NULL
      * @param userID the user id.
+     * @param clearance
      * @return an iterator object.
      */
     Iterator<Document> userDocs(String userID, Clearance clearance);
@@ -129,18 +143,21 @@ public interface UserCollection {
 
     /**
      * Inserts a User in the collection.
+     * Pre: user != NULL
      * @param user to insert.
      */
     void insertSort(User user);
 
     /**
      * Trims the user collection to a specific size.
+     * Pre: trimSize != NULL
      * @param trimSize size to trim the collection to.
      */
     void trim(int trimSize);
 
     /**
      * Returns a user with the given userID.
+     * Pre: userID != NULL
      * @param userID of the user to return.
      * @return user with the given <code>userID</code>.
      */
@@ -148,6 +165,7 @@ public interface UserCollection {
 
     /**
      * Grants a user access to a document.
+     * Pre: userID != NULL && documentID != NULL && managerID != NULL
      * @param userID ID of the user to grant access to.
      * @param documentID ID of the document.
      * @param managerID ID of the document's manager.
@@ -156,6 +174,7 @@ public interface UserCollection {
 
     /**
      * Revokes a user access from a document.
+     * Pre: userID != NULL && documentID != NULL && managerID != NULL
      * @param userID ID of the user to revoke access from.
      * @param documentID ID of the document to revoke access from.
      * @param managerID ID of the document's manager.

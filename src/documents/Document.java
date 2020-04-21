@@ -9,9 +9,9 @@ public interface Document {
 
     /**
      * Sets a new description to the document.
+     * Pre: text != NULL && writer != NULL
      * @param text to set the description to.
      * @param writer user that writes in the document.
-     * PRE: text != NULL
      */
     void setDescription(String text, User writer);
 
@@ -23,9 +23,9 @@ public interface Document {
 
     /**
      * Shows the description of the document.
+     * Pre: reader != NULL
      * @param reader user that reads from the document.
      * @return <code>description</code> of the document.
-     * PRE: description != NULL
      */
     String getDescription(User reader);
 
@@ -38,7 +38,6 @@ public interface Document {
     /**
      * Shows the ID of the document.
      * @return the <code>ID</code> of the document.
-     * PRE ID != NULL
      */
     String getID();
 

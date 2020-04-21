@@ -6,6 +6,7 @@ public interface Officer extends User {
 
 	/**
      * Writes to a document.
+	 * Pre: writer != NULL && document != NULL && description != NULL
      * @param writer user that writes in the specific document.
      * @param document the document to write on.
      * @param description to write on the document.
@@ -14,6 +15,7 @@ public interface Officer extends User {
 
 	/**
 	 * Grants a user access to a document.
+	 * Pre: documentID != NULL && user != NULL
 	 * @param documentID ID of the document to grant access to.
 	 * @param user who we the grant is gonna be given to.
 	 */
@@ -21,6 +23,7 @@ public interface Officer extends User {
 
 	/**
 	 * Revokes a grant from a user.
+	 * PRE: documentID != NULL && user != NULL
 	 * @param documentID ID of the document to revoke access from.
 	 * @param user to revoke the grant of.
 	 */
@@ -40,6 +43,7 @@ public interface Officer extends User {
 	
 	/**
 	* Checks if user has grant for document with id <code>documentID</code>.
+	* Pre: documentID != NULL && user != NULL
 	* @param documentID the document id.
 	* @param user the user.
 	* @return true if has grant, false otherwise.
@@ -48,6 +52,7 @@ public interface Officer extends User {
 
    /**
 	* Checks if the specified user is revoked from the document.
+	* Pre: documentID != NULL && user != NULL
 	* @param documentID the document ID.
 	* @param user the user.
 	* @return true if is revoked, false otherwise.

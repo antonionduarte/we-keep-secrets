@@ -8,18 +8,21 @@ public interface ClassifiedDocument extends Document {
 
     /**
      * Grants a User access to a Document.
+     * Pre: relatedUser != NULL
      * @param relatedUser user to grant access to the document.
      */
     void grant(User relatedUser);
 
     /**
      * Revoked access to a Document from a User.
+     * Pre: relatedUser != NULL
      * @param relatedUser user to revoke access from the document.
      */
     void revoke(User relatedUser);
 
     /**
      * Checks if the specified User has an active grant to the Document.
+     * Pre: user != NULL
      * @param user to check.
      * @return true if the user has an active grant to the document.
      */
@@ -27,6 +30,7 @@ public interface ClassifiedDocument extends Document {
 
     /**
      * Checks if a specific user is revoked to a document.
+     * Pre: user != NULL
      * @param user to check for.
      * @return true if the user has an active revoke to a document, false if otherwise.
      */
@@ -46,7 +50,6 @@ public interface ClassifiedDocument extends Document {
 
     /**
      * Returns grants and revokes action iterator.
-     * TODO: Might be useless.
      * @return an iterator object.
      */
     Iterator<Action> documentGrantsRevokesIterator();

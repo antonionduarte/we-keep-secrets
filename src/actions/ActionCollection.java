@@ -7,6 +7,7 @@ public interface ActionCollection {
 
     /**
      * Adds an action to the collection.
+     * Pre: relatedUser != NULL && actionType != NULL
      * @param relatedUser the user related to the action.
      * @param actionType the type of the action.
      */
@@ -21,12 +22,14 @@ public interface ActionCollection {
 
     /**
      * Gets the user related to the action.
+     * Pre: actionIndex != NULL
      * @return user related to the action.
      */
     User getRelatedUser(int actionIndex);
 
     /**
      * Checks if a specific user has a grant to a document.
+     * Pre: user != NULL
      * @param user to check for.
      * @return true if the user has an active grant to a document, false if otherwise.
      */
@@ -34,6 +37,7 @@ public interface ActionCollection {
 
     /**
      * Checks if a specific user is revoked to a document.
+     * Pre: user != NULL
      * @param user to check for.
      * @return true if the user has an active revoke to a document, false if otherwise.
      */

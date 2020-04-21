@@ -26,6 +26,7 @@ public interface User {
 
     /**
      * Checks if the User has a specific Clearance.
+     * Pre: clearance != NULL
      * @param clearance to check for.
      * @return true if the user has a clearance value superior or equal to clearance.
      */
@@ -33,6 +34,7 @@ public interface User {
 
     /**
      * Verified if the user is the owner of a specific document.
+     * Pre: docID != NULL
      * @param docID of the document to check.
      * @return true if the user is the manager of the document with the specified docID.
      */
@@ -40,12 +42,14 @@ public interface User {
 
     /**
      * Uploads a document.
+     * Pre: docID != NULL
      * @param document to upload.
      */
     void upload(Document document);
 
     /**
      * Reads content of a document.
+     * Pre: documentID != NULL && reader != NULL
      * @param documentID the document id.
      * @param reader user that reads from the document.
      * @return the content of the document.
@@ -60,6 +64,7 @@ public interface User {
 
     /**
      * Gets clearance from a user owned document.
+     * Pre: documentID != NULL
      * @param documentID the id of the document.
      * @return the document clearance.
      */
@@ -67,6 +72,7 @@ public interface User {
 
     /**
      * Checks if user has an id greater than <code>otherID</code>.
+     * Pre: otherID != NULL
      * @param otherID the id of the other user.
      * @return true if is greater, false otherwise.
      */
@@ -81,6 +87,7 @@ public interface User {
 
     /**
      * Returns a document with the specific documentID.
+     * Pre: documentID != NULL
      * @param documentID of the document to return.
      * @return the document with the given documentID.
      */

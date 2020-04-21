@@ -9,6 +9,7 @@ public interface FileSystem {
 
 	/**
 	 * Registers a new user into the system.
+	 * Pre: userKind != NULL && userID != NULL && clearance != NULL
 	 * @param userKind the type of the user (Officer or Clerk).
 	 * @param userID the ID of the user.
 	 * @param clearance the clearance level of the user.
@@ -23,6 +24,7 @@ public interface FileSystem {
 
 	/**
 	 * Uploads a new document into the system with <code>clearance</code> and <code>description</code>.
+	 * Pre: documentID != NULL && managerID != NULL && clearance != NULL && description != NULL
 	 * @param documentID the ID of the document.
 	 * @param managerID the ID of the document's manager.
 	 * @param clearance the clearance of the document.
@@ -33,6 +35,7 @@ public interface FileSystem {
 	/**
 	 * Writes a new <code>description</code> into a specified document. The new description will be written by a specific 
 	 * User with the given <code>userID</code>.
+	 * Pre: documentID != NULL && managerID != NULL && userID != NULL && description != NULL
 	 * @param documentID the ID of the document.
 	 * @param managerID the ID of the manager.
 	 * @param userID the ID of the user.
@@ -42,6 +45,7 @@ public interface FileSystem {
 
 	/**
 	 * Reads from a document and register the action.
+	 * Pre: managerID != NULL && userID != NULL && documentID != NULL
 	 * @param managerID ID of the manager of the document to read from.
 	 * @param userID ID of the user that reads from the document.
 	 * @param documentID of the document to read from.
@@ -50,6 +54,7 @@ public interface FileSystem {
 
 	/**
 	 * Creates iterator for user documents.
+	 * Pre: userID != NULL
 	 * @param userID the user id.
 	 * @return an iterator object.
 	 */
@@ -57,6 +62,7 @@ public interface FileSystem {
 
 	/**
 	 * Checks if a user with the given <code>userID</code> is in the system.
+	 * Pre: userID != NULL
 	 * @param userID the ID of the User.
 	 * @return true if the User is in the system, false if otherwise.
 	 */
@@ -64,6 +70,7 @@ public interface FileSystem {
 
 	/**
 	 * Checks if a user is the owner of a document.
+	 * Pre: userID != NULL && documentID != NULL
 	 * @param userID of the User to check.
 	 * @param documentID of the Document to check.
 	 * @return true if the User if the manager of a document, false if otherwise.
@@ -72,6 +79,7 @@ public interface FileSystem {
 
 	/**
 	 * Checks if a user has a grant to access a specific document.
+	 * Pre: managerID != NULL && userID != NULL && documentID != NULL
 	 * @param managerID ID of the document's manager.
 	 * @param userID of the User to check.
 	 * @param documentID of the Document to check.
@@ -81,6 +89,7 @@ public interface FileSystem {
 
 	/**
 	 * Checks if a user is revoked from a specific document.
+	 * Pre: managerID != NULL && userID != NULL && documentID != NULL
 	 * @param managerID ID of the manager of the document.
 	 * @param userID ID of the user to check.
 	 * @param documentID ID of the document.
@@ -90,6 +99,7 @@ public interface FileSystem {
 
 	/**
 	 * Checks if a given document is an official document.
+	 * Pre: documentID != NULL
 	 * @param documentID of the Document to check.
 	 * @return true if the Document is Official, false if it's Classified.
 	 */
@@ -97,6 +107,7 @@ public interface FileSystem {
 
 	/**
 	 * Returns the clearance of a specific user.
+	 * Pre: userID != NULL
 	 * @param userID of the User whose clearance we want to get.
 	 * @return the Clearance of the User.
 	 */
@@ -104,6 +115,7 @@ public interface FileSystem {
 
 	/**
 	 * Returns the clearance of a specific document.
+	 * Pre: documentID != NULL
 	 * @param documentID of the Document whose clearance we want to get.
 	 * @return the Clearance of the Document.
 	 */
@@ -111,6 +123,7 @@ public interface FileSystem {
 
 	/**
 	 * Grants a user access to a document.
+	 * Pre: userID != NULL && documentID != NULL && managerID != NULL
 	 * @param userID ID of the user that the access will be granted to.
 	 * @param documentID ID of the document that the user will have access to.
 	 * @param managerID ID of the document's manager.
@@ -119,6 +132,7 @@ public interface FileSystem {
 
 	/**
 	 * Revokes a user access to a document.
+	 * Pre: userID != NULL && documentID != NULL && managerID != NULL
 	 * @param userID ID of the user to revoke access from a document.
 	 * @param documentID ID of the document that the user will lose access from.
 	 * @param managerID ID of the document's manager.

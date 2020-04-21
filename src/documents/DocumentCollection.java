@@ -9,18 +9,21 @@ public interface DocumentCollection {
 
     /**
      * Adds a document to the collection.
+     * Pre: document != NULL
      * @param document to add to the collection.
      */
     void addDocument(Document document);
 
     /**
      * Insert a document in the collection sorting by grant count.
+     * Pre: document != NULL
      * @param document to insert in the collection.
      */
     void insertSort(Document document);
 
     /**
      * Checks if the collection has a specific document.
+     * Pre: docID != NULL
      * @param docID of the Document to check.
      * @return true if there is a Document with the specified <code>docID</code>, false if otherwise.
      */
@@ -39,21 +42,24 @@ public interface DocumentCollection {
     Iterator<Document> documentIterator();
 
     /**
-     * Returns an Iterator of document actions
-     * @param      documentID  The document id
-     * @return     A Document Iterator
+     * Returns an Iterator of document actions.
+     * Pre: documentID != NULL
+     * @param documentID the document id.
+     * @return a Document Iterator.
      */
     Iterator<Action> documentReadsWritesIterator(String documentID);
 
     /**
      * Returns the clearance of the document.
+     * Pre: documentID != NULL
      * @param documentID of the Document to get the clearance of.
-     * @return the clearance of the document with the given documentID. 
+     * @return the clearance of the document with the given documentID.
      */
     Clearance getDocumentClearance(String documentID);
 
     /**
      * Returns the description of the document.
+     * Pre: documentID != NULL && reader != NULL
      * @param documentID ID of the Document to get the description of.
      * @param reader user that reads the document.
      * @return the description of the Document with the given documentID.
@@ -62,6 +68,7 @@ public interface DocumentCollection {
 
     /**
      * Returns the grant count of the document with the given documentID.
+     * Pre: documentID != NULL
      * @param documentID ID of the document.
      * @return the grantCount of the document.
      */
@@ -69,6 +76,7 @@ public interface DocumentCollection {
 
     /**
      * Returns the revoke count of the document with the given documentID.
+     * Pre: documentID != NULL
      * @param documentID ID of the document.
      * @return revokeCount of the document.
      */
@@ -76,12 +84,14 @@ public interface DocumentCollection {
 
     /**
      * Returns a specific document off the collection.
+     * Pre: documentID != NULL
      * @return a specific document on the collection.
      */
     Document getDocument(String documentID);
 
     /**
      * Grants access to a document to a specific user.
+     * Pre documentID != NULL && relatedUser != NULL
      * @param documentID ID of the document to give the user access to.
      * @param relatedUser user to revoke access from the document.
      */
@@ -89,6 +99,7 @@ public interface DocumentCollection {
 
     /**
      * Revokes a document from a user.
+     * Pre: documentID != NULL && relatedUser != NULL
      * @param documentID ID of the document.
      * @param relatedUser user to revoke access from the document.
      */
@@ -96,6 +107,7 @@ public interface DocumentCollection {
 
     /**
      * Checks if a specific user has a grant to use a specific document.
+     * Pre: documentID != NULL && user != NULL
      * @param documentID ID of the document to verify.
      * @param user user to verify.
      * @return true if the user has a grant to the document with the specified documentID.
@@ -104,21 +116,16 @@ public interface DocumentCollection {
 
     /**
      * Checks if a specific user is revoked from a document.
+     * Pre: documentID != NULL && user != NULL
      * @param documentID ID of the document to verify.
      * @param user user to verify.
      * @return true if the user is currently revoked from the document, false if otherwise.
      */
     boolean isRevoked(String documentID, User user);
 
-    // TODO: Probably delete
-    // /**
-    //  * Orders the collection by grantCounter, if two elements have the same grantCounter
-    //  * the sorter will sort them by alphabetic order.
-    //  */
-    // void bubbleSort();
-
     /**
      * Trims the collection to have a specified trimSize.
+     * Pre: trimSize != NULL
      * @param trimSize size that we will trim the collection to have.
      */
     void trim(int trimSize);
