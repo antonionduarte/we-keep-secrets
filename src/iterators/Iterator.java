@@ -11,6 +11,7 @@ public interface Iterator<E> {
     /**
      * Returns the current element in the array and moves the counter forward.
      * @return the current element in the array.
+     * PRE: hasNext()
      */
     E next();
 
@@ -20,9 +21,21 @@ public interface Iterator<E> {
      */
     int itemCount();
 
+    /**
+     * Goes to the end of the iterator array
+     */
     void goToEnd();
 
+    /**
+     * Gets the item in the previous position relative to <code>current</code>
+     * @return     The previous element relative to current
+     * PRE: hasPrevious()
+     */
     E previous();
 
+    /**
+     * Verifies if there is a previous element in the array
+     * @return     True if previous, False otherwise.
+     */
     boolean hasPrevious();
 }
