@@ -173,8 +173,7 @@ public class UserCollectionClass implements UserCollection {
 
     @Override
     public void insertSort(User user) {
-        if (isFull())
-            resize();
+        if (isFull()) resize();
         int pos = -1;
         for (int i = 0; i < userCounter && pos == -1; i++)
             if (((Officer) user).getGrantCount() > ((Officer) users[i]).getGrantCount())

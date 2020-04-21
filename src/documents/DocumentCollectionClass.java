@@ -149,8 +149,7 @@ public class DocumentCollectionClass implements DocumentCollection {
 
     @Override
     public void insertSort(Document document) {
-        if (isFull())
-            resize();
+        if (isFull()) resize();
         int pos = -1;
         for (int i = 0; i < documentCounter && pos == -1; i++)
             if (((ClassifiedDocument) document).getGrantCount() > ((ClassifiedDocument) documents[i]).getGrantCount())
