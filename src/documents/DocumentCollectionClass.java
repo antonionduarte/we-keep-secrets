@@ -3,7 +3,6 @@ package documents;
 import clearance.Clearance;
 import iterators.*;
 import users.*;
-import actions.*;
 
 public class DocumentCollectionClass implements DocumentCollection {
 

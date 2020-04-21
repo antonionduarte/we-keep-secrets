@@ -3,7 +3,6 @@ package documents;
 import iterators.*;
 import clearance.*;
 import users.*;
-import actions.*;
 
 public interface DocumentCollection {
 
