@@ -20,7 +20,9 @@ public interface Iterator<E> {
      */
     int itemCount();
 
-    E nextBackwards();
+    void goToEnd();
 
-    boolean hasNextBackwards();
+    E previous();
+
+    boolean hasPrevious();
 }

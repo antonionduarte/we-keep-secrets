@@ -267,74 +267,22 @@ public class Main {
         if (fs.hasUser(userID)) {
             if (fs.getUserClearance(userID).toInt() >= c.toInt()) {
 
-                Iterator<Document> iter = fs.userDocs(userID, c);
+                Iterator<Document> userDocs = fs.userDocs(userID, c);
 
-                if (iter.hasNext()) {
-                    while (iter.hasNext()) {
-                        Document doc = iter.next();
+                if (userDocs.hasNext()) {
+                    while (userDocs.hasNext()) {
+                        Document doc = userDocs.next();
                         Iterator<Action> readWriteIterator = doc.documentReadsWritesIterator();
-                        accessCounter = 0;
+
                         if (c.toInt() == Clearance.OFFICIAL.toInt()) {
-                            System.out.printf("%s %s: ", doc.getID(), readWriteIterator.itemCount());
-                            if (readWriteIterator.hasNext()) {
-                                Action act = readWriteIterator.nextBackwards();
-                                User user = act.getRelatedUser();
-                                System.out.printf("%s [%s]", user.getID(), user.getClearance().getClearanceString());
-                                accessCounter++;
-
-                                while (readWriteIterator.hasNextBackwards() && accessCounter < MAX_ACCESSES_SHOWN) {
-                                    act = readWriteIterator.nextBackwards();
-                                    user = act.getRelatedUser();
-                                    System.out.printf(", %s [%s]", user.getID(), user.getClearance().getClearanceString());
-                                    accessCounter++;
-
-                                }
-                                System.out.println();
-                            } else
-                                System.out.println(NO_ACCESSES);
+                            printUserDocsOfficial(doc, readWriteIterator);
                         } else {
-
-                            System.out.printf("%s %s %s\n", doc.getID(), doc.getClearance().getClearanceString(), readWriteIterator.itemCount());
-                            if (readWriteIterator.hasNext()) {
-                                Action act = readWriteIterator.next();
-                                User user = act.getRelatedUser();
-                                Actions actionType = act.getActionType();
-                                System.out.printf("%s [%s, %s]", user.getID(), user.getClearance().getClearanceString(), actionType.getActionString());
-                                accessCounter++;
-
-                                while (readWriteIterator.hasNext() && accessCounter < MAX_ACCESSES_SHOWN) {
-                                    act = readWriteIterator.next();
-                                    user = act.getRelatedUser();
-                                    actionType = act.getActionType();
-                                    System.out.printf(", %s [%s, %s]", user.getID(), user.getClearance().getClearanceString(), actionType.getActionString());
-                                    accessCounter++;
-                                }
-                                System.out.println();
-                            } else
-                                System.out.println(NO_ACCESSES);
-
-                            accessCounter = 0;
-
+                            ClassifiedDocument docClassified;
                             if (doc instanceof ClassifiedDocumentClass) {
-                                ClassifiedDocument docClassified = (ClassifiedDocumentClass) doc;
-                                Iterator<Action> grantsRevokesIterator = docClassified.documentGrantsRevokesIterator();
-                                if (grantsRevokesIterator.hasNext()) {
-                                    Action act = grantsRevokesIterator.next();
-                                    User user = act.getRelatedUser();
-                                    Actions actionType = act.getActionType();
-                                    System.out.printf("%s [%s, %s]", user.getID(), user.getClearance().getClearanceString(), actionType.getActionString());
-                                    accessCounter++;
-
-                                    while (grantsRevokesIterator.hasNext() && accessCounter < MAX_ACCESSES_SHOWN) {
-                                        act = grantsRevokesIterator.next();
-                                        user = act.getRelatedUser();
-                                        actionType = act.getActionType();
-                                        System.out.printf(", %s [%s, %s]", user.getID(), user.getClearance().getClearanceString(), actionType.getActionString());
-                                        accessCounter++;
-                                    }
-                                    System.out.println();
-                                } else
-                                    System.out.println(NO_GRANTS);
+                                docClassified = (ClassifiedDocumentClass) doc;
+                                Iterator<Action> grantRevokeIterator = docClassified.documentGrantsRevokesIterator();
+                                accessCounter = 0;
+                                printUserDocsClassified(docClassified, readWriteIterator, grantRevokeIterator);
                             }
                         }
                     }
@@ -344,6 +292,66 @@ public class Main {
                 System.out.println(INAPPROPRIATE_CLEARANCE);
         } else
             System.out.println(NOT_A_REGISTERED_USER);
+    }
+
+    private static void printUserDocsOfficial(Document doc, Iterator<Action> readWrite) {
+
+        int accessCounter = 0;
+
+        System.out.printf("%s %s: ", doc.getID(), readWrite.itemCount());
+        if (readWrite.hasNext()) {
+            readWrite.goToEnd();
+            do {
+                Action act = readWrite.previous();
+                User user = act.getRelatedUser();
+                System.out.printf("%s [%s]", user.getID(), user.getClearance().getClearanceString());
+                accessCounter++;
+                if (readWrite.hasPrevious() && accessCounter < MAX_ACCESSES_SHOWN)
+                    System.out.printf(", ");
+            } while (readWrite.hasPrevious() && accessCounter < MAX_ACCESSES_SHOWN);
+
+            System.out.println(); // A newline at the end
+
+        } else
+             System.out.println(NO_ACCESSES);
+    }
+
+    private static void printUserDocsClassified(ClassifiedDocument doc, Iterator<Action> readWrite, Iterator<Action> grantRevoke) {
+
+        int accessCounter = 0;
+
+        System.out.printf("%s %s %s\n", doc.getID(), doc.getClearance().getClearanceString(), readWrite.itemCount());
+        if (readWrite.hasNext()) {
+            do {
+                Action act = readWrite.next();
+                User user = act.getRelatedUser();
+                Actions actionType = act.getActionType();
+                System.out.printf("%s [%s, %s]", user.getID(), user.getClearance().getClearanceString(), actionType.getActionString());
+                accessCounter++;
+                if (readWrite.hasNext() && accessCounter < MAX_ACCESSES_SHOWN)
+                    System.out.printf(", ");
+            } while (readWrite.hasNext() && accessCounter < MAX_ACCESSES_SHOWN);
+
+            System.out.println(); // A newline at the end
+        } else
+            System.out.println(NO_ACCESSES);
+
+        accessCounter = 0;
+
+        if (grantRevoke.hasNext()) {
+            do {
+                Action act = grantRevoke.next();
+                User user = act.getRelatedUser();
+                Actions actionType = act.getActionType();
+                System.out.printf("%s [%s, %s]", user.getID(), user.getClearance().getClearanceString(), actionType.getActionString());
+                accessCounter++;
+                if (grantRevoke.hasNext())
+                    System.out.printf(", ");
+            } while (grantRevoke.hasNext() && accessCounter < MAX_ACCESSES_SHOWN);
+
+            System.out.println(); // A newline at the end
+        } else
+            System.out.println(NO_GRANTS);
     }
 
     private static void processTopLeaked(Scanner in, FileSystem fs) {
