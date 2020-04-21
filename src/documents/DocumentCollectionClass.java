@@ -148,56 +148,83 @@ public class DocumentCollectionClass implements DocumentCollection {
         return isRevoked;
     }
 
-    @Override
-    public void bubbleSort() {
-        boolean didSwap = true;
-        for (int i = -1; didSwap && (i <= documentCounter - 3); i++) {
-            didSwap = false;
-            for (int j = ++i; j < documentCounter - 1; j++) {
-                ClassifiedDocument document1 = (ClassifiedDocument) documents[j];
-                ClassifiedDocument document2 = (ClassifiedDocument) documents[j + 1];
-                ClassifiedDocument temp = (ClassifiedDocument) documents[j];
-                if (document1.getGrantCount() < document2.getGrantCount()) {
-                    didSwap = true;
-                    documents[j] = documents[j + 1];
-                    documents[j + 1] = temp;
-                } else if (document1.getGrantCount() == document2.getGrantCount()) {
-                    if (document1.getID().compareToIgnoreCase(document2.getID()) > 0) {
-                        didSwap = true;
-                        documents[j] = documents[j + 1];
-                        documents[j + 1] = temp;
-                    }
-                }
-            }
-        }
-    }
+    // @Override
+    // public void bubbleSort() {
+    //     boolean didSwap = true;
+    //     for (int i = -1; didSwap && (i <= documentCounter - 3); i++) {
+    //         didSwap = false;
+    //         for (int j = ++i; j < documentCounter - 1; j++) {
+    //             ClassifiedDocument document1 = (ClassifiedDocument) documents[j];
+    //             ClassifiedDocument document2 = (ClassifiedDocument) documents[j + 1];
+    //             ClassifiedDocument temp = (ClassifiedDocument) documents[j];
+    //             if (document1.getGrantCount() < document2.getGrantCount()) {
+    //                 didSwap = true;
+    //                 documents[j] = documents[j + 1];
+    //                 documents[j + 1] = temp;
+    //             } else if (document1.getGrantCount() == document2.getGrantCount()) {
+    //                 if (document1.getID().compareToIgnoreCase(document2.getID()) > 0) {
+    //                     didSwap = true;
+    //                     documents[j] = documents[j + 1];
+    //                     documents[j + 1] = temp;
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
+
+    // @Override
+    // public void insertSort(Document document) {
+    //     if (isFull())
+    //         resize();
+    //     int toInsertGrantCount = 0;
+    //     if (document instanceof ClassifiedDocument)
+    //         toInsertGrantCount = ((ClassifiedDocument) document).getGrantCount();
+    //     for (int i = documentCounter - 1; i > 0; i--) {
+    //         int grantCount = 0;
+    //         if (documents[i] instanceof ClassifiedDocument)
+    //             grantCount = ((ClassifiedDocument) documents[i]).getGrantCount();
+    //         if (grantCount > toInsertGrantCount)
+    //             documents[i + 1] = document;
+    //         else if (grantCount < toInsertGrantCount)
+    //             documents[i + 1] = documents[i];
+    //         else {
+    //             if (documents[i].getID().compareToIgnoreCase(document.getID()) > 0)
+    //                 documents[i + 1] = document;
+    //             else
+    //                 documents[i + 1] = documents[i];
+    //         }
+    //     }
+    //     documentCounter++;
+    // }
+
+    // for (int i = -1; didSwap && (i <= documentCounter - 3); i++) {
+    //     for (int j = ++i; j < documentCounter - 1; j++) {
+
+    // @Override
+    // public void insertSort(User user) {
+    //     if (isFull())
+    //         resize();
+    //     for (int i = 0; i < documentCounter; i++) {
+    //         if ((Officer) user).getGrantCount() > users[i].getGrantCount())
+
+    //     } 
+    // }
 
     @Override
     public void insertSort(Document document) {
         if (isFull())
             resize();
-        int toInsertGrantCount = 0;
-        if (document instanceof ClassifiedDocument)
-            toInsertGrantCount = ((ClassifiedDocument) document).getGrantCount();
-        for (int i = documentCounter - 1; i > 0; i--) {
-            int grantCount = 0;
-            if (documents[i] instanceof ClassifiedDocument)
-                grantCount = ((ClassifiedDocument) documents[i]).getGrantCount();
-            if (grantCount > toInsertGrantCount)
-                documents[i + 1] = document;
-            else if (grantCount < toInsertGrantCount)
-                documents[i + 1] = documents[i];
-            else {
+        int pos = -1;
+        for (int i = 0; i < documentCounter && pos == -1; i++)
+            if (((ClassifiedDocument) document).getGrantCount() > ((ClassifiedDocument) documents[i]).getGrantCount())
+               pos = i;
+            else if (((ClassifiedDocument) document).getGrantCount() > (((ClassifiedDocument) documents[i]).getGrantCount())) {
                 if (documents[i].getID().compareToIgnoreCase(document.getID()) > 0)
-                    documents[i + 1] = document;
-                else
-                    documents[i + 1] = documents[i];
+                    pos = i;
             }
-        }
+        if (pos == -1) pos = documentCounter;
+        insertAt(document, pos);
     }
-
-    // for (int i = -1; didSwap && (i <= documentCounter - 3); i++) {
-    //     for (int j = ++i; j < documentCounter - 1; j++) {
 
     @Override
     public void trim(int trimSize) {
@@ -207,5 +234,17 @@ public class DocumentCollectionClass implements DocumentCollection {
         documents = aux;
         if (documentCounter > trimSize)
             documentCounter = trimSize;
+    }
+
+    /**
+     * Inserts a user in a specific position in the array.
+     * @param user to insert.
+     * @param pos position to insert on.
+     */
+    private void insertAt(Document document, int pos) {
+        for (int i = documentCounter - 1; i >= pos; i--)
+            documents[i + 1] = documents[i];
+        documents[pos] = document;
+        documentCounter++;
     }
 }

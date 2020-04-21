@@ -153,7 +153,6 @@ public class UserCollectionClass implements UserCollection {
                     topLeaked.insertSort(doc);
             }
         }
-        // topLeaked.bubbleSort(); // Sort by number of grants and alphabetically if tie.
         topLeaked.trim(TOP_LEAKED_MAX_ITERATOR_SIZE);
         return topLeaked.documentIterator();
     }
@@ -161,8 +160,10 @@ public class UserCollectionClass implements UserCollection {
     @Override
     public Iterator<User> topGranters() {
         UserCollection topGranters = new UserCollectionClass();
-        for (int i = 0; i < userCounter; i++)
-            topGranters.insertSort(users[i]);
+        for (int i = 0; i < userCounter; i++) {
+            if (((Officer) users[i]).getGrantCount() > 0)
+                topGranters.insertSort(users[i]);
+        }
         topGranters.trim(TOP_GRANTERS_MAX_ITERATOR_SIZE);
         return topGranters.userIterator();
     }
@@ -171,26 +172,18 @@ public class UserCollectionClass implements UserCollection {
     public void insertSort(User user) {
         if (isFull())
             resize();
-        int toInsertGrantCount = 0;
-        if (user instanceof Officer)
-            toInsertGrantCount = ((Officer) user).getGrantCount();
-        for (int i = userCounter - 1; i > 0; i--) {
-            int grantCount = 0;
-            if (users[i] instanceof Officer)
-                grantCount = ((Officer) users[i]).getGrantCount();
-            if (grantCount > toInsertGrantCount)
-                users[i + 1] = user;
-            else if (grantCount < toInsertGrantCount)
-                users[i + 1] = users[i];
-            else {
-                if (users[i].idGreaterThan(user.getID()))
-                    users[i + 1] = user;
-                else
-                    users[i + 1] = users[i];
+        int pos = -1;
+        for (int i = 0; i < userCounter && pos == -1; i++)
+            if (((Officer) user).getGrantCount() > ((Officer) users[i]).getGrantCount())
+               pos = i;
+            else if (((Officer) user).getGrantCount() > (((Officer) users[i]).getGrantCount())) {
+                if (users[i].getID().compareToIgnoreCase(user.getID()) > 0)
+                    pos = i;
             }
-        }
-        userCounter++;
+        if (pos == -1) pos = userCounter;
+        insertAt(user, pos);
     }
+
 
     @Override
     public void trim(int trimSize) {
@@ -208,6 +201,18 @@ public class UserCollectionClass implements UserCollection {
     }
 
     /* Private Methods */
+
+    /**
+     * Inserts a user in a specific position in the array.
+     * @param user to insert.
+     * @param pos position to insert on.
+     */
+    private void insertAt(User user, int pos) {
+        for (int i = userCounter - 1; i >= pos; i--)
+            users[i + 1] = users[i];
+        users[pos] = user;
+        userCounter++;
+    }
 
     /**
      * Searches for the index of a user in the array.

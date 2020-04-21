@@ -352,7 +352,7 @@ public class Main {
     private static void processTopLeaked(Scanner in, FileSystem fs) {
         Iterator<Document> iterator = fs.topLeaked();
         if (iterator.hasNext()) {
-            for (int i = 0; (iterator.hasNext()) && (i < 10); i++) {
+            while (iterator.hasNext()) {
                 Document next = iterator.next();
                 int numberGrants = 0;
                 int numberRevokes = 0;
@@ -377,7 +377,7 @@ public class Main {
                     numberGrants = ((Officer) next).getGrantCount();
                     numberRevokes = ((Officer) next).getRevokeCount();
                 }
-                System.out.printf("%s %s %d %d %d", next.getID(), next.getClearance().getClearanceString(), next.getNumberDocuments(), numberGrants, numberRevokes);
+                System.out.printf("%s %s %d %d %d\n", next.getID(), next.getClearance().getClearanceString(), next.getNumberDocuments(), numberGrants, numberRevokes);
             }
         } else
             System.out.println(NO_GIVEN_GRANTS);

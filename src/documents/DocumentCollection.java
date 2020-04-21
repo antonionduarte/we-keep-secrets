@@ -13,6 +13,10 @@ public interface DocumentCollection {
      */
     void addDocument(Document document);
 
+    /**
+     * Insert a document in the collection sorting by grant count.
+     * @param document to insert in the collection.
+     */
     void insertSort(Document document);
 
     /**
@@ -58,7 +62,6 @@ public interface DocumentCollection {
 
     /**
      * Returns the grant count of the document with the given documentID.
-     * TODO: Might be useless (check when userDocs is finished).
      * @param documentID ID of the document.
      * @return the grantCount of the document.
      */
@@ -66,7 +69,6 @@ public interface DocumentCollection {
 
     /**
      * Returns the revoke count of the document with the given documentID.
-     * TODO: Might be useless (check when userDocs is finished).
      * @param documentID ID of the document.
      * @return revokeCount of the document.
      */
@@ -108,11 +110,12 @@ public interface DocumentCollection {
      */
     boolean isRevoked(String documentID, User user);
 
-    /**
-     * Orders the collection by grantCounter, if two elements have the same grantCounter
-     * the sorter will sort them by alphabetic order.
-     */
-    void bubbleSort();
+    // TODO: Probably delete
+    // /**
+    //  * Orders the collection by grantCounter, if two elements have the same grantCounter
+    //  * the sorter will sort them by alphabetic order.
+    //  */
+    // void bubbleSort();
 
     /**
      * Trims the collection to have a specified trimSize.
