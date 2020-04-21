@@ -76,6 +76,12 @@ public class Main {
         in.close();
     }
 
+    /**
+     * Processes choosing what method to execute given a String command.
+     * @param in scanner that read input from the console.
+     * @param fs the system.
+     * @param command command that has been introduced.
+     */
     private static void processCommand(Scanner in, FileSystem fs, String command) {
         switch (command) {
             case REGISTER:
@@ -119,6 +125,11 @@ public class Main {
         }
     }
 
+    /**
+     * Method that processes registering a User into the system.
+     * @param in scanner that reads input from the console.
+     * @param fs the system.
+     */
     private static void processRegister(Scanner in, FileSystem fs) {
     	Clearance c = Clearance.CLERK;
     	
@@ -138,6 +149,11 @@ public class Main {
         }
     }
 
+    /**
+     * Command that processes listing the users in the system and some of their properties.
+     * @param in scanner that reads input from the console.
+     * @param fs the system.
+     */
     private static void processListUsers(Scanner in, FileSystem fs) {
         Iterator<User> iter = fs.listUsers();
         if (iter.hasNext()) {
@@ -149,6 +165,11 @@ public class Main {
             System.out.println(NO_USER_REGISTERED);
     }
 
+    /**
+     * Command that processes uploading a document to the system.
+     * @param in scanner that reads input from the console.
+     * @param fs the system.
+     */
     private static void processUpload(Scanner in, FileSystem fs) {
         String documentID = in.next();
         String managerID = in.next();
@@ -170,6 +191,11 @@ public class Main {
         }
     }
 
+    /**
+     * Command that processes writing into a specific document.
+     * @param in scanner that reads input from the console.
+     * @param fs the system.
+     */
     private static void processWrite(Scanner in, FileSystem fs) {
         String documentID = in.next();
         String managerID = in.next();
@@ -194,6 +220,11 @@ public class Main {
             System.out.println(NOT_A_REGISTERED_USER);
     }
 
+    /**
+     * Command that processes reading contents from a document.
+     * @param in scanner that reads input from the console.
+     * @param fs the system.
+     */
     private static void processRead(Scanner in, FileSystem fs) {
         String documentID = in.next();
         String managerID = in.next();
@@ -212,6 +243,11 @@ public class Main {
             System.out.println(NOT_A_REGISTERED_USER);
     }
 
+    /**
+     * Command that processes granting an officer access to a document.
+     * @param in scanner that reads input from the console.
+     * @param fs the system.
+     */
     private static void processGrant(Scanner in, FileSystem fs) {
         String documentID = in.next();
         String managerID = in.next();
@@ -233,6 +269,11 @@ public class Main {
             System.out.println(NOT_A_REGISTERED_USER);
     }
 
+    /**
+     * Command that processes revoking an officer access from a document.
+     * @param in scanner that reads input from the console.
+     * @param fs the system.
+     */
     private static void processRevoke(Scanner in, FileSystem fs) {
         String documentID = in.next();
         String managerID = in.next();
@@ -257,6 +298,11 @@ public class Main {
             System.out.println(NOT_A_REGISTERED_USER);
     }
 
+    /**
+     * Command that processes listing all the documents of a user.
+     * @param in scanner that reads input from the console.
+     * @param fs the system.
+     */
     private static void processUserDocs(Scanner in, FileSystem fs) {
         String userID = in.next();
         String clearance = in.nextLine().trim();
@@ -346,6 +392,12 @@ public class Main {
             System.out.println(NOT_A_REGISTERED_USER);
     }
 
+    /**
+     * Command that processes listing the documents that were leaked
+     * (leaked being given grant to a lower access user), the most amount of times.
+     * @param in scanner that reads input from the console.
+     * @param fs the system.
+     */
     private static void processTopLeaked(Scanner in, FileSystem fs) {
         Iterator<Document> iterator = fs.topLeaked();
         if (iterator.hasNext()) {
@@ -363,6 +415,12 @@ public class Main {
             System.out.println(NO_LEAKED_DOCUMENTS);
     }
 
+    /**
+     * Command that processes listing the officers that have given more grants
+     * to other officers.
+     * @param in scanner that reads input from the console.
+     * @param fs the system.
+     */
     private static void processTopGranters(Scanner in, FileSystem fs) {
         Iterator<User> iterator = fs.topGranters();
         if (iterator.hasNext()) {
@@ -380,15 +438,28 @@ public class Main {
             System.out.println(NO_GIVEN_GRANTS);
     }
 
+    /**
+     * Command that lists information about all the available commands in the system.
+     */
     private static void processHelp() {
         for (HelpMenu h: HelpMenu.values())
             System.out.println(h.message());
     }
 
+    /**
+     * Reads what command the user of the program typed.
+     * @param in scanner that reads input from the console.
+     * @return the command that was typed.
+     */
     private static String getCommand(Scanner in) {
         return in.nextLine().toUpperCase();
     }
 
+    /**
+     * Searched for a specific clearance.
+     * @param temp temporary.
+     * @return the clearance.
+     */
     private static Clearance searchClearance(String temp) {
         Clearance aux = Clearance.CLERK;
         for (Clearance c: Clearance.values()) {
