@@ -188,7 +188,7 @@ public class DocumentCollectionClass implements DocumentCollection {
             else if (grantCount < toInsertGrantCount)
                 documents[i + 1] = documents[i];
             else {
-                if (documents[i].getID().compareToIgnoreCase(document.getID()) < 0)
+                if (documents[i].getID().compareToIgnoreCase(document.getID()) > 0)
                     documents[i + 1] = document;
                 else
                     documents[i + 1] = documents[i];

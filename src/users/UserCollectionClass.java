@@ -153,7 +153,7 @@ public class UserCollectionClass implements UserCollection {
                     topLeaked.insertSort(doc);
             }
         }
-        topLeaked.bubbleSort(); // Sort by number of grants and alphabetically if tie.
+        // topLeaked.bubbleSort(); // Sort by number of grants and alphabetically if tie.
         topLeaked.trim(TOP_LEAKED_MAX_ITERATOR_SIZE);
         return topLeaked.documentIterator();
     }
