@@ -337,6 +337,11 @@ public class Main {
             System.out.println(NOT_A_REGISTERED_USER);
     }
 
+    /**
+     * Prints the official documents of a user.
+     * @param      doc        The document
+     * @param      readWrite  The read write
+     */
     private static void printUserDocsOfficial(Document doc, Iterator<Action> readWrite) {
 
         int accessCounter = 0;
@@ -359,11 +364,19 @@ public class Main {
              System.out.println(NO_ACCESSES);
     }
 
+    /**
+     * Prints the classified documents of a user. The classified documents must show reads and writes in one line and grants and revokes in the next line.
+     * @param      doc          The document
+     * @param      readWrite    The read write
+     * @param      grantRevoke  The grant revoke
+     */
     private static void printUserDocsClassified(ClassifiedDocument doc, Iterator<Action> readWrite, Iterator<Action> grantRevoke) {
 
         int accessCounter = 0;
 
         System.out.printf("%s %s %s\n", doc.getID(), doc.getClearance().getClearanceString(), readWrite.itemCount());
+
+        // Print reads and writes
         if (readWrite.hasNext()) {
             do {
                 Action act = readWrite.next();
@@ -381,6 +394,7 @@ public class Main {
 
         accessCounter = 0;
 
+        // Print grants and revokes
         if (grantRevoke.hasNext()) {
             do {
                 Action act = grantRevoke.next();
@@ -397,6 +411,12 @@ public class Main {
             System.out.println(NO_GRANTS);
     }
 
+    /**
+     * Command that processes listing the top documents that were leaked
+     * (leaked being given grant to a lower access officer), the most amount of times.
+     * @param in scanner that reads input from the console.
+     * @param fs the system.
+     */
     private static void processTopLeaked(Scanner in, FileSystem fs) {
         Iterator<Document> iterator = fs.topLeaked();
         if (iterator.hasNext()) {
