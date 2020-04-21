@@ -339,8 +339,8 @@ public class Main {
 
     /**
      * Prints the official documents of a user.
-     * @param      doc        The document
-     * @param      readWrite  The read write
+     * @param doc the document.
+     * @param readWrite the iterator of read and write actions.
      */
     private static void printUserDocsOfficial(Document doc, Iterator<Action> readWrite) {
 
@@ -358,7 +358,7 @@ public class Main {
                     System.out.printf(", ");
             } while (readWrite.hasPrevious() && accessCounter < MAX_ACCESSES_SHOWN);
 
-            System.out.println(); // A newline at the end
+            System.out.println(); // A newline at the end.
 
         } else
              System.out.println(NO_ACCESSES);
@@ -366,9 +366,9 @@ public class Main {
 
     /**
      * Prints the classified documents of a user. The classified documents must show reads and writes in one line and grants and revokes in the next line.
-     * @param      doc          The document
-     * @param      readWrite    The read write
-     * @param      grantRevoke  The grant revoke
+     * @param doc the document.
+     * @param readWrite the iterator of read and write actions.
+     * @param grantRevoke the iterator of grant and revoke actions.
      */
     private static void printUserDocsClassified(ClassifiedDocument doc, Iterator<Action> readWrite, Iterator<Action> grantRevoke) {
 
@@ -388,13 +388,13 @@ public class Main {
                     System.out.printf(", ");
             } while (readWrite.hasNext() && accessCounter < MAX_ACCESSES_SHOWN);
 
-            System.out.println(); // A newline at the end
+            System.out.println(); // A newline at the end.
         } else
             System.out.println(NO_ACCESSES);
 
         accessCounter = 0;
 
-        // Print grants and revokes
+        // Print grants and revokes.
         if (grantRevoke.hasNext()) {
             do {
                 Action act = grantRevoke.next();
