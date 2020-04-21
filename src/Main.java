@@ -361,8 +361,8 @@ public class Main {
 
                             accessCounter = 0;
 
-                            if (doc instanceof ClassifiedDocumentClass) {
-                                ClassifiedDocument docClassified = (ClassifiedDocumentClass) doc;
+                            if (doc instanceof ClassifiedDocument) {
+                                ClassifiedDocument docClassified = (ClassifiedDocument) doc;
                                 Iterator<Action> grantsRevokesIterator = docClassified.documentGrantsRevokesIterator();
                                 if (grantsRevokesIterator.hasNext()) {
                                     Action act = grantsRevokesIterator.next();
