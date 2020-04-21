@@ -308,8 +308,6 @@ public class Main {
         String clearance = in.nextLine().trim();
         Clearance c = searchClearance(clearance);
 
-        int accessCounter;
-
         if (fs.hasUser(userID)) {
             if (fs.getUserClearance(userID).toInt() >= c.toInt()) {
 
@@ -327,7 +325,6 @@ public class Main {
                             if (doc instanceof ClassifiedDocumentClass) {
                                 docClassified = (ClassifiedDocumentClass) doc;
                                 Iterator<Action> grantRevokeIterator = docClassified.documentGrantsRevokesIterator();
-                                accessCounter = 0;
                                 printUserDocsClassified(docClassified, readWriteIterator, grantRevokeIterator);
                             }
                         }
