@@ -3,6 +3,7 @@
 ## First programming project for the object oriented programming course
 
 To run the tests, navigate to the project directory and run:
+(the test parser might only work on unix based systems)
 ```
 python TestParser.py
 ```
